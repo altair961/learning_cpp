@@ -1,11 +1,11 @@
 #include "std_lib_facilities.h"
 int main()
 {
-	cout << "Please enter your name and age\n";
+	cout << "Please enter your name and age in years\n";
 	string first_name = "???";
-	int age = -1;
+	double age = -1;
 	cin >> first_name >> age;
-	cout << "Hello," << first_name << "(age" << age << ")\n";
+	cout << "Hello, " << first_name << " (age " << age * 12 << " months)\n";
 
 	return 0;
 }
