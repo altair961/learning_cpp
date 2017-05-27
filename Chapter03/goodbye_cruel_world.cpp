@@ -2,6 +2,6 @@
 
 int main()
 {
-	STRING s = "Goodbye, cruel world! ";
+	string s = "Goodbye, cruel world! ";
 	cOut << S << '\n';
 }
