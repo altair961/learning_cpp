@@ -3,5 +3,5 @@
 int main()
 {
 	string s = "Goodbye, cruel world! ";
-	cOut << S << '\n';
+	cout << S << '\n';
 }
