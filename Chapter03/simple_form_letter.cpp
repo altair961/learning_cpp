@@ -1,4 +1,5 @@
 #include "..\std_lib_facilities.h"
+
 int main()
 {
 	string first_name = "???";
@@ -33,5 +34,17 @@ int main()
 
 	if((age == 0 || age < 0) || (age == 110) || (age > 110)) {
 		simple_error("you're kidding!");
+	}
+
+	if(age < 12) {
+		cout << "Next year you will be " + age+1 + "\n";
+	}
+
+	if(age == 17) {
+		cout << "Next year you will be able to vote\n";
+	}
+
+	if(age >= 70) {
+		cout << "I hope you are enjoying your retirement";
 	}
 }
