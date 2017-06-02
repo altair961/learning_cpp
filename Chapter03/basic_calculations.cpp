@@ -27,5 +27,5 @@ int main() {
 	}
 	cout << "The difference of the two numbers is: " << difference << '\n';
 	cout << "The product of the two numbers is: " << val1 * val2 << '\n';
-	cout << "The ratio of the two numbers is: " << (double)val1 / (double)val2 << '\n';
+	cout << "The ratio of the two numbers is: " << val1 / val2 << '\n';
 }
