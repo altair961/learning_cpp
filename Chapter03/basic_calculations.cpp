@@ -1,11 +1,11 @@
 #include "..\std_lib_facilities.h"
 
 int main() {
-	int val1 = 0;
-	int val2 = 0;
-	cout << "Please, enter first number: ";
+	double val1 = 0;
+	double val2 = 0;
+	cout << "Please, enter first floating point number: ";
 	cin >> val1;
-	cout << "Enter second number: ";
+	cout << "Enter second floating point number: ";
 	cin >> val2;
 
 	if(val1 > val2) {
