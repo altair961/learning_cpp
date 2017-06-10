@@ -3,6 +3,9 @@
 
 #include "..\std_lib_facilities.h"
 
+int min(int first, int second);
+int max(int first, int second);
+
 int main()
 {
   int val1;
@@ -44,6 +47,31 @@ int main()
     
   }
 }
+
+int min(int first, int second)
+{
+  if(first < second){
+    return first;
+  }
+  if(second < first){
+    return second;
+  }
+    
+  return -1;
+}
+
+int max(int first, int second)
+{
+  if(first > second){
+    return first;
+  }
+  if(second > first){
+    return second;
+  }
+
+  return -1;
+}
+
   /*
   
   if(val2 < val1){
