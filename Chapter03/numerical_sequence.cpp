@@ -1,7 +1,7 @@
 // Solution for exercise 3.6.
 // Show the numbers in numerical sequence
 
-#include "..\std_lib_facilities.h"
+#include "../std_lib_facilities.h"
 
 int min(int first, int second);
 int max(int first, int second);
@@ -21,30 +21,28 @@ int main()
   
   if(val1 < val2){
     if(val1 < val3){
-      //show: val1
-      //show: min(val2, val3);
-      //show: max(val2, val3);
+      cout << val1 << ", "; // show: val1
+      cout << min(val2, val3) << ", "; //show: min(val2, val3);
+      cout << max(val2, val3) << ", "; //show: max(val2, val3);
     }
     if(val3 < val1){  //val1 < val2 && val3 < val1 show: val3, val1, val2
-      //show: val3
-      //show: val1
-      //show: val2
+      cout << val3 << ", ";//show: val3
+      cout << val1 << ", ";//show: val1
+      cout << val2; //show: val2
     }
   }
   
   if(val2 < val1){
     if(val2 < val3){ 
-      //show: val2
-      //show: min(val1, val3);
-      //show: max(val1, val3);
+      cout << val2; //show: val2
+      cout << min(val1, val3); //show: min(val1, val3);
+      cout << max(val1, val3); //show: max(val1, val3);
     }
     if(val3 < val2){ // val3, val2, val1
-      //show: val3
-      //show: val2
-      //show: val1
-    }
-
-    
+      cout << val3 << ", "; //show: val3
+      cout << val2 << ", "; //show: val2
+      cout << val1 << ", "; //show: val1
+    }   
   }
 }
 
