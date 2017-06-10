@@ -14,16 +14,16 @@ int main()
 
   cout << "Please, enter the first integer value: ";
   cin >> val1;
-  cout << "\nNow enter the second value: ";
+  cout << "Now enter the second value: ";
   cin >> val2;
-  cout << "\nEnter the third value: ";
+  cout << "Enter the third value: ";
   cin >> val3;
   
   if(val1 < val2){
     if(val1 < val3){
       cout << val1 << ", "; // show: val1
       cout << min(val2, val3) << ", "; //show: min(val2, val3);
-      cout << max(val2, val3) << ", "; //show: max(val2, val3);
+      cout << max(val2, val3); //show: max(val2, val3);
     }
     if(val3 < val1){  //val1 < val2 && val3 < val1 show: val3, val1, val2
       cout << val3 << ", ";//show: val3
