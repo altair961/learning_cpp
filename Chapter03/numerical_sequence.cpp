@@ -1,4 +1,3 @@
-
 // Solution for exercise 3.6.
 // Show the numbers in numerical sequence
 
@@ -9,9 +8,9 @@ int max(int first, int second);
 
 int main()
 {
-  int val1;
-  int val2;
-  int val3;
+  int val1 = 0;
+  int val2 = 0;
+  int val3 = 0;
 
   cout << "Please, enter the first integer value: ";
   cin >> val1;
@@ -27,8 +26,8 @@ int main()
       cout << max(val2, val3) << "\n"; //show: max(val2, val3);
     }
     if(val3 < val1){  //val1 < val2 && val3 < val1 show: val3, val1, val2
-      cout << val3 << ", ";//show: val3
-      cout << val1 << ", ";//show: val1
+      cout << val3 << ", "; //show: val3
+      cout << val1 << ", "; //show: val1
       cout << val2 << "\n"; //show: val2
     }
   }
@@ -45,6 +44,8 @@ int main()
       cout << val1 << "\n"; //show: val1
     }   
   }
+
+  return 0;
 }
 
 int min(int first, int second)
