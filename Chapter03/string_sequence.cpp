@@ -4,11 +4,13 @@
 #include "../std_lib_facilities.h"
 
 string to_lower(string str);
+string min(string first, string second);
+string max(string first, string second);
 
-  int const first_ascii_uppercase = 65;
-  int const last_ascii_uppercase = 90;
-  int const first_ascii_lowercase = 97;
-  int const last_ascii_lowercase = 122;
+int const first_ascii_uppercase = 65;
+int const last_ascii_uppercase = 90;
+int const first_ascii_lowercase = 97;
+int const last_ascii_lowercase = 122;
 
 int main()
 {
@@ -19,42 +21,82 @@ int main()
  
   cout << "Please, enter the first word: ";
   cin >> first_str;
-  //cout << first_str[0];
+  cout << "Now enter the second word: ";
+  cin >> second_str;
+  cout << "Enter the third word: ";
+  cin >> third_str;
+  
+  //  cout << to_lower(first_str) << "\n";
+  if(first_str[0] <= second_str[0]){
+    if(first_str[0] <= third_str[0]){
+      cout << first_str << ", ";
+      cout << min(second_str, third_str) << ", ";
+      cout << max(first_str, second_str) << "\n";
+    }
+    if(third_str[0] < first_str[0]){
+      cout << third_str << ", ";
+      cout << first_str << ", ";
+      cout << second_str << "\n";
+    }
+  }
+  if(second_str[0] < first_str[0]){
+    if(second_str[0] <= third_str[0]){ 
+      cout << second_str << ", ";
+      cout << min(first_str, third_str) << ", ";
+      cout << max(first_str, third_str) << "\n";
+    }
+    if(third_str[0] < second_str[0]){
+      cout << third_str << ", ";
+      cout << second_str << ", ";
+      cout << first_str << "\n";
+    }   
+  }
 
-  //  cout << to_lower(first_str[0]) << "\n";
-
-  cout << to_lower(first_str) << "\n";
+  
   
   //get 1-st char of string 
   //to lowercase before start use own tolower function
+  // compare ints
   return 0;
 }
 
 string to_lower(string str){
-  //  str[0] = 99;
   int char_alphabet_pos = 0;
   for (int i = 0; i < str.length(); i++) {
     char curr_char = str[i];
-    
     if(curr_char >= first_ascii_uppercase && curr_char <= last_ascii_uppercase){
       char_alphabet_pos = curr_char - first_ascii_uppercase; 
-    
-    //  str[curr_char] = first_ascii_lowercase + char_alphabet_pos;
       curr_char = first_ascii_lowercase + char_alphabet_pos;
       str[i] = curr_char;
     }
   }
   return str;
-  /*
-  int char_alphabet_pos = 0;
-  if(curr_char >= first_ascii_uppercase && curr_char <= last_ascii_uppercase){
-    char_alphabet_pos = curr_char - first_ascii_uppercase; 
+}
 
-    
-    //  str[curr_char] = first_ascii_lowercase + char_alphabet_pos;
-    curr_char = first_ascii_lowercase + char_alphabet_pos;
+string min(string first, string second)
+{
+  if(first[0] < second[0]){
+    return first;
   }
-  */
-  //  return curr_char;
-  
+  if(second[0] < first[0]){
+    return second;
+  }
+  if(first == second){
+    return first;
+  }
+  return "";
+}
+
+string max(string first, string second)
+{
+  if(first[0] > second[0]){
+    return first;
+  }
+  if(second[0] > first[0]){
+    return second;
+  }
+  if(first == second){
+    return first;
+  }
+  return "";
 }
