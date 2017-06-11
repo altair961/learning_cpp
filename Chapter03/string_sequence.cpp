@@ -14,7 +14,6 @@ int const last_ascii_lowercase = 122;
 
 int main()
 {
-
   string first_str = "";
   string second_str = "";
   string third_str = "";
@@ -26,12 +25,11 @@ int main()
   cout << "Enter the third word: ";
   cin >> third_str;
   
-  //  cout << to_lower(first_str) << "\n";
   if(first_str[0] <= second_str[0]){
     if(first_str[0] <= third_str[0]){
       cout << first_str << ", ";
       cout << min(second_str, third_str) << ", ";
-      cout << max(first_str, second_str) << "\n";
+      cout << max(second_str, third_str) << "\n";
     }
     if(third_str[0] < first_str[0]){
       cout << third_str << ", ";
@@ -51,12 +49,7 @@ int main()
       cout << first_str << "\n";
     }   
   }
-
   
-  
-  //get 1-st char of string 
-  //to lowercase before start use own tolower function
-  // compare ints
   return 0;
 }
 
