@@ -3,7 +3,8 @@
 
 #include "../std_lib_facilities.h"
 
-int main(){
+int main()
+{
   int val;
   cout << "Please, enter an integer: ";
   cin >> val;
