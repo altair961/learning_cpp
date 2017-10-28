@@ -26,12 +26,18 @@ int main()
   cout << "How many quarters do you have? ";
   cin >> quarters;
     
-  cout << "How many half-dollar coins do you have? ";
+  cout << "How many half-dollars do you have? ";
   cin >> half_dollars;
   
-  cout << "How many one-dollar consn do you have? ";
+  cout << "How many one-dollars do you have? ";
   cin >> one_dollars;
-    
+
+  cout << "\n" << "You have " << pennies << " pennies." << "\n";
+  cout << "\n" << "You have " << nickels << " nickels." << "\n";
+  cout << "\n" << "You have " << dimes << " dimes." << "\n";
+  cout << "\n" << "You have " << quarters << " quarters." << "\n";
+  cout << "\n" << "You have " << half_dollars << " half-dollars." << "\n";
+ 
   return 0;
 }
 
