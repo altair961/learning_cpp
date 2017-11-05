@@ -22,7 +22,7 @@ int main()
     cout << money_amount << " pounds == " << money_amount / pounds_per_dollar << " dollars \n";
       
   else
-    cout << "Sorry, I don't know a unit called'" << unit << "'\n";
+    cout << "Sorry, I don't know a unit called '" << unit << "'\n";
   
   return 0;
 }
