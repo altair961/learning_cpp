@@ -19,7 +19,10 @@ int main()
   double current_char = 0;
   char unit = 0;
 
-  while (cin >> current_char && cin >> unit && (current_char != '|' && unit != '|' ))
+  while (cin >> current_char &&
+	 cin >> unit &&
+	 (current_char != '|' && unit != '|' ) &&
+	 (unit == 'cm' || unit == 'in' || unit == 'ft' || unit == 'm'))
     {
       cout << current_char << unit << endl;
 
@@ -54,47 +57,6 @@ int main()
       cout << "End of iteration" << endl;
   }
   
-  /*
-  for (int i = 0; i <= 2; i++)
-  {
-    cin >> current_char;
-    cin >> temp;
-
-    input.push_back(current_char);
-    input.push_back(tmp);
-    
-    cout << endl << "First iteration has been finished";
-  }*/
-
-  //  cout << input[0] << endl << input[1];
-  
-  /*
-  while (cin >> input_value &&
-    //	 cin >> unit) &&
-	 //	 IsUnitAcceptable(GetUnit(input_value)) &&
-    	 !IsInputTerminated(input_value))
-  {
-    cout << input_value[0] << endl;
-    cout << "======================================" << endl;
-    cout << "Inputed number: " << input_value << endl << unit;
-   
-    if(((largest_so_far - smallest_so_far) <= 1.0/100) &&
-       ((largest_so_far - smallest_so_far) != 0.0))
-    {
-     cout << "The numbers are almost equal" << endl
-	  << "smallest_so_far: " << smallest_so_far << endl
-	  << "largest_so_far: " << largest_so_far << endl;
-    }
-    cout << "The largest so far is: " << largest_so_far << endl;
-      cout << "The smallest so far is: " << smallest_so_far << endl;
-  }
-    cout << "smallest_so_far: " << smallest_so_far << endl;
-   cout << "largest_so_far: " << largest_so_far << endl;
-  
-  
- //  cout << smallest_so_far << endl;
- //  cout << largest_so_far << endl;
- */   
   return 0;
 }
 
