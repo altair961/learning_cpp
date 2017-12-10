@@ -7,8 +7,6 @@
 
 int main()
 {
-  vector<char> input;
-
   double largest_so_far = 0;
   double smallest_so_far = 0;
   
@@ -17,12 +15,11 @@ int main()
        << "Terminate the input with '|'" << endl;
   
   double current_char = 0;
-  char unit = 0;
+  string unit = "";
 
   while (cin >> current_char &&
 	 cin >> unit &&
-	 (current_char != '|' && unit != '|' ) &&
-	 (unit == 'cm' || unit == 'in' || unit == 'ft' || unit == 'm'))
+	 (unit == "cm" || unit == "in" || unit == "ft" || unit == "m"))
     {
       cout << current_char << unit << endl;
 
