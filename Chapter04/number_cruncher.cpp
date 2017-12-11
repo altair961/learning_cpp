@@ -1,10 +1,5 @@
 #include "..\std_lib_facilities.h"
 
-//bool IsUnitAcceptable(string);
-//bool IsInputSucceeded(double, string);
-//bool IsInputTerminated(char);
-//string GetUnit(string);
-
 int main()
 {
   double largest_so_far = 0;
@@ -56,26 +51,3 @@ int main()
   
   return 0;
 }
-
-//bool IsUnitAcceptable(string unit)
-//{
-//  cout << "unit: " << unit << endl;
-//  if(unit == "cm" || unit == "m" || unit == "in" || unit == "ft")
-//    return true;
-//  cout <<"at IsUnitAcceptable" << endl;
-//  return false;
-//}
-
-//bool IsInputTerminated(char current_char)
-//{
-//  return char(current_char) == '|';
-//}
-
-//string GetUnit(string input)
-//{
-//  for(int x : input)
-//  {
-    
-//  }
-//  return "hey";
-//}
