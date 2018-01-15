@@ -1,5 +1,7 @@
 // ch4_numbers_guessing_game.cpp : Defines the entry point for the console application.
-//
+// This program performs as a number guessing game. User answers to
+// questions about the number he or she thinks of typing y for yes and n for no
+// and the program figures out what the nuber is.
 
 #include "stdafx.h"
 #include "../std_lib_facilities.h"
