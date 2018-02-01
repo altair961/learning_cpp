@@ -1,7 +1,7 @@
 // ch4_digit_speller.cpp : Defines the entry point for the console application.
 // Solution for exercise 4.6
 // This program reads-in input from the user and converts typed digits into
-// spelled numbers. So 5 will be conveted to "five" and vice-versa. 
+// spelled-out numbers. So 5 will be conveted to "five" and vice versa. 
 
 #include "stdafx.h"
 #include "../std_lib_facilities.h"
