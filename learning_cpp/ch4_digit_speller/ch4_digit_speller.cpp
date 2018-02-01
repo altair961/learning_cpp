@@ -6,24 +6,23 @@
 #include <algorithm>
 
 
+bool isWord(string);
+bool isNumber(string);
 int get_item_index(vector<string>, string);
-vector<string> spelled_out_digits;
 string input;
 string spelled_out_result;
-int numeric_result;
+int numeric_result = -1;
 
 int main()
 {
-	spelled_out_digits.push_back("zero");
-	spelled_out_digits.push_back("one");
-	spelled_out_digits.push_back("two");
-	spelled_out_digits.push_back("three");
-	spelled_out_digits.push_back("four");
-	spelled_out_digits.push_back("five");
-	spelled_out_digits.push_back("six");
-	spelled_out_digits.push_back("seven");
-	spelled_out_digits.push_back("eight");
-	spelled_out_digits.push_back("nine");
+	vector<string> spelled_out_digits{ "zero", "one", "two", 
+										"three", "four", "five", 
+										"six", "seven", "eight", "nine" };
+
+	cout << "Please, provide a digit or a word representing the digit." << endl <<
+		"When a number is provided only the first part of it will be processed." << endl <<
+		"So 125 will be treated as 1. Type '|' to finish the input " << endl;
+
 	/*
 	char myChar = 'k';
 	(int)myChar;
@@ -34,10 +33,13 @@ int main()
 
 	//int x = std::distance(arr, std::find(arr, arr + 5, 3));
 	// input == "1";
-	char a = '4';
-	int ia = a - '0';
+	//char a = '4';
+	//int ia = a - '0';
 
-	cout << ia + 6;
+	//cout << ia + 6;
+
+	//input = "hi";
+
 
 	//	cout << spelled_out_digits.at(0)[0] << endl;
 	//	cout << spelled_out_digits[char(input.at(0))];
@@ -51,25 +53,46 @@ int main()
 	// cout << typeid((int)input.at(0)).name(); //== "int";
 	while (cin >> input && input != "|")
 	{
-		cout << input << endl << endl;
-		string type = typeid((int)input.at(0)).name();
-		if (type == "int") {
-			int temp = (input.at(0));
-			spelled_out_result = spelled_out_digits[temp];
-
-			cout << spelled_out_result << endl << endl;
-		}
-			
-		if (typeid((int)input.at(0)).name() == "string")
-			for (string s : spelled_out_digits)
+		//cout << input << endl << endl;
+		
+		if (isWord(input)) {
+			for (string s : spelled_out_digits) {
 				if (s == input) {
 					numeric_result = get_item_index(spelled_out_digits, input);
 					cout << numeric_result << endl << endl;
 				}
-				else
-					cout << "Please, provide a digit or a word representing the digit." << endl <<
-							"When a number is provided only the last part of it will be processed." << endl <<
-							"So 125 will be treated as 5" << endl;
+			}
+			//if (numeric_result == -1)
+				//cout << endl << "Please, provide a word representing a number!" << endl << endl;
+
+		//	numeric_result = -1;
+		}
+		if (isNumber(input)) {
+			string temp = input.substr(0, 1);
+			temp = temp.at(0);
+
+			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
+
+			cout << spelled_out_result << endl << endl;
+		}
+		else {
+			cout << endl << "Please, provide a number or a word representing the number!" << endl << endl;
+		}
+
+		
+
+
+			//97 - 122  a, 65 - 90 A, 48 - 57 0
+
+		
+		
+		//string type = typeid(((int)input.at(0))).name();
+		////if (type == "int")
+		//{
+		//}
+			
+	//	if (typeid(((int)input.at(0))).name() == "string")
+
 
 
 				
@@ -97,9 +120,9 @@ int main()
 
 int get_item_index(vector<string> words, string word)
 {
-	int result = 0;
+	int result = -1;
 
-	for (int i = 0; i < words.size() - 1; i++)
+	for (int i = 0; i < words.size(); i++)
 	{
 		if (words.at(i) == word)
 			result = i;
@@ -107,3 +130,31 @@ int get_item_index(vector<string> words, string word)
 	return result;
 }
 
+bool isWord(string input) {
+	bool result = false;
+	int constexpr small_a = 97;
+	int constexpr small_z = 122;
+	int constexpr capital_a = 65;
+	int constexpr capital_z = 90;
+
+	if ((input.at(0) >= small_a && input.at(0) <= small_z) ||
+		(input.at(0) >= capital_a && input.at(0) <= capital_z))
+		result = true;
+	else
+		result = false;
+
+	return result;
+}
+
+bool isNumber(string input) {
+	bool result = false;
+	int constexpr number_0 = 48;
+	int constexpr number_9 = 57;
+
+	if (input.at(0) >= number_0 && input.at(0) <= number_9)
+		result = true;
+	else
+		result = false;
+
+	return result;
+}
