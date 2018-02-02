@@ -8,8 +8,8 @@
 #include <algorithm>
 
 
-bool isWord(string);
-bool isNumber(string);
+bool is_word(string);
+bool is_number(string);
 int get_item_index(vector<string>, string);
 string input;
 string spelled_out_result;
@@ -27,7 +27,7 @@ int main()
 
 	while (cin >> input && input != "|")
 	{		
-		if (isWord(input)) {
+		if (is_word(input)) {
 			for (string s : spelled_out_digits) {
 				if (s == input) {
 					numeric_result = get_item_index(spelled_out_digits, input);
@@ -35,10 +35,7 @@ int main()
 				}
 			}
 		}
-		if (isNumber(input)) {
-			string temp = input.substr(0, 1);
-			temp = temp.at(0);
-
+		if (is_number(input)) {
 			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
 
 			cout << spelled_out_result << endl << endl;
@@ -64,7 +61,7 @@ int get_item_index(vector<string> words, string word)
 	return result;
 }
 
-bool isWord(string input) {
+bool is_word(string input) {
 	bool result = false;
 	int constexpr small_a = 97;
 	int constexpr small_z = 122;
@@ -80,7 +77,7 @@ bool isWord(string input) {
 	return result;
 }
 
-bool isNumber(string input) {
+bool is_number(string input) {
 	bool result = false;
 	int constexpr number_0 = 48;
 	int constexpr number_9 = 57;
