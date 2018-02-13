@@ -6,7 +6,6 @@
 
 
 int spelled_out_to_number(string);
-string number_to_spelled_out(int);
 int get_item_index(vector<string>, string);
 bool is_word(string);
 bool is_number(string);
@@ -16,6 +15,10 @@ int second_operand = 0;
 char operator_sign;
 string operation_name = "";
 double result = 0.0;
+vector<string> spelled_out_digits{ "zero", "one", "two",
+									"three", "four", "five",
+									"six", "seven", "eight", "nine" };
+string spelled_out_result = "";
 
 int main()
 {
@@ -26,20 +29,34 @@ int main()
 	//cout << endl << "Now type-in a character representing operation: ";
 	//cin >> operator_sign;
 	string input = "";
+	
+	cin >> first_operand;
+	cin >> second_operand;
+
+
+
+	for (operand : opernads) {
+		/*if (is_word(operand)) {
+			numeric_result = spelled_out_to_number(operand);
+		}
+		if (is_number(input)) {
+			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
+		}*/
+
+	}
+
 	while (cin >> input && input != "|")
 	{
 		if (is_word(input)) {
 			first_operand = spelled_out_to_number(input);
 		}
 		if (is_number(input)) {
-
 			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
-
 			cout << spelled_out_result << endl << endl;
 		}
 		else {
 			cout << endl << "Please, provide a number or a word representing the number!" << endl << endl;
-		}
+		}	
 	}
 	
 	switch (operator_sign)
@@ -92,10 +109,6 @@ int spelled_out_to_number(string word) {
 	return result;
 }
 
-string number_to_spelled_out(int number) {
-
-}
-
 int get_item_index(vector<string> words, string word)
 {
 	int result = -1;
@@ -124,7 +137,7 @@ bool is_word(string input) {
 	return result;
 }
 
-bool isNumber(string input) {
+bool is_number(string input) {
 	bool result = false;
 	int constexpr number_0 = 48;
 	int constexpr number_9 = 57;
