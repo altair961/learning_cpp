@@ -6,13 +6,19 @@
 using namespace std;
 
 
+double add(double x, double y) 
+{
+	return x + y;
+}
+
 int main()
 {
-	auto j = 5;
-	cout << j << endl;
+	auto a = add(3, 4);
+	cout << "3 + 4 is " << a << endl;
 
-	auto f = 9.5;
-	cout << f << endl;
-    return 0;
+	auto b = add(1.2, 3.4);
+	cout << "1.2 + 3.4 is " << b << endl;
+
+	return 0;
 }
 
