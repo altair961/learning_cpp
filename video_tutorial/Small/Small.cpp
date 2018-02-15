@@ -8,18 +8,11 @@ using namespace std;
 
 int main()
 {
-	cout << "Hello!" << endl << 2 + 2;
-
-	cout << endl << endl;
-
-	auto i = 5;
-	cout << i << endl;
-
-	auto j = 4.9;
+	auto j = 5;
 	cout << j << endl;
 
-	i = j;
-
+	auto f = 9.5;
+	cout << f << endl;
     return 0;
 }
 
