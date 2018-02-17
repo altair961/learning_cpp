@@ -9,72 +9,98 @@ int spelled_out_to_number(string);
 int get_item_index(vector<string>, string);
 bool is_word(string);
 bool is_number(string);
+int get_digit_val(string);
 
-int first_operand = 0;
-int second_operand = 0;
 char operator_sign;
 string operation_name = "";
 double result = 0.0;
-vector<string> spelled_out_digits{ "zero", "one", "two",
-									"three", "four", "five",
-									"six", "seven", "eight", "nine" };
+//vector<string> spelled_out_digits{ "zero", "one", "two",
+//									"three", "four", "five",
+//									"six", "seven", "eight", "nine" };
 string spelled_out_result = "";
 
 int main()
 {
-	//cout << "Please, provide first operand. It should be real number: ";
-	//cin >> first_operand;
-	//cout << endl << "Now, provide the second operand, also real number: ";
-	//cin >> second_operand;
-	//cout << endl << "Now type-in a character representing operation: ";
-	//cin >> operator_sign;
-	string input = "";
+	cout << "Please enter digits for calculation. To finish the input type \"|\": " 
+		 << endl;
 	
-	cin >> first_operand;
-	cin >> second_operand;
+	vector<string> inputs;
+	string input = "";
+	auto operands_amount = 0;
+	while (cin >> input && input != "|")
+	{
+		inputs.push_back(input);
+		operands_amount++;
+	}
+	
+	cout << "Now type-in a character representing an operation: "
+		 << endl;
+	cin >> operator_sign;
+	
+	vector<int> operands(operands_amount);
 
+	for (auto i = 0; i < inputs.size(); i++)
+	{
+		if (is_word(inputs.at(i))) operands.at(i) = get_digit_val(inputs.at(i));
+		if (is_number(inputs.at(i))) operands.at(i) = inputs.at(i).at(0) - '0';
+	}
 
-
-	for (operand : opernads) {
+	//for (int operand : operands)
+	//{
+	//	if (is_word(input)) operand = get_digit_val(input);
+	//	if (is_number(input)) operand = input.at(0) - '0';
+	//}
+	
+//	for (operand : opernads) {
 		/*if (is_word(operand)) {
 			numeric_result = spelled_out_to_number(operand);
 		}
 		if (is_number(input)) {
 			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
 		}*/
-
-	}
-
-	while (cin >> input && input != "|")
+//	}
+	
+	
+	/*
+	// here we sh create a vector of the size == inputs.size
+	vector<int> operands;
+	for (string input : inputs) 
 	{
-		if (is_word(input)) {
-			first_operand = spelled_out_to_number(input);
-		}
-		if (is_number(input)) {
-			spelled_out_result = spelled_out_digits[input.at(0) - '0'];
-			cout << spelled_out_result << endl << endl;
-		}
-		else {
-			cout << endl << "Please, provide a number or a word representing the number!" << endl << endl;
-		}	
+		operands.push_back(0);
 	}
+	// end of vector creating 
+
+	*/
+
+
+	//	if (is_word(input)) {
+	//		// first_operand = spelled_out_to_number(input);
+	//	}
+	//	if (is_number(input)) {
+	//		spelled_out_result = spelled_out_digits[input.at(0) - '0'];
+	//		cout << spelled_out_result << endl << endl;
+	//	}
+	//	else {
+	//		cout << endl << "Please, provide a number or a word representing the number!" << endl << endl;
+	//	}	
+	////}
 	
 	switch (operator_sign)
 	{
 	case '+':
-		result = first_operand + second_operand;
+		result = operands[0] + operands[1];
 		operation_name = "sum";
 		break;
 	case '-':
-		result = first_operand - second_operand;
+		result = operands.at(0) + operands.at(1);
 		operation_name = "subtraction";
 		break;
 	case '*':
-		result = first_operand * second_operand;
+		result = operands.at(0) + operands.at(1);
 		operation_name = "multiplication";
 		break;
 	case '/':
-		result = first_operand / second_operand;
+		result = operands.at(0) + operands.at(1);
 		operation_name = "division";
 		break;
 	default:
@@ -83,41 +109,39 @@ int main()
 	}
 
 	cout << "The " << operation_name << " of "
-		<< first_operand << " and "
-		<< second_operand << " is "
+		<< operands[0] << " and "
+		<< operands[1] << " is "
 		<< result << endl;
 
 	keep_window_open();
 	return 0;
 }
 
-int spelled_out_to_number(string word) {
-	
-	vector<string> spelled_out_digits{ "zero", "one", "two",
-		"three", "four", "five",
-		"six", "seven", "eight", "nine" };
-
-	int result = -1;
-
-	for (string spelled_out_digit : spelled_out_digits) {
-		if (spelled_out_digit == word) {
-			result = get_item_index(spelled_out_digits, word);
-			cout << result << endl << endl;
-		}
-	}
-
-	return result;
-}
+//int spelled_out_to_number(string word) {
+//	
+//	vector<string> spelled_out_digits{ "zero", "one", "two",
+//		"three", "four", "five",
+//		"six", "seven", "eight", "nine" };
+//
+//	int result = -1;
+//
+//	for (string spelled_out_digit : spelled_out_digits) {
+//		if (spelled_out_digit == word) {
+//			result = get_item_index(spelled_out_digits, word);
+//			cout << result << endl << endl;
+//		}
+//	}
+//
+//	return result;
+//}
 
 int get_item_index(vector<string> words, string word)
 {
-	int result = -1;
+	auto result = -1;
 
 	for (int i = 0; i < words.size(); i++)
-	{
-		if (words.at(i) == word)
-			result = i;
-	}
+		if (words.at(i) == word) result = i;
+	
 	return result;
 }
 
@@ -146,6 +170,20 @@ bool is_number(string input) {
 		result = true;
 	else
 		result = false;
+
+	return result;
+}
+
+int get_digit_val(string word)
+{
+	vector<string> spelled_out_digits{ "zero", "one", "two",
+		"three", "four", "five",
+		"six", "seven", "eight", "nine" };
+
+	auto result = -1;
+
+	for (string spelled_out_digit : spelled_out_digits)
+		if (spelled_out_digit == word) result = get_item_index(spelled_out_digits, word);
 
 	return result;
 }
