@@ -1,5 +1,5 @@
 // ch4_chess_inventors_reward_rate.cpp : Defines the entry point for the console application.
-//
+// 
 
 #include "stdafx.h"
 #include <iostream>
