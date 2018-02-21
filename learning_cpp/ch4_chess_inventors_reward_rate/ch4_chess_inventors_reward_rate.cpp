@@ -1,5 +1,7 @@
 // ch4_chess_inventors_reward_rate.cpp : Defines the entry point for the console application.
-// 
+// This program calculates amount of rice grains to be given 
+// to inventor of chess game by the emperor.
+// The result is shown for each chess desk square untill the rice grain limit
 
 #include "stdafx.h"
 #include <iostream>
@@ -10,28 +12,6 @@ using namespace std;
 
 int main()
 {
-	//constexpr auto chess_desk_squares = 64;
-	//constexpr auto rice_to_give = 1000;
-	//auto rice_curr = 0;
-
-	//for (auto curr_square = 0; 
-	//	curr_square < chess_desk_squares && 
-	//	rice_curr < 1000; 
-	//	curr_square++)
-	//{	
-	//	
-	//	rice_curr = pow(2, curr_square);
-	//}
-
-	//for (auto i = 0; i < 64; i++)
-	//	for (auto curr_grain = 0; curr_grain < 1000; curr_grain=pow(2, i))
-	//	{
-
-	//	}
-
-
-
-
 	auto constexpr power_base = 2;
 	auto constexpr rice_grains_reward = 1000000000;
 	auto power_lvl = 0;
@@ -46,27 +26,6 @@ int main()
 		cout << line_number << '\t' << curr_grains << endl;
 	}
 
-	/*
-	pow(2, 0);
-	pow(2, 1);
-	pow(2, 2);
-
-
-	for (chess_square : chess_squares)
-	{
-		grains = grains + 
-	}
-
-	for (auto grains = 0; grains < 1000; grains = pow(2, i))
-	{
-		
-	}
-
-	//for (auto rice_curr = 0; rice_curr < rice_to_give; rice_curr *= rice_curr)
-	//{
-	//	cout << rice_curr << endl;
-	//}
-*/
 	keep_window_open();
 
     return 0;
