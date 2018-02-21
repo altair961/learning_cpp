@@ -15,10 +15,10 @@ int main()
 	auto constexpr rice_grains_reward = 1000000000;
 	auto constexpr chess_desk_squares = 64;
 	auto power_lvl = 0;
-	auto curr_grains = 0;
+	auto curr_grains = 0.0;
 	auto curr_square = 1;
 
-	while (curr_square <= chess_desk_squares)
+	while (curr_square < chess_desk_squares)
 	{
 		curr_grains = pow(power_base, power_lvl);
 		power_lvl++;
