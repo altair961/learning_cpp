@@ -1,6 +1,8 @@
 // ch4_chess_inventors_reward_memory_limits.cpp : Defines the entry point for the console application.
-// This program demonstrates lack of int and double capacity
-// to represent the amount of chess inventors reward.
+// This program demonstrates lack of int capacity and that
+// double represents large numbers as standard numbers.
+// Program shows the amount of chess inventors reward
+// in rice grains for every chess desk square.
 
 #include "stdafx.h"
 #include <iostream>
