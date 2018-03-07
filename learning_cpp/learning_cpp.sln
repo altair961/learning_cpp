@@ -31,7 +31,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_repeated_word_detection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_simple_form_letter", "ch3_simple_form_letter\ch3_simple_form_letter.vcxproj", "{CB48B01F-F392-47DE-BCF9-9C2D1FCC7C05}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_spelled_numbers_to_ints.cpp", "ch3_spelled_numbers_to_ints.cpp\ch3_spelled_numbers_to_ints.cpp.vcxproj", "{FB91A330-D475-418F-8305-111BAF4707FC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_spelled_numbers_to_ints", "ch3_spelled_numbers_to_ints\ch3_spelled_numbers_to_ints.cpp.vcxproj", "{FB91A330-D475-418F-8305-111BAF4707FC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_string_sequence", "ch3_string_sequence\ch3_string_sequence.vcxproj", "{4480C694-4B0F-4BBD-8B5B-BD4690DD656B}"
 EndProject

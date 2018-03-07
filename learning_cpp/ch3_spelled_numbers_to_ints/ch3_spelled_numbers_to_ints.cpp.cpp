@@ -1,4 +1,4 @@
-// ch3_spelled_numbers_to_ints.cpp.cpp : Defines the entry point for the console application.
+// ch3_spelled_numbers_to_ints.cpp : Defines the entry point for the console application.
 // Solution for exercise 3.9
 // This program converts inputted numbers into spelled-out numbers
 // such as "zero" and "two" into digits, such as 0 and 2
