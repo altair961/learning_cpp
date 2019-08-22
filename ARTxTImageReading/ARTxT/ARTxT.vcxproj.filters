@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\mylib">
+      <UniqueIdentifier>{beb14574-5117-4e8b-a053-d2ee2ab43a0f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mylib\combination.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\glwindow.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\mycam.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\myimage.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\mylabel.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\mymat.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="mylib\mytimer.cpp">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClCompile>
+    <ClCompile Include="blob.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="bloblist.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="hashtable.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="llah.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="llahparam.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="paper.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="paperlist.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main1NoCam.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main2MultipleFiles.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="FilesFilter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mylib\combination.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\glwindow.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\mycam.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\myimage.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\mylabel.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\mymat.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\mytimer.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="mylib\opencvpath.h">
+      <Filter>ソース ファイル\mylib</Filter>
+    </ClInclude>
+    <ClInclude Include="blob.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="bloblist.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="hashtable.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="llah.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="llahparam.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="paper.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="paperlist.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="FilesFilter.h" />
+  </ItemGroup>
+</Project>
