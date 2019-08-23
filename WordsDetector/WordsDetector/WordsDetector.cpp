@@ -1,14 +1,10 @@
-// WordsDetector.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include "pch.h"
 #include <iostream>
 
 #include "opencv2/opencv.hpp"
 
 std::vector<cv::Rect> detectLetters(cv::Mat img);
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
 	//cv::Mat img = cv::imread(argv[1], -1);
 	//if (img.empty()) 
@@ -26,8 +22,8 @@ int main(int argc, char** argv)
 	//cv::Mat img2 = cv::imread("side_2.jpg");
 	//Detect
 	std::vector<cv::Rect> letterBBoxes1 = detectLetters(img1);
-//	std::vector<cv::Rect> letterBBoxes2 = detectLetters(img2);
-	//Display
+	//	std::vector<cv::Rect> letterBBoxes2 = detectLetters(img2);
+		//Display
 	for (int i = 0; i < letterBBoxes1.size(); i++)
 		cv::rectangle(img1, letterBBoxes1[i], cv::Scalar(0, 255, 0), 3, 8, 0);
 	cv::imwrite("D:\imgOut1.jpg", img1);
@@ -35,7 +31,7 @@ int main(int argc, char** argv)
 		cv::rectangle(img2, letterBBoxes2[i], cv::Scalar(0, 255, 0), 3, 8, 0);
 	cv::imwrite("imgOut2.jpg", img2);
 */
-	return 0; 
+	return 0;
 }
 
 std::vector<cv::Rect> detectLetters(cv::Mat img)
