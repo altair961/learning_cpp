@@ -15,7 +15,7 @@ double blob::Triangle(const blob *p1, const blob *p2) const
 
 double blob::Angle(const blob *src) const
 {
-	return cvFastArctan(static_cast<float>(src->y-y), static_cast<float>(src->x-x)); 
+	return cv::fastAtan2(static_cast<float>(src->y-y), static_cast<float>(src->x-x)); 
 }
 
 double blob::Distance2(const blob *src) const
@@ -25,7 +25,7 @@ double blob::Distance2(const blob *src) const
 
 double blob::Distance(const double ix, const double iy) const
 {
-	return cvSqrt((x-ix)*(x-ix)+(y-iy)*(y-iy));
+	return cv::sqrt((x-ix)*(x-ix)+(y-iy)*(y-iy));
 }
 
 void blob::Clear()

@@ -30,7 +30,7 @@ public:
 	const double& operator() (const int row, const int col) const;
 
 private:
-	CvMat *m_data;
+	cv::Mat *m_data;
 };
 
 

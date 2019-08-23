@@ -9,7 +9,9 @@
 #ifndef MYIMAGE_H
 #define MYIMAGE_H
 
-#include "opencvpath.h"
+//#include "opencvpath.h"
+#include "opencv2/core/types_c.h"
+
 
 class MyImage
 {

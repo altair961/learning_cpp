@@ -10,8 +10,8 @@
 #define OPENCVPATH_H
 
 
-#include "opencv/cv.h"
-#include "opencv/highgui.h"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 #ifdef _DEBUG
 #pragma comment(lib, "C:/libs/opencv2.4.13.6/build/x86/vc14/lib/opencv_calib3d2413d.lib")

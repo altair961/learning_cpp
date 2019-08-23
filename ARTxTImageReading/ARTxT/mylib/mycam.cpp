@@ -27,12 +27,12 @@ void MyCam::Get(IplImage* dst)
 
 bool MyCam::Init(const int iw, const int ih) 
 { 
-	if(NULL == (m_cap = cvCreateCameraCapture(0)) || NULL ==cvQueryFrame(m_cap)){
+	if(NULL == (m_cap = CreateCameraCapture(0)) || NULL ==cvQueryFrame(m_cap)){
 		return false;
 	}
 	else{
-		cvSetCaptureProperty(m_cap, CV_CAP_PROP_FRAME_WIDTH, iw);
-		cvSetCaptureProperty(m_cap, CV_CAP_PROP_FRAME_HEIGHT, ih); 
+		cvSetCaptureProperty(m_cap, cv::CAP_PROP_FRAME_WIDTH, iw);
+		cvSetCaptureProperty(m_cap, cv::CAP_PROP_FRAME_HEIGHT, ih); 
 		w=iw, h=ih;
 		return true;
 	}
