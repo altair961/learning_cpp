@@ -24,8 +24,11 @@ int main(int argc, char** argv)
 	std::vector<cv::Rect> letterBBoxes1 = detectLetters(img1);
 	//	std::vector<cv::Rect> letterBBoxes2 = detectLetters(img2);
 		//Display
-	for (int i = 0; i < letterBBoxes1.size(); i++)
+	for (int i = 0; i < letterBBoxes1.size(); i++) {
 		cv::rectangle(img1, letterBBoxes1[i], cv::Scalar(0, 255, 0), 3, 8, 0);
+		cv::circle(img1, cv::Point(letterBBoxes1[i].x + letterBBoxes1[i].width * 0.5, 
+			letterBBoxes1[i].y + letterBBoxes1[i].height*0.5),2, cv::Scalar(0, 0, 255), 5);
+	}
 	cv::imwrite("D:\imgOut1.jpg", img1);
 	/*for (int i = 0; i < letterBBoxes2.size(); i++)
 		cv::rectangle(img2, letterBBoxes2[i], cv::Scalar(0, 255, 0), 3, 8, 0);
