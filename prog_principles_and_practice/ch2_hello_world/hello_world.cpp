@@ -2,7 +2,7 @@
 
 int main() // C++ program starts by executing the function main
 {
-	cout << "Hello, World!\n"; // output 
-	keep_window_open();
+	cout << "Hello, World!\n";	// output "Hello, World!"
+	keep_window_open();			// wait for a character to be entered
 	return 0;
 }
