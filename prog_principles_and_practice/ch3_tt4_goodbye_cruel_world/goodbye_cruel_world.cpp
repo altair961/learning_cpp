@@ -2,6 +2,6 @@
 
 int main()
 {
-	string s = "Goodbye, cruel world! ";
+	string s = "Goodbye, cruel world!";
 	cout << s << '\n';
 }
