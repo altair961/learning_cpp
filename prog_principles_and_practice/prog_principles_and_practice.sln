@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_tt2_operators", "ch3_tt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_tt3_repeated_words_detector", "ch3_tt3_repeated_words_detector\ch3_tt3_repeated_words_detector.vcxproj", "{F69B1509-8E24-43A7-B891-6662F1EA9434}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_tt4_goodbye_cruel_world", "ch3_tt4_goodbye_cruel_world\ch3_tt4_goodbye_cruel_world.vcxproj", "{5E0D7B34-D690-4892-B44A-8BC702E85E03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -87,6 +89,14 @@ Global
 		{F69B1509-8E24-43A7-B891-6662F1EA9434}.Release|x64.Build.0 = Release|x64
 		{F69B1509-8E24-43A7-B891-6662F1EA9434}.Release|x86.ActiveCfg = Release|Win32
 		{F69B1509-8E24-43A7-B891-6662F1EA9434}.Release|x86.Build.0 = Release|Win32
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Debug|x64.ActiveCfg = Debug|x64
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Debug|x64.Build.0 = Debug|x64
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Debug|x86.Build.0 = Debug|Win32
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Release|x64.ActiveCfg = Release|x64
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Release|x64.Build.0 = Release|x64
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Release|x86.ActiveCfg = Release|Win32
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +109,7 @@ Global
 		{DB983BDD-4EFD-484C-93B9-ECF3F4D4E30D} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 		{A2AF0ADE-4E09-477E-A4D7-C7C01DAF9CF1} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 		{F69B1509-8E24-43A7-B891-6662F1EA9434} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
+		{5E0D7B34-D690-4892-B44A-8BC702E85E03} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40CB4014-ABDF-46A6-858E-961E739C1A70}
