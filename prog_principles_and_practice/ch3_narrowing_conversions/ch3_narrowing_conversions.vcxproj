@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{58ED80A8-AED8-4E45-9674-E89C717E7A46}</ProjectGuid>
-    <RootNamespace>ch3tt5conversions</RootNamespace>
+    <ProjectGuid>{186ED76B-5EE4-49D0-97BD-90A3A531A004}</ProjectGuid>
+    <RootNamespace>ch3narrowingconversions</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="conversions.cpp" />
+    <ClCompile Include="narrowing_conversions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
