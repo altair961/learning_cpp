@@ -18,7 +18,7 @@ int main()
 	{
 		if(val1 < val3)
 		{
-			cout << val1 << min(val2, val3) << max(val2, val3) << endl;
+			cout << val1 << " " << min(val2, val3) << " " << max(val2, val3) << endl;
 		}
 	}
 
@@ -26,7 +26,7 @@ int main()
 	{
 		if (val2 < val3)
 		{
-			cout << val2 << min(val1, val3) << max(val1, val3) << endl;
+			cout << val2 << " " << min(val1, val3) << " " << max(val1, val3) << endl;
 		}
 	}
 
@@ -34,7 +34,7 @@ int main()
 	{
 		if (val3 <= val2)
 		{
-			cout << val3 << min(val1, val2) << max(val1, val2) << endl;
+			cout << val3 << " " << min(val1, val2) << " " << max(val1, val2) << endl;
 		}
 	}
 }
