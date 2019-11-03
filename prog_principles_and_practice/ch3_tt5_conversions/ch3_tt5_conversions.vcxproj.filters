@@ -18,5 +18,8 @@
     <ClCompile Include="conversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="narrowing_conversions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
