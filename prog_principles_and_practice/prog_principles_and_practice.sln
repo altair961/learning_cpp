@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex1_miles_to_kilometers
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex4_integer_operations", "ch3_ex4_integer_operations\ch3_ex4_integer_operations.vcxproj", "{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex5_double_operations", "ch3_ex5_double_operations\ch3_ex5_double_operations.vcxproj", "{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -147,6 +149,14 @@ Global
 		{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}.Release|x64.Build.0 = Release|x64
 		{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}.Release|x86.ActiveCfg = Release|Win32
 		{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}.Release|x86.Build.0 = Release|Win32
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Debug|x64.ActiveCfg = Debug|x64
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Debug|x64.Build.0 = Debug|x64
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Debug|x86.Build.0 = Debug|Win32
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Release|x64.ActiveCfg = Release|x64
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Release|x64.Build.0 = Release|x64
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Release|x86.ActiveCfg = Release|Win32
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +175,7 @@ Global
 		{186ED76B-5EE4-49D0-97BD-90A3A531A004} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 		{6C7EE131-D707-4FBF-8BC9-56DFA36DD478} = {CCBB7F75-73B8-4103-B074-B61695910272}
 		{937E382E-DC0D-4C56-AA7E-1244D79D6BD3} = {CCBB7F75-73B8-4103-B074-B61695910272}
+		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2} = {CCBB7F75-73B8-4103-B074-B61695910272}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40CB4014-ABDF-46A6-858E-961E739C1A70}

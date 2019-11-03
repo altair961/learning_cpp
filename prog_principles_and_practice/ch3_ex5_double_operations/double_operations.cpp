@@ -1,22 +1,22 @@
 // This program determines the smaller, larger, sum, difference, product, 
-// and ratio of two integer values and reports them to the user.
+// and ratio of two floating-point values and reports them to the user.
 
 #include "../std_lib_facilities.h"
 
 int main()
 {
-	cout << "Enter first integer, (followed by 'enter'): ";
-	int val1;
+	cout << "Enter first floating-point number (followed by 'enter'): ";
+	double val1;
 	cin >> val1;
 
-	cout << "Enter second integer: ";
-	int val2;
+	cout << "Enter second floating-point: ";
+	double val2;
 	cin >> val2;
 
-	int smaller{ 0 };
-	int larger{ 0 };
+	double smaller{ 0.0 };
+	double larger{ 0.0 };
 
-	if (val1 < val2) 
+	if (val1 < val2)
 	{
 		smaller = val1;
 		larger = val2;
@@ -33,16 +33,16 @@ int main()
 		smaller = larger = val1;
 	}
 
-	int sum{ val1 + val2 };
-	int diff{ larger - smaller };
-	int product{ val1 * val2 };
+	double sum{ val1 + val2 };
+	double diff{ larger - smaller };
+	double product{ val1 * val2 };
 
-	double ratio{ (double)val1 / (double)val2 };
+	double ratio{ val1 / val2 };
 
-	if(val1 == val2)
+	if (val1 == val2)
 		cout << endl << "The numbers a same.";
 
-	if (val1 != val2) 
+	if (val1 != val2)
 	{
 		cout << endl << smaller << " is the smaller number.";
 		cout << endl << larger << " is the larger number.";
