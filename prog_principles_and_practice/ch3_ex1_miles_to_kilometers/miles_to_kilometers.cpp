@@ -1,4 +1,4 @@
-// This program writes a letter based on user input
+// This program converts miles to kilometers
 
 #include "../std_lib_facilities.h"
 

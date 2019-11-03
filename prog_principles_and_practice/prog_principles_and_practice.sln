@@ -33,7 +33,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_narrowing_conversions",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex1_miles_to_kilometers", "ch3_ex1_miles_to_kilometers\ch3_ex1_miles_to_kilometers.vcxproj", "{6C7EE131-D707-4FBF-8BC9-56DFA36DD478}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex3_integer_operations", "ch3_ex3_integer_operations\ch3_ex3_integer_operations.vcxproj", "{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex4_integer_operations", "ch3_ex4_integer_operations\ch3_ex4_integer_operations.vcxproj", "{937E382E-DC0D-4C56-AA7E-1244D79D6BD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

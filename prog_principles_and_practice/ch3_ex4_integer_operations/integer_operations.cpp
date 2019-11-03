@@ -1,4 +1,5 @@
-// This program writes a letter based on user input
+// This program determines the smaller, larger, sum, difference, product, 
+// and ratio of two values and reports them to the user.
 
 #include "../std_lib_facilities.h"
 
