@@ -16,6 +16,8 @@ int main(int argc, char** argv)
 
 	//Read
 	cv::Mat img1 = cv::imread(argv[1], -1); //cv::imread("loremHighRes.jpg");
+	//cv::Mat img1 = cv::imread("inputImg");
+	
 	if (img1.empty()) {
 		std::cout << "fegSDFG";
 	}
@@ -29,7 +31,7 @@ int main(int argc, char** argv)
 		cv::circle(img1, cv::Point(letterBBoxes1[i].x + letterBBoxes1[i].width * 0.5, 
 			letterBBoxes1[i].y + letterBBoxes1[i].height*0.5),2, cv::Scalar(0, 0, 255), 5);
 	}
-	cv::imwrite("D:\imgOut1.jpg", img1);
+	cv::imwrite("D:\\imgOut1.jpg", img1);
 	/*for (int i = 0; i < letterBBoxes2.size(); i++)
 		cv::rectangle(img2, letterBBoxes2[i], cv::Scalar(0, 255, 0), 3, 8, 0);
 	cv::imwrite("imgOut2.jpg", img2);
