@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex6_numeric_sequence", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex7_string_sequence", "ch3_ex7_string_sequence\ch3_ex7_string_sequence.vcxproj", "{840B528C-8FEC-4161-96FD-30C2E66AF23E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3_ex8_odd_even_detector", "ch3_ex8_odd_even_detector\ch3_ex8_odd_even_detector.vcxproj", "{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -177,6 +179,14 @@ Global
 		{840B528C-8FEC-4161-96FD-30C2E66AF23E}.Release|x64.Build.0 = Release|x64
 		{840B528C-8FEC-4161-96FD-30C2E66AF23E}.Release|x86.ActiveCfg = Release|Win32
 		{840B528C-8FEC-4161-96FD-30C2E66AF23E}.Release|x86.Build.0 = Release|Win32
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Debug|x64.ActiveCfg = Debug|x64
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Debug|x64.Build.0 = Debug|x64
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Debug|x86.ActiveCfg = Debug|Win32
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Debug|x86.Build.0 = Debug|Win32
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Release|x64.ActiveCfg = Release|x64
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Release|x64.Build.0 = Release|x64
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Release|x86.ActiveCfg = Release|Win32
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,6 +208,7 @@ Global
 		{5C31EEF9-60D2-4B5E-A112-EE929FB050C2} = {CCBB7F75-73B8-4103-B074-B61695910272}
 		{094D4248-8DA8-4B79-B5EA-4C6F5D535AD4} = {CCBB7F75-73B8-4103-B074-B61695910272}
 		{840B528C-8FEC-4161-96FD-30C2E66AF23E} = {CCBB7F75-73B8-4103-B074-B61695910272}
+		{E4C75951-3C2C-494B-A0EF-6D3D0832FD1D} = {CCBB7F75-73B8-4103-B074-B61695910272}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40CB4014-ABDF-46A6-858E-961E739C1A70}

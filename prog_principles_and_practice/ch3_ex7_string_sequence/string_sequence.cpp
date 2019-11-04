@@ -1,4 +1,4 @@
-// This program orders sequence of numbers input by user
+// This program orders sequence of strings input by user
 
 #include "../std_lib_facilities.h"
 

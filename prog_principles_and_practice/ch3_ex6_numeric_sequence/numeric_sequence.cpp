@@ -11,7 +11,7 @@ int main()
 	int val1;
 	int val2;
 	int val3;
-	//      3       2      2
+
 	cin >> val1 >> val2 >> val3;
 
 	if (val1 <= val2) 
