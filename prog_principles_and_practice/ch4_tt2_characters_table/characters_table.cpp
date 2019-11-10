@@ -6,8 +6,9 @@
 
 int main()
 {
-	for (char c = 'a'; c <= 122; c++)
+	for (int i = 65; i <= 90; i++)
 	{
-		cout << c << endl;
+		cout << i << ": " << (char)i << " " 
+			<< i + 32 << ": " << (char)(i + 32) << endl;
 	}
 }
