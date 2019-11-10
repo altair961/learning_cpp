@@ -1,5 +1,5 @@
 // convert from yen, euro, pounds to dollars
-// a suffix 'y', 'e' or 'p' indicates the unit of the input
+// a suffix 'y', 'e', 'p', 'r' or k indicates the unit of the input
 // any other suffix is an error
 
 #include "../std_lib_facilities.h"
