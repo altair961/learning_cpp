@@ -11,6 +11,8 @@ int main()
 	constexpr double dollars_per_yen = 0.0092;
 	constexpr double dollars_per_euro = 1.10;
 	constexpr double dollars_per_pound = 1.28;
+	constexpr double dollars_per_renminbi = 0.14;
+	constexpr double dollars_per_kroner = 0.11;
 
 	cout << "Please enter amount of money followed by space/enter/tab and a unit (y for yen, e for euro or p for pounds):\n";
 	double money_amount = 0.0;
@@ -30,6 +32,12 @@ int main()
 		break;
 	case 'p':
 		cout << money_amount << " pounds == $" << dollars_per_pound * money_amount << endl;
+		break;
+	case 'r':
+		cout << money_amount << " renminbis == $" << dollars_per_renminbi * money_amount << endl;
+		break;
+	case 'k':
+		cout << money_amount << " kroner == $" << dollars_per_pound * money_amount << endl;
 		break;
 
 	default:
