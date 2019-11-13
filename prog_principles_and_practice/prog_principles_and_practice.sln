@@ -53,6 +53,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt1_currency_convertor"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt2_characters_table", "ch4_tt2_characters_table\ch4_tt2_characters_table.vcxproj", "{741C81B4-90BE-4A0D-B818-10AFE6913FE9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt3_finding_square", "ch4_tt3_finding_square\ch4_tt3_finding_square.vcxproj", "{EFA85995-2EF2-41E1-A654-75FC083D68FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -237,6 +239,14 @@ Global
 		{741C81B4-90BE-4A0D-B818-10AFE6913FE9}.Release|x64.Build.0 = Release|x64
 		{741C81B4-90BE-4A0D-B818-10AFE6913FE9}.Release|x86.ActiveCfg = Release|Win32
 		{741C81B4-90BE-4A0D-B818-10AFE6913FE9}.Release|x86.Build.0 = Release|Win32
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Debug|x64.ActiveCfg = Debug|x64
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Debug|x64.Build.0 = Debug|x64
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Debug|x86.Build.0 = Debug|Win32
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Release|x64.ActiveCfg = Release|x64
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Release|x64.Build.0 = Release|x64
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Release|x86.ActiveCfg = Release|Win32
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -264,6 +274,7 @@ Global
 		{78383405-8F37-4B7F-B578-DFFC03505CDB} = {CCBB7F75-73B8-4103-B074-B61695910272}
 		{C56A159D-ECC2-4304-AB1A-941E8633A1A5} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 		{741C81B4-90BE-4A0D-B818-10AFE6913FE9} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
+		{EFA85995-2EF2-41E1-A654-75FC083D68FD} = {6458FDBA-6437-4BA3-A410-E37F152D80C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40CB4014-ABDF-46A6-858E-961E739C1A70}
