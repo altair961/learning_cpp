@@ -1,19 +1,37 @@
-#define SDL_MAIN_HANDLED
-#include "SDL.h"
+#define OLC_PGE_APPLICATION
+#include "olcPixelGameEngine.h"
 
-int main(int* argc, char* argv[])
+// Override base class with your custom functionality
+class Example : public olc::PixelGameEngine
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+public:
+	Example()
+	{
+		// Name you application
+		sAppName = "Example";
+	}
 
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+public:
+	bool OnUserCreate() override
+	{
+		// Called once at the start, so create things here
+		return true;
+	}
 
-	SDL_RenderClear(renderer);
+	bool OnUserUpdate(float fElapsedTime) override
+	{
+		// called once per frame, draws random coloured pixels
+		for (int x = 0; x < ScreenWidth(); x++)
+			for (int y = 0; y < ScreenHeight(); y++)
+				Draw(x, y, olc::Pixel(rand() % 256, rand() % 256, rand() % 256));
+		return true;
+	}
+};
 
-	SDL_RenderPresent(renderer);
-
-	SDL_Delay(3000);
-
+int main()
+{
+	Example demo;
+	if (demo.Construct(256, 240, 4, 4))
+		demo.Start();
 	return 0;
 }
