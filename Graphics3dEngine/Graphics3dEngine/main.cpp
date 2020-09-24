@@ -1,5 +1,21 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
+using namespace std;
+
+struct vec3d
+{
+	float x, y, z;
+};
+
+struct triangle
+{
+	vec3d p[3];
+};
+
+struct mesh
+{
+	vector<triangle> tris;
+};
 
 class Graphics3dEngine : public olc::PixelGameEngine
 {
