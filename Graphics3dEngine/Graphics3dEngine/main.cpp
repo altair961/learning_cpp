@@ -33,6 +33,9 @@ public:
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
+		auto pixel = olc::Pixel(200, 200, 200, 200);
+		Clear(pixel);
+
 		return true;
 	}
 };
