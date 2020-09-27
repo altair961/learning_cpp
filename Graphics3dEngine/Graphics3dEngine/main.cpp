@@ -17,6 +17,11 @@ struct mesh
 	vector<triangle> tris;
 };
 
+struct mat4x4 
+{
+	float m[4][4] = { 0 };
+};
+
 class Graphics3dEngine : public olc::PixelGameEngine
 {
 public:
