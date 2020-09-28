@@ -64,6 +64,15 @@ public:
 
 		};
 
+		// we define our transformation or "projection" matrix once in OnUserCreate,
+		// because the screen dimention and field of view are not going to change in this app
+		// Transformation matrix
+		float fNear = 0.1f;
+		float fFar = 1000.0f;
+		float fFov = 90.0f; // fov stands for field of view in degrees
+		float fAspectRatio = (float)ScreenHeight() / (float)ScreenWidth();
+		float fFovRad = 1.0f / tanf(fFov * 0.5f / 100.0f * 3.14159f);
+
 		return true;
 	}
 
