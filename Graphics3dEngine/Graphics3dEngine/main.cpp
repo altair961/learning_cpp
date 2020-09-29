@@ -111,6 +111,20 @@ public:
 			MultiplyMatrixVector(tri.p[1], triProjected.p[1], matProj);
 			MultiplyMatrixVector(tri.p[2], triProjected.p[2], matProj);
 
+			// Scale into view. We Used DrawTriangle to draw each triangle of the mesh. But it appears as one pixel because transformation gives us points between - 1 and +1
+			triProjected.p[0].x += 1.0f; triProjected.p[0].y += 1.0f; // shift the x and y coordinate to be between 0 and 2
+			triProjected.p[1].x += 1.0f; triProjected.p[1].y += 1.0f;
+			triProjected.p[2].x += 1.0f; triProjected.p[2].y += 1.0f;
+
+			// Divide x coordinate by 2 and scale it to the appropriate size for that axis. Do the same for y.
+			triProjected.p[0].x *= 0.5f * (float)ScreenWidth();
+			triProjected.p[0].y *= 0.5f * (float)ScreenHeight();
+			triProjected.p[1].x *= 0.5f * (float)ScreenWidth();
+			triProjected.p[1].y *= 0.5f * (float)ScreenHeight();
+			triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
+			triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
+
+
 			olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
 				triProjected.p[1].x, triProjected.p[1].y,
 				triProjected.p[2].x, triProjected.p[2].y);
