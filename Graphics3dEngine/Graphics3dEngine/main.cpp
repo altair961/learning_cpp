@@ -106,10 +106,16 @@ public:
 		// Draw Triangles
 		for (auto tri : meshCube.tris)
 		{
-			triangle triProjected;
-			MultiplyMatrixVector(tri.p[0], triProjected.p[0], matProj);
-			MultiplyMatrixVector(tri.p[1], triProjected.p[1], matProj);
-			MultiplyMatrixVector(tri.p[2], triProjected.p[2], matProj);
+			triangle triProjected, triTranslated; // we have to translate the triangle into the view out from our face (along z-axis into the screen)
+			
+			triTranslated = tri;
+			triTranslated.p[0].z = tri.p[0].z + 1.5f;
+			triTranslated.p[1].z = tri.p[1].z + 1.5f;
+			triTranslated.p[2].z = tri.p[2].z + 1.5f;
+
+			MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
+			MultiplyMatrixVector(triTranslated.p[1], triProjected.p[1], matProj);
+			MultiplyMatrixVector(triTranslated.p[2], triProjected.p[2], matProj);
 
 			// Scale into view. We Used DrawTriangle to draw each triangle of the mesh. But it appears as one pixel because transformation gives us points between - 1 and +1
 			triProjected.p[0].x += 1.0f; triProjected.p[0].y += 1.0f; // shift the x and y coordinate to be between 0 and 2
