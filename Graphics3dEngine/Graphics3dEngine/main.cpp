@@ -33,6 +33,8 @@ public:
 private:
 	mesh meshCube;
 	mat4x4 matProj;
+	float fTheta;
+
 	void MultiplyMatrixVector(vec3d& i, vec3d& o, mat4x4& m) // input 3D point, transformed 3D point, transformation or projection matrix 
 	{
 		o.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + m.m[3][0];
@@ -103,15 +105,43 @@ public:
 		auto pixel = olc::Pixel(200, 200, 200, 200);
 		Clear(pixel);
 
+		mat4x4 matRotZ, matRotX;
+		fTheta += 1.0f * fElapsedTime;
+
+		// Rotation Z
+		matRotZ.m[0][0] = cosf(fTheta);
+		matRotZ.m[0][1] = sinf(fTheta);
+		matRotZ.m[1][0] = -sinf(fTheta);
+		matRotZ.m[1][1] = cosf(fTheta);
+		matRotZ.m[2][2] = 1;
+		matRotZ.m[3][3] = 1;
+
+		// Rotation X
+		matRotX.m[0][0] = 1;
+		matRotX.m[1][1] = cosf(fTheta * 0.5f);
+		matRotX.m[1][2] = sinf(fTheta * 0.5f);
+		matRotX.m[2][1] = -sinf(fTheta * 0.5f);
+		matRotX.m[2][2] = cosf(fTheta * 0.5f);
+		matRotX.m[3][3] = 1;
+
 		// Draw Triangles
 		for (auto tri : meshCube.tris)
 		{
-			triangle triProjected, triTranslated; // we have to translate the triangle into the view out from our face (along z-axis into the screen)
+			triangle triProjected, triTranslated, triRotatedZ, triRotatedZX; // we have to translate the triangle into the view out from our face (along z-axis into the screen)
 			
-			triTranslated = tri;
-			triTranslated.p[0].z = tri.p[0].z + 1.5f;
-			triTranslated.p[1].z = tri.p[1].z + 1.5f;
-			triTranslated.p[2].z = tri.p[2].z + 1.5f;
+			MultiplyMatrixVector(tri.p[0], triRotatedZ.p[0], matRotZ);
+			MultiplyMatrixVector(tri.p[1], triRotatedZ.p[1], matRotZ);
+			MultiplyMatrixVector(tri.p[2], triRotatedZ.p[2], matRotZ);
+
+			MultiplyMatrixVector(triRotatedZ.p[0], triRotatedZX.p[0], matRotX);
+			MultiplyMatrixVector(triRotatedZ.p[1], triRotatedZX.p[1], matRotX);
+			MultiplyMatrixVector(triRotatedZ.p[2], triRotatedZX.p[2], matRotX);
+
+
+			triTranslated = triRotatedZX;
+			triTranslated.p[0].z = triRotatedZX.p[0].z + 3.0f;
+			triTranslated.p[1].z = triRotatedZX.p[1].z + 3.0f;
+			triTranslated.p[2].z = triRotatedZX.p[2].z + 3.0f;
 
 			MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
 			MultiplyMatrixVector(triTranslated.p[1], triProjected.p[1], matProj);
