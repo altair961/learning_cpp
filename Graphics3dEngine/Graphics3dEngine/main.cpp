@@ -102,7 +102,7 @@ public:
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		auto pixel = olc::Pixel(200, 200, 200, 200);
+		auto pixel = olc::Pixel(253, 246, 227, 255);
 		Clear(pixel);
 
 		mat4x4 matRotZ, matRotX;
@@ -129,15 +129,17 @@ public:
 		{
 			triangle triProjected, triTranslated, triRotatedZ, triRotatedZX; // we have to translate the triangle into the view out from our face (along z-axis into the screen)
 			
+			// Rotate in Z-Axis
 			MultiplyMatrixVector(tri.p[0], triRotatedZ.p[0], matRotZ);
 			MultiplyMatrixVector(tri.p[1], triRotatedZ.p[1], matRotZ);
 			MultiplyMatrixVector(tri.p[2], triRotatedZ.p[2], matRotZ);
 
+			// Rotate in X-Axis
 			MultiplyMatrixVector(triRotatedZ.p[0], triRotatedZX.p[0], matRotX);
 			MultiplyMatrixVector(triRotatedZ.p[1], triRotatedZX.p[1], matRotX);
 			MultiplyMatrixVector(triRotatedZ.p[2], triRotatedZX.p[2], matRotX);
 
-
+			// Offset into the screen
 			triTranslated = triRotatedZX;
 			triTranslated.p[0].z = triRotatedZX.p[0].z + 3.0f;
 			triTranslated.p[1].z = triRotatedZX.p[1].z + 3.0f;
@@ -160,10 +162,11 @@ public:
 			triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
 			triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
 
+			auto lineColor = olc::Pixel(101, 123, 131, 255);
 
 			olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
 				triProjected.p[1].x, triProjected.p[1].y,
-				triProjected.p[2].x, triProjected.p[2].y);
+				triProjected.p[2].x, triProjected.p[2].y, lineColor);
 		}
 
 		return true;
@@ -173,7 +176,7 @@ public:
 int main()
 {
 	Graphics3dEngine graphics3dEngine;
-	if (graphics3dEngine.Construct(256, 240, 4, 4))
+	if (graphics3dEngine.Construct(800, 600, 1, 1))
 		graphics3dEngine.Start();
 
 	return 0;
