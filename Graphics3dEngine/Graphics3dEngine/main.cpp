@@ -33,6 +33,8 @@ public:
 private:
 	mesh meshCube;
 	mat4x4 matProj;
+	vec3d vCamera;
+
 	float fTheta;
 
 	void MultiplyMatrixVector(vec3d& i, vec3d& o, mat4x4& m) // input 3D point, transformed 3D point, transformation or projection matrix 
