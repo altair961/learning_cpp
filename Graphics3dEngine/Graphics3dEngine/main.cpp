@@ -147,22 +147,23 @@ public:
 			triTranslated.p[1].z = triRotatedZX.p[1].z + 3.0f;
 			triTranslated.p[2].z = triRotatedZX.p[2].z + 3.0f;
 
-			vec3d normal, line1, line2;
-			line1.x = triTranslated.p[1].x - triTranslated.p[0].x;
-			line1.y = triTranslated.p[1].y - triTranslated.p[0].y;
+			vec3d normal, line1, line2; // Type vec3d is used both for representing vectors and poinits in 3D space
+			line1.x = triTranslated.p[1].x - triTranslated.p[0].x; // line1 is a vector A. We calculate vector based on point's elements subtraction. Ex.: Given point (1,2) and point (3,5). Subtracting x and y elements correspondingly gives us a vector: <3-1, 5-2> = <2, 3>
+			line1.y = triTranslated.p[1].y - triTranslated.p[0].y; 
 			line1.z = triTranslated.p[1].z - triTranslated.p[0].z;
 
-			line2.x = triTranslated.p[2].x - triTranslated.p[0].x;
+			line2.x = triTranslated.p[2].x - triTranslated.p[0].x; // line2 is a vector B
 			line2.y = triTranslated.p[2].y - triTranslated.p[0].y;
 			line2.z = triTranslated.p[2].z - triTranslated.p[0].z;
 
-			normal.x = line1.y * line2.z - line1.z * line2.y;
+			normal.x = line1.y * line2.z - line1.z * line2.y; // normal is a vector that we calculated based on vector A and vector B assuming that normal is perpendicular to A and to B simultaniously
 			normal.y = line1.z * line2.x - line1.x * line2.z;
 			normal.z = line1.x * line2.y - line1.y * line2.x;
 
 			float normalLength = sqrtf(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
 			normal.x /= normalLength; normal.y /= normalLength; normal.z /= normalLength;
 
+			// Let's say we have some vector <3,5,-9> for normal, we move the image of the vector so that its origin is on origin of the space (0,0,0) now we see, that arrow beginning in (0,0,0) point points to the direction opposite of growing Z
 			if (normal.z < 0) // if normal points to us we see the triangle, otherwise we should not see the triangle
 			{
 				// Project triangles from 3D --> 2D
