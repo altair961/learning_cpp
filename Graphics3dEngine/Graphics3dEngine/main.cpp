@@ -254,10 +254,10 @@ public:
 					triProjected.p[1].x, triProjected.p[1].y,
 					triProjected.p[2].x, triProjected.p[2].y, triProjected.color);
 
-				//we leave this invocation for debugging purpouses. It is usefull to see all wires
+				// we leave this invocation for debugging purpouses. It is usefull to see all wires
 				//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
 				//	triProjected.p[1].x, triProjected.p[1].y,
-				//	triProjected.p[2].x, triProjected.p[2].y, lineColor);
+				//	triProjected.p[2].x, triProjected.p[2].y, olc::Pixel(255, 0, 0, 255));
 			}
 		}
 
