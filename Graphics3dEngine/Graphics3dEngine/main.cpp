@@ -208,9 +208,14 @@ public:
 
 				auto lineColor = olc::Pixel(101, 123, 131, 255);
 
-				olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
+				olc::PixelGameEngine::FillTriangle(triProjected.p[0].x, triProjected.p[0].y,
 					triProjected.p[1].x, triProjected.p[1].y,
 					triProjected.p[2].x, triProjected.p[2].y, lineColor);
+
+				//we leave this invocation for debugging purpouses. It is usefull to see all wires
+				//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
+				//	triProjected.p[1].x, triProjected.p[1].y,
+				//	triProjected.p[2].x, triProjected.p[2].y, lineColor);
 			}
 		}
 
