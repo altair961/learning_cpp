@@ -160,8 +160,10 @@ public:
 			normal.y = line1.z * line2.x - line1.x * line2.z;
 			normal.z = line1.x * line2.y - line1.y * line2.x;
 
-			float normalLength = sqrtf(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
-			normal.x /= normalLength; normal.y /= normalLength; normal.z /= normalLength;
+			// normalizing or scaling the normal vector
+			float normalLength = sqrtf(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z); // we calculate normal vector length
+			normal.x /= normalLength; normal.y /= normalLength; normal.z /= normalLength; // dividing x, y and z by length gives us a unit-vector
+			// normalizing the normal is optional. It makes no difference on work, it just nice to have normal vectors being unit long
 
 			// Let's say we have some vector <3,5,-9> for normal, we move the image of the vector so that its origin is on origin of the space (0,0,0) now we see, that arrow beginning in (0,0,0) point points to the direction opposite of growing Z
 			if (normal.z < 0) // if normal points to us we see the triangle, otherwise we should not see the triangle
