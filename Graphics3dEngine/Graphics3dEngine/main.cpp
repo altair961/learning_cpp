@@ -10,6 +10,7 @@ struct vec3d
 struct triangle
 {
 	vec3d p[3];
+	olc::Pixel color;
 };
 
 struct mesh
@@ -49,6 +50,27 @@ private:
 		{
 			o.x /= w; o.y /= w; o.z /= w;
 		}
+	}
+
+	olc::Pixel GetShadedColor(int red, int green, int blue, int alpha, float luminance)
+	{
+		float shadeFactor = 1 - luminance;
+		int shade = shadeFactor * 255;
+
+		red = red - shade;
+		green = green - shade;
+		blue = blue - shade;
+		alpha = alpha - shade;
+
+		// the lowest allowed value of color is 0 so we replace negative values with 0
+		red = red < 0 ? 0 : red;
+		green = green < 0 ? 0 : green;
+		blue = blue < 0 ? 0 : blue;
+		alpha = alpha < 0 ? 0 : alpha;
+
+		olc::Pixel result = olc::Pixel(red, green, blue, alpha);
+
+		return result;
 	}
 
 public:
@@ -165,7 +187,6 @@ public:
 			normal.x /= normalLength; normal.y /= normalLength; normal.z /= normalLength; // dividing x, y and z by length gives us a unit-vector
 			// normalizing the normal is not optional. 
 			
-			
 			// Let's say we have some vector <3,5,-9> for normal, we move the image of the vector so that its origin is on origin of the space (0,0,0) now we see, that arrow beginning in (0,0,0) point points to the direction opposite of growing Z
 			//if (normal.z < 0) // if normal points to us we see the triangle, otherwise we should not see the triangle
 
@@ -188,11 +209,28 @@ public:
 			// we draw only those triangles that have normal pointing towards camera meaning that normal vector and vecPointingFromCamToTri point towards each other (basically they point opposite directions and they do not point to the same direction) meaning they have dot product equals less than 0 
 			if(dotProductOfVecPointingFromCamToTriAndNormal < 0.0f) 
 			{
+				// Illumination. We shade only the triangles, that are going to be drawn to save resources. Because the more calculations we add, the more expensive it is to draw a triangle.
+				vec3d lightDirection = { 0.0f, 0.0f, -1.0f }; // this is not a point from which the light is comming out. It is a vector, that shows direction of the light. It points to the player's head.
+				// Triangle is more lit the more its normal is inline with the line of light direction. Basically light is pointing at us, and normal of some triangle is pointing to us, so these two vectors are same, then the triangle should be lit a lot
+
+				// normalizing the light direction. So now we can change light direction vector without consequences
+				float lightDirectionLength = sqrtf(lightDirection.x * lightDirection.x + lightDirection.y * lightDirection.y + lightDirection.z * lightDirection.z); // we calculate lightDirection vector length
+				lightDirection.x /= lightDirectionLength; lightDirection.y /= lightDirectionLength; lightDirection.z /= lightDirectionLength; // dividing x, y and z by length gives us a unit-vector
+
+				float dotProductOfLightDirectionAndNormal =
+					normal.x * lightDirection.x +
+					normal.y * lightDirection.y +
+					normal.z * lightDirection.z;
+
+				olc::Pixel triangleShadedColor = GetShadedColor(62, 162, 151, 255, dotProductOfLightDirectionAndNormal);
+				triTranslated.color = triangleShadedColor;
+
 				// Project triangles from 3D --> 2D
 				MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
 				MultiplyMatrixVector(triTranslated.p[1], triProjected.p[1], matProj);
 				MultiplyMatrixVector(triTranslated.p[2], triProjected.p[2], matProj);
-
+				triProjected.color = triTranslated.color;
+				
 				// Scale into view. We Used DrawTriangle to draw each triangle of the mesh. But it appears as one pixel because transformation gives us points between - 1 and +1
 				triProjected.p[0].x += 1.0f; triProjected.p[0].y += 1.0f; // shift the x and y coordinate to be between 0 and 2
 				triProjected.p[1].x += 1.0f; triProjected.p[1].y += 1.0f;
@@ -206,11 +244,11 @@ public:
 				triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
 				triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
 
-				auto lineColor = olc::Pixel(101, 123, 131, 255);
+				//auto triangleColor = olc::Pixel(101, 123, 131, 255);
 
 				olc::PixelGameEngine::FillTriangle(triProjected.p[0].x, triProjected.p[0].y,
 					triProjected.p[1].x, triProjected.p[1].y,
-					triProjected.p[2].x, triProjected.p[2].y, lineColor);
+					triProjected.p[2].x, triProjected.p[2].y, triProjected.color);
 
 				//we leave this invocation for debugging purpouses. It is usefull to see all wires
 				//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
