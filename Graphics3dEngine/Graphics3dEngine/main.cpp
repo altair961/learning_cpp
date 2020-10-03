@@ -163,10 +163,30 @@ public:
 			// normalizing or scaling the normal vector
 			float normalLength = sqrtf(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z); // we calculate normal vector length
 			normal.x /= normalLength; normal.y /= normalLength; normal.z /= normalLength; // dividing x, y and z by length gives us a unit-vector
-			// normalizing the normal is optional. It makes no difference on work, it just nice to have normal vectors being unit long
-
+			// normalizing the normal is not optional. 
+			
+			
 			// Let's say we have some vector <3,5,-9> for normal, we move the image of the vector so that its origin is on origin of the space (0,0,0) now we see, that arrow beginning in (0,0,0) point points to the direction opposite of growing Z
-			if (normal.z < 0) // if normal points to us we see the triangle, otherwise we should not see the triangle
+			//if (normal.z < 0) // if normal points to us we see the triangle, otherwise we should not see the triangle
+
+			// Dot product says how similar are two vectors. 
+			// When we calculate dot product we get score == 1 for same vectors, 0 if vectors are not similar at all, meaning they are perpendicular, and score == -1 for vectors on same line but pointing to opposite directions.
+			// Dot product D of A and B vectors is : D = Ax * Bx + Ay * By + Az * Bz
+			// In order to get scores like "1" instead of "576786" or so on we first normalized the vectors before calculating their dot product.
+
+			// We can take any point of traingle since all three points are on the same plane. Let's take p[0] for example.
+			vec3d vecPointingFromCamToTri; 
+			vecPointingFromCamToTri.x = triTranslated.p[0].x - vCamera.x; // from some point of triangle we subtract point where camera sits to get vector pointing from camera to triangle
+			vecPointingFromCamToTri.y = triTranslated.p[0].y - vCamera.y;
+			vecPointingFromCamToTri.z = triTranslated.p[0].z - vCamera.z;
+
+			float dotProductOfVecPointingFromCamToTriAndNormal =
+				normal.x * vecPointingFromCamToTri.x +
+				normal.y * vecPointingFromCamToTri.y +
+				normal.z * vecPointingFromCamToTri.z;
+
+			// we draw only those triangles that have normal pointing towards camera meaning that normal vector and vecPointingFromCamToTri point towards each other (basically they point opposite directions and they do not point to the same direction) meaning they have dot product equals less than 0 
+			if(dotProductOfVecPointingFromCamToTriAndNormal < 0.0f) 
 			{
 				// Project triangles from 3D --> 2D
 				MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
