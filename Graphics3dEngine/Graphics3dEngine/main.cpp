@@ -111,7 +111,11 @@ public:
 		float fFar = 1000.0f;
 		float fFov = 90.0f; // fov stands for field of view in degrees
 		float fAspectRatio = (float)ScreenHeight() / (float)ScreenWidth();
-		float fFovRad = 1.0f / tanf(fFov * 0.5f / 100.0f * 3.14159f); // tangent calculation of theta/2 angle i.e. our scaling factor
+		float fFovRad = 1.0f / tanf(fFov * 0.5f / 180.0f * 3.14159f); // tangent calculation of theta/2 angle i.e. our scaling factor
+		// the bigger fFovRad, the more zoomed-in our image.
+		// tanf(fFov * 0.5f / 180.0f * 3.14159f) is taking tangens of some angle, represented in radians. So first we converted degrees to radians.
+		// radians = degree * pi / 180
+
 
 		//       [y][x]
 		matProj.m[0][0] = fAspectRatio * fFovRad;
