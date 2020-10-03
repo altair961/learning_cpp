@@ -1,5 +1,8 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
+#include <fstream>
+#define _CRT_SECURE_NO_WARNINGS
+#include <sstream>
 using namespace std;
 
 struct vec3d
@@ -16,6 +19,43 @@ struct triangle
 struct mesh
 {
 	vector<triangle> tris;
+
+	bool LoadFromObkectFile(string sFilename)
+	{
+		ifstream f(sFilename);
+		if (!f.is_open())
+			return false;
+		
+		// Local cache of verts
+		vector<vec3d> verts;
+
+		while (!f.eof())
+		{
+			char line[128];
+			f.getline(line, 128);
+
+			stringstream s;
+			s << line;
+
+			char junk; //each line begins with a charachter that we are not interested in. We must stor it anywhere. So we created a variable "junk"
+
+			if (line[0] == 'v')
+			{
+				vec3d v;
+				s >> junk >> v.x >> v.y >> v.z;
+				verts.push_back(v);
+			}
+
+			if (line[0] == 'f')
+			{
+				int f[3];
+				s >> junk >> f[0] >> f[1] >> f[2];
+				tris.push_back({ verts[f[0] - 1], verts[f[1] - 1], verts[f[2] - 1] });
+			}
+		}
+
+		return true;
+	}
 };
 
 struct mat4x4 
@@ -76,33 +116,35 @@ private:
 public:
 	bool OnUserCreate() override
 	{
-		meshCube.tris = {
+		//meshCube.tris = {
 
-			// SOUTH
-			{ 0.0f, 0.0f, 0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 0.0f, 0.0f },
+		//	// SOUTH
+		//	{ 0.0f, 0.0f, 0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 0.0f },
+		//	{ 0.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 0.0f, 0.0f },
 
-			// EAST                                                      
-			{ 1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f },
-			{ 1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 0.0f, 1.0f },
+		//	// EAST                                                      
+		//	{ 1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f },
+		//	{ 1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 0.0f, 1.0f },
 
-			// NORTH                                                     
-			{ 1.0f, 0.0f, 1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 1.0f, 1.0f },
-			{ 1.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 0.0f, 1.0f },
+		//	// NORTH                                                     
+		//	{ 1.0f, 0.0f, 1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 1.0f, 1.0f },
+		//	{ 1.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 0.0f, 1.0f },
 
-			// WEST                                                      
-			{ 0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 1.0f, 0.0f },
-			{ 0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 0.0f,    0.0f, 0.0f, 0.0f },
+		//	// WEST                                                      
+		//	{ 0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 1.0f, 0.0f },
+		//	{ 0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 0.0f,    0.0f, 0.0f, 0.0f },
 
-			// TOP                                                       
-			{ 0.0f, 1.0f, 0.0f,    0.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f },
-			{ 0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 0.0f },
+		//	// TOP                                                       
+		//	{ 0.0f, 1.0f, 0.0f,    0.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f },
+		//	{ 0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 0.0f },
 
-			// BOTTOM                                                    
-			{ 1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f },
-			{ 1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f,    1.0f, 0.0f, 0.0f },
+		//	// BOTTOM                                                    
+		//	{ 1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f },
+		//	{ 1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f,    1.0f, 0.0f, 0.0f },
 
-		};
+		//};
+
+		meshCube.LoadFromObkectFile("Spaceship.obj");
 
 		// we define our transformation or "projection" matrix once in OnUserCreate,
 		// because the screen dimention and field of view are not going to change in this app
@@ -169,9 +211,9 @@ public:
 
 			// Offset into the screen
 			triTranslated = triRotatedZX;
-			triTranslated.p[0].z = triRotatedZX.p[0].z + 3.0f;
-			triTranslated.p[1].z = triRotatedZX.p[1].z + 3.0f;
-			triTranslated.p[2].z = triRotatedZX.p[2].z + 3.0f;
+			triTranslated.p[0].z = triRotatedZX.p[0].z + 120.0f;
+			triTranslated.p[1].z = triRotatedZX.p[1].z + 120.0f;
+			triTranslated.p[2].z = triRotatedZX.p[2].z + 120.0f;
 
 			vec3d normal, line1, line2; // Type vec3d is used both for representing vectors and poinits in 3D space
 			line1.x = triTranslated.p[1].x - triTranslated.p[0].x; // line1 is a vector A. We calculate vector based on point's elements subtraction. Ex.: Given point (1,2) and point (3,5). Subtracting x and y elements correspondingly gives us a vector: <3-1, 5-2> = <2, 3>
@@ -254,7 +296,7 @@ public:
 					triProjected.p[1].x, triProjected.p[1].y,
 					triProjected.p[2].x, triProjected.p[2].y, triProjected.color);
 
-				// we leave this invocation for debugging purpouses. It is usefull to see all wires
+				//// we leave this invocation for debugging purpouses. It is usefull to see all wires
 				//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
 				//	triProjected.p[1].x, triProjected.p[1].y,
 				//	triProjected.p[2].x, triProjected.p[2].y, olc::Pixel(255, 0, 0, 255));
