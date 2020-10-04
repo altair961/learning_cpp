@@ -3,6 +3,7 @@
 #include <fstream>
 #define _CRT_SECURE_NO_WARNINGS
 #include <sstream>
+#include <algorithm>
 using namespace std;
 
 struct vec3d
@@ -144,14 +145,14 @@ public:
 
 		//};
 
-		meshCube.LoadFromObkectFile("BeechcraftExportedFromBlender.obj");
+		meshCube.LoadFromObkectFile("Spaceship.obj");
 
 		// we define our transformation or "projection" matrix once in OnUserCreate,
 		// because the screen dimention and field of view are not going to change in this app
 		// Transformation matrix
 		float fNear = 0.1f;
 		float fFar = 1000.0f;
-		float fFov = 90.0f; // fov stands for field of view in degrees
+		float fFov = 45.0f; // fov stands for field of view in degrees
 		float fAspectRatio = (float)ScreenHeight() / (float)ScreenWidth();
 		float fFovRad = 1.0f / tanf(fFov * 0.5f / 180.0f * 3.14159f); // tangent calculation of theta/2 angle i.e. our scaling factor
 		// the bigger fFovRad, the more zoomed-in our image.
@@ -193,6 +194,8 @@ public:
 		matRotX.m[2][1] = -sinf(fTheta * 0.5f);
 		matRotX.m[2][2] = cosf(fTheta * 0.5f);
 		matRotX.m[3][3] = 1;
+
+		vector<triangle> vecTrianglesToRaster;
 
 		// Draw Triangles
 		for (auto tri : meshCube.tris)
@@ -268,7 +271,7 @@ public:
 					normal.y * lightDirection.y +
 					normal.z * lightDirection.z;
 
-				olc::Pixel triangleShadedColor = GetShadedColor(62, 162, 151, 255, dotProductOfLightDirectionAndNormal);
+				olc::Pixel triangleShadedColor = GetShadedColor(255, 255, 255, 255, dotProductOfLightDirectionAndNormal);
 				triTranslated.color = triangleShadedColor;
 
 				// Project triangles from 3D --> 2D
@@ -290,17 +293,30 @@ public:
 				triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
 				triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
 
-				//auto triangleColor = olc::Pixel(101, 123, 131, 255);
-
-				olc::PixelGameEngine::FillTriangle(triProjected.p[0].x, triProjected.p[0].y,
-					triProjected.p[1].x, triProjected.p[1].y,
-					triProjected.p[2].x, triProjected.p[2].y, triProjected.color);
-
-				//// we leave this invocation for debugging purpouses. It is usefull to see all wires
-				//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
-				//	triProjected.p[1].x, triProjected.p[1].y,
-				//	triProjected.p[2].x, triProjected.p[2].y, olc::Pixel(255, 0, 0, 255));
+				// Store triangle for sorting. We need to sort the triangles, because we want to draw the triangles that further away first, and those, that closer to the camera we want to draw the last, to avoid glitches on the way the model looks.
+				vecTrianglesToRaster.push_back(triProjected);
 			}
+		}
+
+		// Sort triangles from back to front
+		sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle& t1, triangle& t2)
+		{
+			float z1 = (t1.p[0].z + t1.p[1].z + t1.p[2].z) / 3.0f;
+			float z2 = (t2.p[0].z + t2.p[1].z + t2.p[2].z) / 3.0f;
+			return z1 > z2;
+		});
+
+		for (auto &triProjected : vecTrianglesToRaster)
+		{
+			// Rasterize triangle
+			olc::PixelGameEngine::FillTriangle(triProjected.p[0].x, triProjected.p[0].y,
+				triProjected.p[1].x, triProjected.p[1].y,
+				triProjected.p[2].x, triProjected.p[2].y, triProjected.color);
+
+			//// we leave this invocation for debugging purpouses. It is usefull to see all wires
+			//olc::PixelGameEngine::DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
+			//	triProjected.p[1].x, triProjected.p[1].y,
+			//	triProjected.p[2].x, triProjected.p[2].y, olc::Pixel(255, 0, 0, 255));
 		}
 
 		return true;
@@ -310,7 +326,7 @@ public:
 int main()
 {
 	Graphics3dEngine graphics3dEngine;
-	if (graphics3dEngine.Construct(800, 600, 1, 1))
+	if (graphics3dEngine.Construct(1024, 768, 1, 1))
 		graphics3dEngine.Start();
 
 	return 0;
