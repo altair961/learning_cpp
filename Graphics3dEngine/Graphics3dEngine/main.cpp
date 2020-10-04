@@ -144,7 +144,7 @@ public:
 
 		//};
 
-		meshCube.LoadFromObkectFile("Spaceship.obj");
+		meshCube.LoadFromObkectFile("BeechcraftExportedFromBlender.obj");
 
 		// we define our transformation or "projection" matrix once in OnUserCreate,
 		// because the screen dimention and field of view are not going to change in this app
@@ -211,9 +211,9 @@ public:
 
 			// Offset into the screen
 			triTranslated = triRotatedZX;
-			triTranslated.p[0].z = triRotatedZX.p[0].z + 120.0f;
-			triTranslated.p[1].z = triRotatedZX.p[1].z + 120.0f;
-			triTranslated.p[2].z = triRotatedZX.p[2].z + 120.0f;
+			triTranslated.p[0].z = triRotatedZX.p[0].z + 150.0f;
+			triTranslated.p[1].z = triRotatedZX.p[1].z + 150.0f;
+			triTranslated.p[2].z = triRotatedZX.p[2].z + 150.0f;
 
 			vec3d normal, line1, line2; // Type vec3d is used both for representing vectors and poinits in 3D space
 			line1.x = triTranslated.p[1].x - triTranslated.p[0].x; // line1 is a vector A. We calculate vector based on point's elements subtraction. Ex.: Given point (1,2) and point (3,5). Subtracting x and y elements correspondingly gives us a vector: <3-1, 5-2> = <2, 3>
