@@ -93,6 +93,52 @@ private:
 		}
 	}
 
+	vec3d Vector_Add(vec3d &v1, vec3d &v2) 
+	{
+		return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
+	}
+
+	vec3d Vector_Sub(vec3d& v1, vec3d& v2)
+	{
+		return { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
+	}
+
+	vec3d Vector_Mul(vec3d &v1, float k) 
+	{
+		return { v1.x * k, v1.y * k, v1.z * k };
+	}
+
+	vec3d VectorDiv(vec3d& v1, float k) 
+	{
+		return { v1.x / k, v1.y / k, v1.z / k };
+	}
+
+	float Vector_DotProduct(vec3d& v1, vec3d& v2)
+	{
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	}
+
+	float Vector_Length(vec3d &v) 
+	{
+		return sqrtf(Vector_DotProduct(v, v));
+	}
+
+	vec3d Vector_Normalize(vec3d& v)
+	{
+		float l = Vector_Length(v);
+		return { v.x / l, v.y / l, v.z / l };
+	}
+
+	vec3d Vector_CrossProduct(vec3d& v1, vec3d& v2)
+	{
+		vec3d v;
+
+		v.x = v1.y * v2.z - v1.z * v2.y;
+		v.y = v1.z * v2.x - v1.x * v2.z;
+		v.z = v1.x * v2.y - v1.y * v2.x;
+		return v;
+	}
+
 	olc::Pixel GetShadedColor(int red, int green, int blue, int alpha, float luminance)
 	{
 		float shadeFactor = 1 - luminance;
