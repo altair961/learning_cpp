@@ -8,7 +8,7 @@ using namespace std;
 
 struct vec3d
 {
-	float x, y, z;
+	float x, y, z, w;
 };
 
 struct triangle
@@ -79,18 +79,13 @@ private:
 
 	float fTheta;
 
-	void MultiplyMatrixVector(vec3d& i, vec3d& o, mat4x4& m) // input 3D point, transformed 3D point, transformation or projection matrix 
+	vec3d Matrix_MultiplyVector(mat4x4 &m, vec3d &i)
 	{
-		o.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + m.m[3][0];
-		o.y = i.x * m.m[0][1] + i.y * m.m[1][1] + i.z * m.m[2][1] + m.m[3][1];
-		o.z = i.x * m.m[0][2] + i.y * m.m[1][2] + i.z * m.m[2][2] + m.m[3][2];
-		float w = i.x * m.m[0][3] + i.y * m.m[1][3] + i.z * m.m[2][3] + m.m[3][3]; // this element appeared in our tranformation matrix due to the fact that there is a gap between user's head and near plane of view frustum
-
-		// Now we on 4D, in order to come back to 3D cartesian space we have to divide by w
-		if(w != 0)
-		{
-			o.x /= w; o.y /= w; o.z /= w;
-		}
+		vec3d v;
+		v.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + i.w * m.m[3][0];
+		v.y = i.x * m.m[0][1] + i.y * m.m[1][1] + i.z * m.m[2][1] + i.w * m.m[3][1];
+		v.z = i.x * m.m[0][2] + i.y * m.m[1][2] + i.z * m.m[2][2] + i.w * m.m[3][2];
+		v.w = i.x * m.m[0][3] + i.y * m.m[1][3] + i.z * m.m[2][3] + i.w * m.m[3][3];
 	}
 
 	vec3d Vector_Add(vec3d &v1, vec3d &v2) 
@@ -249,14 +244,14 @@ public:
 			triangle triProjected, triTranslated, triRotatedZ, triRotatedZX; // we have to translate the triangle into the view out from our face (along z-axis into the screen)
 			
 			// Rotate in Z-Axis
-			MultiplyMatrixVector(tri.p[0], triRotatedZ.p[0], matRotZ);
-			MultiplyMatrixVector(tri.p[1], triRotatedZ.p[1], matRotZ);
-			MultiplyMatrixVector(tri.p[2], triRotatedZ.p[2], matRotZ);
+			//MultiplyMatrixVector(tri.p[0], triRotatedZ.p[0], matRotZ);
+			//MultiplyMatrixVector(tri.p[1], triRotatedZ.p[1], matRotZ);
+			//MultiplyMatrixVector(tri.p[2], triRotatedZ.p[2], matRotZ);
 
-			// Rotate in X-Axis
-			MultiplyMatrixVector(triRotatedZ.p[0], triRotatedZX.p[0], matRotX);
-			MultiplyMatrixVector(triRotatedZ.p[1], triRotatedZX.p[1], matRotX);
-			MultiplyMatrixVector(triRotatedZ.p[2], triRotatedZX.p[2], matRotX);
+			//// Rotate in X-Axis
+			//MultiplyMatrixVector(triRotatedZ.p[0], triRotatedZX.p[0], matRotX);
+			//MultiplyMatrixVector(triRotatedZ.p[1], triRotatedZX.p[1], matRotX);
+			//MultiplyMatrixVector(triRotatedZ.p[2], triRotatedZX.p[2], matRotX);
 
 			// Offset into the screen
 			triTranslated = triRotatedZX;
@@ -321,9 +316,9 @@ public:
 				triTranslated.color = triangleShadedColor;
 
 				// Project triangles from 3D --> 2D
-				MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
-				MultiplyMatrixVector(triTranslated.p[1], triProjected.p[1], matProj);
-				MultiplyMatrixVector(triTranslated.p[2], triProjected.p[2], matProj);
+				//MultiplyMatrixVector(triTranslated.p[0], triProjected.p[0], matProj);
+				//MultiplyMatrixVector(triTranslated.p[1], triProjected.p[1], matProj);
+				//MultiplyMatrixVector(triTranslated.p[2], triProjected.p[2], matProj);
 				triProjected.color = triTranslated.color;
 				
 				// Scale into view. We Used DrawTriangle to draw each triangle of the mesh. But it appears as one pixel because transformation gives us points between - 1 and +1
