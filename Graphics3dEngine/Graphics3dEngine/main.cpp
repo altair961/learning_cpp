@@ -86,6 +86,18 @@ private:
 		v.y = i.x * m.m[0][1] + i.y * m.m[1][1] + i.z * m.m[2][1] + i.w * m.m[3][1];
 		v.z = i.x * m.m[0][2] + i.y * m.m[1][2] + i.z * m.m[2][2] + i.w * m.m[3][2];
 		v.w = i.x * m.m[0][3] + i.y * m.m[1][3] + i.z * m.m[2][3] + i.w * m.m[3][3];
+
+		return v;
+	}
+
+	mat4x4 Matrix_MakeIdentity()
+	{
+		mat4x4 matrix;
+		matrix.m[0][0] = 1.0f;
+		matrix.m[1][1] = 1.0f;
+		matrix.m[2][2] = 1.0f;
+		matrix.m[3][3] = 1.0f;
+		return matrix;
 	}
 
 	vec3d Vector_Add(vec3d &v1, vec3d &v2) 
