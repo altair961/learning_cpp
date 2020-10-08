@@ -100,6 +100,18 @@ private:
 		return matrix;
 	}
 
+	mat4x4 Matrix_MakeRotationX(float fAngleRad)
+	{
+		mat4x4 matrix;
+		matrix.m[0][0] = 1.0f;
+		matrix.m[1][1] = cosf(fAngleRad);
+		matrix.m[1][2] = sinf(fAngleRad);
+		matrix.m[2][1] = -sinf(fAngleRad);
+		matrix.m[2][2] = cosf(fAngleRad);
+		matrix.m[3][3] = 1.0f;
+		return matrix;
+	}
+
 	vec3d Vector_Add(vec3d &v1, vec3d &v2) 
 	{
 		return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
