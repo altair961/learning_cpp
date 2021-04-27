@@ -4,7 +4,9 @@ int main()
 {
 	cout << "Please enter your first name and age\n";
 	string first_name = "???";
-	int age = -1;
-	cin >> first_name >> age;
-	cout << "Hello, " << first_name << " (age" << age << ")\n";
+	double ageYears = -1;
+	cin >> first_name >> ageYears;
+	int ageMonths = -1;
+	ageMonths = ageYears * 12;
+	cout << "Hello, " << first_name << " (age " << ageMonths << " months)\n";
 }
