@@ -140,10 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Tanks.cpp" />
+    <ClCompile Include="Tanks.Game.Implementations\Game.cpp" />
     <ClCompile Include="Tanks.Game.UnitTests\GameTests.cpp" />
     <ClCompile Include="Tanks.GraphicsEngine.UnitTests\GraphicsEngineTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tanks.Game.Interfaces\IGame.h" />
+    <ClInclude Include="Tanks.Game.Interfaces\ILaunch.h" />
     <ClInclude Include="Tanks.Game.UnitTests\catch.hpp" />
     <ClInclude Include="Tanks.GraphicsEngine.UnitTests\catch.hpp" />
   </ItemGroup>

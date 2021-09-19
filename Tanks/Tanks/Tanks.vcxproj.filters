@@ -24,12 +24,21 @@
     <ClCompile Include="Tanks.GraphicsEngine.UnitTests\GraphicsEngineTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tanks.Game.Implementations\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tanks.Game.UnitTests\catch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tanks.GraphicsEngine.UnitTests\catch.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tanks.Game.Interfaces\ILaunch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tanks.Game.Interfaces\IGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
