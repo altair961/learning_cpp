@@ -11,6 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GraphicsEngine.Implem
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.UnitTests", "Tanks.GameApp.UnitTests\Tanks.GameApp.UnitTests.vcxproj", "{75A2D0E5-21B9-4634-82AE-623594C06D33}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Interfaces", "Tanks.GameApp.Interfaces\Tanks.GameApp.Interfaces.vcxproj", "{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Implementations", "Tanks.GameApp.Implementations\Tanks.GameApp.Implementations.vcxproj", "{98FF85AE-E86D-41BB-8991-03D5DF443B4F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp", "Tanks.GameApp\Tanks.GameApp.vcxproj", "{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +57,30 @@ Global
 		{75A2D0E5-21B9-4634-82AE-623594C06D33}.Release|x64.Build.0 = Release|x64
 		{75A2D0E5-21B9-4634-82AE-623594C06D33}.Release|x86.ActiveCfg = Release|Win32
 		{75A2D0E5-21B9-4634-82AE-623594C06D33}.Release|x86.Build.0 = Release|Win32
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Debug|x64.ActiveCfg = Debug|x64
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Debug|x64.Build.0 = Debug|x64
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Debug|x86.ActiveCfg = Debug|Win32
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Debug|x86.Build.0 = Debug|Win32
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Release|x64.ActiveCfg = Release|x64
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Release|x64.Build.0 = Release|x64
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Release|x86.ActiveCfg = Release|Win32
+		{5DEFBC95-8F30-4687-A8C8-61C677EE0CD9}.Release|x86.Build.0 = Release|Win32
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Debug|x64.ActiveCfg = Debug|x64
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Debug|x64.Build.0 = Debug|x64
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Debug|x86.ActiveCfg = Debug|Win32
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Debug|x86.Build.0 = Debug|Win32
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Release|x64.ActiveCfg = Release|x64
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Release|x64.Build.0 = Release|x64
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Release|x86.ActiveCfg = Release|Win32
+		{98FF85AE-E86D-41BB-8991-03D5DF443B4F}.Release|x86.Build.0 = Release|Win32
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Debug|x64.ActiveCfg = Debug|x64
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Debug|x64.Build.0 = Debug|x64
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Debug|x86.ActiveCfg = Debug|Win32
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Debug|x86.Build.0 = Debug|Win32
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Release|x64.ActiveCfg = Release|x64
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Release|x64.Build.0 = Release|x64
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Release|x86.ActiveCfg = Release|Win32
+		{BD4CC9E8-F532-422D-B8D1-454A89D65B3E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
