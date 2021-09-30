@@ -1,21 +1,34 @@
 #include "pch.h"
-//#include "MathLibrary.h"
 #include "di.hpp"
-#include "IView.h"
 
-namespace di = boost::di;
+class IView {
+public:
+    virtual ~IView() noexcept = default;
+    virtual void update() = 0;
+};
 
-TEST(TestCaseName, WhenLaunchInvoked_ShouldInvoke_GameEngineStart) {
-	//using namespace TanksGameApp;
-	//using namespace TanksGameAppImpl;
+class View : public IView {
+public:
+    int screenWidthPx = 900;
+    View(std::string title) {}
+    void update() override { }
+};
 
-	View ggg;
+TEST(TestCaseName, TestName) {
 
-	auto injector = di::make_injector(
-		di::bind<IView>().to<View>()
-	);
+    namespace di = boost::di;
 
-	
-	EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+    auto injector = di::make_injector(
+        di::bind<IView>().to<View>()
+    );
+    auto view = injector.create<View>();
+
+    EXPECT_EQ(1, 1);
+    EXPECT_TRUE(true);
 }
+
+
+//int main()
+//{
+//	std::cout << "Hello World!\n";
+//}
