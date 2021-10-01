@@ -45,8 +45,3 @@ TEST(TestCaseName1, TestName2) {
     EXPECT_EQ(1, 1);
     EXPECT_TRUE(true);
 }
-
-//int main()
-//{
-//	std::cout << "Hello World!\n";
-//}

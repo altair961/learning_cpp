@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Interfaces", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Implementations", "Tanks.GameApp.Implementations\Tanks.GameApp.Implementations.vcxproj", "{6C1A3BD7-DB83-4DE0-B95C-1C39EF08874B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Client", "Tanks.GameApp.Client\Tanks.GameApp.Client.vcxproj", "{71FAAB30-3C3B-4089-BB79-B091AB9536F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{6C1A3BD7-DB83-4DE0-B95C-1C39EF08874B}.Release|x64.Build.0 = Release|x64
 		{6C1A3BD7-DB83-4DE0-B95C-1C39EF08874B}.Release|x86.ActiveCfg = Release|Win32
 		{6C1A3BD7-DB83-4DE0-B95C-1C39EF08874B}.Release|x86.Build.0 = Release|Win32
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Debug|x64.ActiveCfg = Debug|x64
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Debug|x64.Build.0 = Debug|x64
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Debug|x86.ActiveCfg = Debug|Win32
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Debug|x86.Build.0 = Debug|Win32
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Release|x64.ActiveCfg = Release|x64
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Release|x64.Build.0 = Release|x64
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Release|x86.ActiveCfg = Release|Win32
+		{71FAAB30-3C3B-4089-BB79-B091AB9536F2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
