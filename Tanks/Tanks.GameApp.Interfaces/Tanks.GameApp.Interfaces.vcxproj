@@ -19,12 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arithmetic.h" />
     <ClInclude Include="IAdd.h" />
     <ClInclude Include="TanksGameAppInterfaces.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Arithmetic.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

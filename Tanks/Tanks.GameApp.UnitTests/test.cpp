@@ -1,6 +1,5 @@
-#include "pch.h"
 #include "di.hpp"
-
+#include "gtest/gtest.h"
 #include "TanksGameAppImplementations.h"
 #include "TanksGameAppInterfaces.h"
 
