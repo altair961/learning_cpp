@@ -1,17 +1,18 @@
-#include <iostream>
-#include "di.hpp"
-#include "TanksGameAppInterfaces.h"
-#include "TanksGameAppImplementations.h"
+#include "SDL.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-    namespace di = boost::di;
-    auto injector = di::make_injector(
-        di::bind<IAdd>().to<Adder>()
-    );
-    Adder adder = injector.create<Adder>();
+	SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_Window* window = SDL_CreateWindow("Tanks", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-    int sum = adder.Add(5, 9);
-    
-    std::cout << "Hello World! " << sum << std::endl;
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+
+	SDL_RenderClear(renderer);
+
+	SDL_RenderPresent(renderer);
+
+	SDL_Delay(3000);
+
+	return 0;
 }

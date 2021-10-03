@@ -351,3 +351,8 @@ __pycache__/
 # should be stored in the .pubxml.user file.
 
 # End of https://www.gitignore.io/api/c++,windows,visualstudio
+
+!Tanks/ExternalLibs/Sdl/lib/x64/SDL2.lib
+!Tanks/ExternalLibs/Sdl/lib/x64/SDL2main.lib
+!Tanks/ExternalLibs/Sdl/lib/x64/SDL2test.lib
+!Tanks/Tanks.GameApp.Client/SDL2.dll
