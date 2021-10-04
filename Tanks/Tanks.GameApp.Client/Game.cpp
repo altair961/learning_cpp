@@ -20,7 +20,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		std::cout << "Subsystems Initialized!..." << std::endl;
 
-		window = SDL_CreateWindow("Tanks", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
+		window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 		if (window)
 		{
 			std::cout << "Window created!" << std::endl;
@@ -58,6 +58,8 @@ void Game::handleEvents()
 
 void Game::update()
 {
+	cnt++;
+	std::cout << cnt << std::endl;
 }
 
 void Game::render()
