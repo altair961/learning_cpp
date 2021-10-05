@@ -352,7 +352,11 @@ __pycache__/
 
 # End of https://www.gitignore.io/api/c++,windows,visualstudio
 
-!Tanks/ExternalLibs/Sdl/lib/x64/SDL2.lib
-!Tanks/ExternalLibs/Sdl/lib/x64/SDL2main.lib
-!Tanks/ExternalLibs/Sdl/lib/x64/SDL2test.lib
+!Tanks/ExternalLibs/Sdl/lib/SDL2.lib
+!Tanks/ExternalLibs/Sdl/lib/SDL2main.lib
+!Tanks/ExternalLibs/Sdl/lib/SDL2test.lib
 !Tanks/Tanks.GameApp.Client/SDL2.dll
+!Tanks/Tanks.GameApp.Client/zlib1.dll
+!Tanks/Tanks.GameApp.Client/SDL2_image.dll
+!Tanks/Tanks.GameApp.Client/libpng16-16.dll
+!Tanks/ExternalLibs/SdlImage/lib/SDL2_image.lib
