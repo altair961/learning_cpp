@@ -64,6 +64,7 @@ void Game::update()
 	cnt++;
 	destR.h = 100;
 	destR.w = 100;
+	destR.x = cnt;
 
 	std::cout << cnt << std::endl;
 }
