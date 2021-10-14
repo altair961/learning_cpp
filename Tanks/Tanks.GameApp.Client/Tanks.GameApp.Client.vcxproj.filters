@@ -12,6 +12,8 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="ECS.h" />
+    <ClInclude Include="Components.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="player.png" />
