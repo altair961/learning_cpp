@@ -10,6 +10,8 @@ namespace lve { // lve means little vulkan engine
 		LiveWindow(int w, int h, std::string name);
 		~LiveWindow();
 
+		bool shouldClose() { return glfwWindowShouldClose(window); }
+
 	private:
 
 		void initWindow();

@@ -23,6 +23,7 @@
     <ClInclude Include="lve_window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="first_app.cpp" />
     <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
