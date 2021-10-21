@@ -360,5 +360,3 @@ __pycache__/
 !Tanks/Tanks.GameApp.Client/SDL2_image.dll
 !Tanks/Tanks.GameApp.Client/libpng16-16.dll
 !Tanks/ExternalLibs/SdlImage/lib/SDL2_image.lib
-
-!YoutubeOpenGL/Libraries/lib/glfw3.lib
