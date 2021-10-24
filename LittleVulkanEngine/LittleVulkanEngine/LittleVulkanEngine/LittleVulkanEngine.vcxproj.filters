@@ -3,10 +3,19 @@
   <ItemGroup>
     <ClInclude Include="lve_window.h" />
     <ClInclude Include="first_app.h" />
+    <ClInclude Include="lve_pipeline.h" />
+    <ClInclude Include="lve_device.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="first_app.cpp" />
+    <ClCompile Include="lve_pipeline.cpp" />
+    <ClCompile Include="lve_device.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="simple_shader.vert" />
+    <None Include="simple_shader.frag" />
+    <None Include="compile.bat" />
   </ItemGroup>
 </Project>

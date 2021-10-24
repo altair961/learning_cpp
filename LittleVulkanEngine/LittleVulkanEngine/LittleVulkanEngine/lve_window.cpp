@@ -1,16 +1,16 @@
 #include "lve_window.h"
 
 namespace lve {
-	LiveWindow::LiveWindow(int w, int h, std::string name) : width{ w }, height{ h }, windowName{ name } {
+	LveWindow::LveWindow(int w, int h, std::string name) : width{ w }, height{ h }, windowName{ name } {
 		initWindow();
 	}
 
-	LiveWindow::~LiveWindow() {
+	LveWindow::~LveWindow() {
 		glfwDestroyWindow(window);
 		glfwTerminate();
 	}
 
-	void LiveWindow::initWindow() {
+	void LveWindow::initWindow() {
 		glfwInit();
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);

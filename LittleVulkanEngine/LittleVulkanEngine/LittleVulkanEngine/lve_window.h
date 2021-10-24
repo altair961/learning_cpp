@@ -5,16 +5,16 @@
 
 #include <string>
 namespace lve { // lve means little vulkan engine
-	class LiveWindow {
+	class LveWindow {
 	public:
-		LiveWindow(int w, int h, std::string name);
-		~LiveWindow();
+		LveWindow(int w, int h, std::string name);
+		~LveWindow();
 
 		// We delete copy constructor and copy operator. This is because we are using a pointer to our glfw window
 		// We adhere to RAII principle. RAII means, that resource creation happens when we initialize our variable and 
 		// their cleanups are performed by their distructors
-		LiveWindow(const LiveWindow&) = delete;
-		LiveWindow& operator=(const LiveWindow&) = delete;
+		LveWindow(const LveWindow&) = delete;
+		LveWindow& operator=(const LveWindow&) = delete;
 
 		bool shouldClose() { return glfwWindowShouldClose(window); }
 
