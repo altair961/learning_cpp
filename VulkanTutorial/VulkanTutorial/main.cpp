@@ -41,7 +41,8 @@ public:
 private:
     GLFWwindow* window;
     VkInstance instance;
-    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE; // we get properties of it to determine if it is suitable for running our Vulkan app
+    VkDevice device; // logical device to interface with physical device. We can have many logical devices from the same physical device if we have different requirements.
 
     void initWindow() {
         glfwInit();
@@ -55,6 +56,7 @@ private:
     void initVulkan() {
         createInstance();
         pickPhysicalDevice();
+        createLogicalDevice();
     }
 
     void mainLoop() { 
@@ -196,6 +198,15 @@ private:
         }
 
         return indices;
+    }
+
+    void createLogicalDevice() {
+        QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
+
+        VkDeviceQueueCreateInfo queueCreateInfo{};
+        queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+        queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
+        queueCreateInfo.queueCount = 1;
     }
 };
 
