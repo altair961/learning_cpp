@@ -204,9 +204,12 @@ private:
         QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
         VkDeviceQueueCreateInfo queueCreateInfo{};
-        queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+        queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO; // we want a queue with for commands with graphics drawing capabilities
         queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
-        queueCreateInfo.queueCount = 1;
+        queueCreateInfo.queueCount = 1; // we want queue family to give us just one such queue 
+
+        float queuePriority = 1.0f;
+        queueCreateInfo.pQueuePriorities = &queuePriority;
     }
 };
 
