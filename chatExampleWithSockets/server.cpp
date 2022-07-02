@@ -43,4 +43,3 @@ int main(int argc, char const* argv[]) {
 
 	std::cout << "SERVER :" << "Listening clients...\n";
 }
-
