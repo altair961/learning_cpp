@@ -353,3 +353,4 @@ __pycache__/
 # End of https://www.gitignore.io/api/c++,windows,visualstudio
 
 /CustomOS/gnu-efi/x86_64
+/YoutubeOpenGL/Libraries/include/glm
