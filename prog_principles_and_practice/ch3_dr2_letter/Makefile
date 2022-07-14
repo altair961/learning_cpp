@@ -1,1 +1,0 @@
-g++ letter.cpp -o letter -w
