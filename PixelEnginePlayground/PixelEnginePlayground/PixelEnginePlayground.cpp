@@ -1,5 +1,6 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
+#include "Tank.h"
 
 // Override base class with your custom functionality
 class Example : public olc::PixelGameEngine
@@ -12,15 +13,19 @@ public:
 	}
 
 public:
+	Tank PlayerTank;
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
+		PlayerTank = Tank(0, 0);
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		DrawPixel(0,0,4);
+		PlayerTank.Draw();
+		//DrawPixel(0,0,4);
+		//DrawTank(0, 0);
 		// Called once per frame, draws random coloured pixels
 		/*
 		for (int x = 0; x < ScreenWidth(); x++)
@@ -29,22 +34,21 @@ public:
 		*/
 		return true;
 	}
+	bool OnUserDestroy() {
+		
+	}
+
+private:
 
 	void DrawPixel(int xPosition, int yPosition, int pixelSide)
 	{
 		FillRect(xPosition, yPosition, pixelSide, pixelSide);
-		/*
-		for (int i = 0; i < pixelSide; i++)
-		{
-			Draw(xPosition, yPosition, olc::Pixel(255, 255, 255));
-		}
-
-		Draw(xPosition, yPosition, olc::Pixel(255, 255, 255));
-		Draw(xPosition, yPosition + pixelSide, olc::Pixel(255, 255, 255));
-		Draw(xPosition + pixelSide, yPosition, olc::Pixel(255, 255, 255));
-		Draw(xPosition + pixelSide, yPosition + pixelSide, olc::Pixel(255, 255, 255));
-		*/
 	}
+
+	//void DrawObject(IDrawable drawable)
+	//{
+
+	//}
 };
 
 int main()
@@ -54,3 +58,4 @@ int main()
 		demo.Start();
 	return 0;
 }
+
