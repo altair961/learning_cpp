@@ -13,3 +13,10 @@ Tank::~Tank()
 {
 	cout << "distructing " << name << endl;
 }
+
+void Tank::AddResource()
+{
+	PTankPicture.reset();
+	PTankPicture = make_shared<std::vector<int>>();
+	PTankPicture->push_back(3);
+}

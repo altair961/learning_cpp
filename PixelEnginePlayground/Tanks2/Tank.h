@@ -2,8 +2,9 @@
 
 #include <string>
 #include "Matrix2D.h"
+#include <vector>
+#include <memory>
 
-using namespace std;
 
 class Tank 
 {
@@ -12,6 +13,7 @@ private:
 public:
 	Tank(string n);
 	~Tank();
-	string GetName() const { return name; }
-	shared_ptr<Matrix2D> tankPicture;
+	//string GetName() const { return name; };
+	std::shared_ptr<std::vector<int>> PTankPicture;
+	void AddResource();
 };

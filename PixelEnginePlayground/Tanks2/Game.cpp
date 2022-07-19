@@ -15,7 +15,9 @@ public:
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
+		PTank.reset();
 		PTank = std::make_shared<Tank>("123");
+		PTank->AddResource();
 		return true;
 	}
 
@@ -23,7 +25,7 @@ public:
 	{
 		// Called once per frame, draws random coloured pixels
 		Clear(olc::DARK_BLUE);
-		PTank->tankPicture->GetName;
+		//PTank->tankPicture->GetName;
 		//for (int x = 0; x < ScreenWidth(); x++)
 		//	for (int y = 0; y < ScreenHeight(); y++)
 		//		Draw(x, y, olc::Pixel(rand() % 256, rand() % 256, rand() % 256));
