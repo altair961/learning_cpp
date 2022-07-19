@@ -1,15 +1,17 @@
 #pragma once
 
 #include <string>
+#include "Matrix2D.h"
+
+using namespace std;
 
 class Tank 
 {
 private:
-	std::string name;
+	string name;
 public:
-	Tank(std::string n);
+	Tank(string n);
 	~Tank();
-	std::string GetName() const { return name; }
-	//int pixels[2];
-
+	string GetName() const { return name; }
+	shared_ptr<Matrix2D> tankPicture;
 };

@@ -22,10 +22,11 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override
 	{
 		// Called once per frame, draws random coloured pixels
-		
-		for (int x = 0; x < ScreenWidth(); x++)
-			for (int y = 0; y < ScreenHeight(); y++)
-				Draw(x, y, olc::Pixel(rand() % 256, rand() % 256, rand() % 256));
+		Clear(olc::DARK_BLUE);
+		PTank->tankPicture->GetName;
+		//for (int x = 0; x < ScreenWidth(); x++)
+		//	for (int y = 0; y < ScreenHeight(); y++)
+		//		Draw(x, y, olc::Pixel(rand() % 256, rand() % 256, rand() % 256));
 		
 		return true;
 	}
