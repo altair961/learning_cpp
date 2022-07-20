@@ -5,7 +5,6 @@
 #include <vector>
 #include <memory>
 
-
 class Tank 
 {
 private:
@@ -14,6 +13,6 @@ public:
 	Tank(string n);
 	~Tank();
 	//string GetName() const { return name; };
-	std::shared_ptr<std::vector<int>> PTankPicture;
+	std::shared_ptr<std::vector<Pixel>> PTankPicture;
 	void AddResource();
 };

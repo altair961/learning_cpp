@@ -1,9 +1,14 @@
 struct Pixel 
 {
 public:
-	int X;
-	int Y;
-	int R;
-	int G;
-	int B;
+	int XPosition;
+	int YPosition;
+	int RColorChannel;
+	int GColorChannel;
+	int BColorChannel;
+
+	Pixel(int xPosition, int yPosition, 
+		int rColorChannel, int gColorChannel, int bColorChannel);
+
+	~Pixel();
 };

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Matrix2D.cpp" />
+    <ClCompile Include="Pixel.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Game.cpp" />
   </ItemGroup>

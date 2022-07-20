@@ -17,6 +17,7 @@ Tank::~Tank()
 void Tank::AddResource()
 {
 	PTankPicture.reset();
-	PTankPicture = make_shared<std::vector<int>>();
-	PTankPicture->push_back(3);
+	PTankPicture = make_shared<std::vector<Pixel>>();
+	auto pixel = Pixel(0, 0, 255, 235, 205);
+	PTankPicture->push_back(pixel);
 }

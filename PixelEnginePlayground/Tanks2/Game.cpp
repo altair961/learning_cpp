@@ -18,6 +18,7 @@ public:
 		PTank.reset();
 		PTank = std::make_shared<Tank>("123");
 		PTank->AddResource();
+		
 		return true;
 	}
 
@@ -25,7 +26,15 @@ public:
 	{
 		// Called once per frame, draws random coloured pixels
 		Clear(olc::DARK_BLUE);
-		//PTank->tankPicture->GetName;
+
+		
+
+		Draw(PTank->PTankPicture->at(0).XPosition, 
+			PTank->PTankPicture->at(0).YPosition, olc::Pixel(
+				PTank->PTankPicture->at(0).RColorChannel, 
+				PTank->PTankPicture->at(0).GColorChannel, 
+				PTank->PTankPicture->at(0).BColorChannel));
+
 		//for (int x = 0; x < ScreenWidth(); x++)
 		//	for (int y = 0; y < ScreenHeight(); y++)
 		//		Draw(x, y, olc::Pixel(rand() % 256, rand() % 256, rand() % 256));
