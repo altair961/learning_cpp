@@ -18,7 +18,9 @@ public:
 		PTank.reset();
 		PTank = std::make_shared<Tank>("123");
 		PTank->AddResource();
-		
+
+		sprTile = std::make_unique<olc::Sprite>("./tank.png");
+
 		return true;
 	}
 
@@ -27,13 +29,30 @@ public:
 		// Called once per frame, draws random coloured pixels
 		Clear(olc::DARK_BLUE);
 
+		auto v = PTank->PTankPicture;
 		
+//		olc::Sprite sprite("./tank.png");
 
-		Draw(PTank->PTankPicture->at(0).XPosition, 
-			PTank->PTankPicture->at(0).YPosition, olc::Pixel(
-				PTank->PTankPicture->at(0).RColorChannel, 
-				PTank->PTankPicture->at(0).GColorChannel, 
-				PTank->PTankPicture->at(0).BColorChannel));
+		DrawSprite(olc::vi2d(5, 5), sprTile.get());
+
+		/*	Sprite::Sprite(const std::string & sImageFile, olc::ResourcePack * pack)
+		{
+			LoadFromFile(sImageFile, pack);
+		}*/
+//		decal
+	//	DrawPartialWarpedDecal();
+
+		for (int i = 0; i <= 2; i++) 
+		{
+			Draw(PTank->PTankPicture->at(i).XPosition,
+				PTank->PTankPicture->at(i).YPosition, olc::Pixel(
+					PTank->PTankPicture->at(i).RColorChannel,
+					PTank->PTankPicture->at(i).GColorChannel,
+					PTank->PTankPicture->at(i).BColorChannel));
+		}
+
+
+		
 
 		//for (int x = 0; x < ScreenWidth(); x++)
 		//	for (int y = 0; y < ScreenHeight(); y++)
@@ -43,6 +62,7 @@ public:
 	}
 
 private:
+	std::unique_ptr<olc::Sprite> sprTile;
 	std::shared_ptr<Tank> PTank;
 	void DrawPixel(int xPosition, int yPosition, int pixelSide)
 	{
