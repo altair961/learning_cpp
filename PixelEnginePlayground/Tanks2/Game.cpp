@@ -20,7 +20,6 @@ public:
 		PTank->AddResource();
 
 		sprTile = std::make_unique<olc::Sprite>("./tank.png");
-
 		return true;
 	}
 
@@ -28,12 +27,13 @@ public:
 	{
 		// Called once per frame, draws random coloured pixels
 		Clear(olc::DARK_BLUE);
+		SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
 
+		DrawSprite(olc::vi2d(16, 16), sprTile.get());
 		auto v = PTank->PTankPicture;
 		
 //		olc::Sprite sprite("./tank.png");
 
-		DrawSprite(olc::vi2d(5, 5), sprTile.get());
 
 		/*	Sprite::Sprite(const std::string & sImageFile, olc::ResourcePack * pack)
 		{
@@ -50,6 +50,7 @@ public:
 					PTank->PTankPicture->at(i).GColorChannel,
 					PTank->PTankPicture->at(i).BColorChannel));
 		}
+		SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 
 
 		
