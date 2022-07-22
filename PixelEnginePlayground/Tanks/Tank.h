@@ -1,16 +1,17 @@
 #pragma once
 
-class Tank {
+#include <string>
+#include <vector>
+#include <memory>
 
+using std::string;
+
+class Tank 
+{
+private:
+	string name;
 public:
-	int IniXPos = 0;
-	int InitYPos = 0;
-
-	Tank(int iniXPos, int initYPos)
-	{
-	}
-
-	~Tank()
-	{
-	}
+	Tank(string n);
+	~Tank();
+	string GetName() const { return name; };
 };

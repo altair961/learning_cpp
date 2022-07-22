@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks", "Tanks\Tanks.vcxproj", "{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixelEnginePlayground", "PixelEnginePlayground\PixelEnginePlayground.vcxproj", "{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks2", "Tanks2\Tanks2.vcxproj", "{7BC56423-55C7-4BA6-9802-0CF49FD736B5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks", "Tanks\Tanks.vcxproj", "{7BC56423-55C7-4BA6-9802-0CF49FD736B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +13,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Debug|x64.ActiveCfg = Debug|x64
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Debug|x64.Build.0 = Debug|x64
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Debug|x86.ActiveCfg = Debug|Win32
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Debug|x86.Build.0 = Debug|Win32
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Release|x64.ActiveCfg = Release|x64
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Release|x64.Build.0 = Release|x64
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Release|x86.ActiveCfg = Release|Win32
-		{A1F8C6BF-D808-4E4F-B045-CF6A6F003882}.Release|x86.Build.0 = Release|Win32
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Debug|x64.ActiveCfg = Debug|x64
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Debug|x64.Build.0 = Debug|x64
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Debug|x86.ActiveCfg = Debug|Win32
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Debug|x86.Build.0 = Debug|Win32
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Release|x64.ActiveCfg = Release|x64
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Release|x64.Build.0 = Release|x64
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Release|x86.ActiveCfg = Release|Win32
-		{4C755AA5-39AC-4AFC-AC9B-4952C2799A5C}.Release|x86.Build.0 = Release|Win32
 		{7BC56423-55C7-4BA6-9802-0CF49FD736B5}.Debug|x64.ActiveCfg = Debug|x64
 		{7BC56423-55C7-4BA6-9802-0CF49FD736B5}.Debug|x64.Build.0 = Debug|x64
 		{7BC56423-55C7-4BA6-9802-0CF49FD736B5}.Debug|x86.ActiveCfg = Debug|Win32
