@@ -18,9 +18,7 @@ public:
 		PTank.reset();
 		PTank = std::make_shared<Tank>("Player's tank");
 
-		//sprTile = std::make_unique<olc::Sprite>("./tank.png");
-
-		spritePtr = std::make_unique<olc::Sprite>("./tank.png");
+		spritePtr = std::make_unique<olc::Sprite>("./player's_tank_sprite_sheet.png");
 		decalPtr = std::make_unique<olc::Decal>(spritePtr.get());
 
 		return true;
@@ -32,8 +30,6 @@ public:
 		Clear(olc::DARK_BLUE);
 		SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
 
-		// DrawSprite(olc::vi2d(16, 16), sprTile.get());
-		// AnimationData animationData = spriteAnimation.GetInfo(fElapsedTime);
 		olc::vf2d size = { 16, 16 };
 		olc::vf2d sourceSize = { 16, 16 };
 		
