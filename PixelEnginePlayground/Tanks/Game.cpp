@@ -18,7 +18,11 @@ public:
 		PTank.reset();
 		PTank = std::make_shared<Tank>("Player's tank");
 
-		sprTile = std::make_unique<olc::Sprite>("./tank.png");
+		//sprTile = std::make_unique<olc::Sprite>("./tank.png");
+
+		spritePtr = std::make_unique<olc::Sprite>("./tank.png");
+		decalPtr = std::make_unique<olc::Decal>(spritePtr.get());
+
 		return true;
 	}
 
@@ -28,7 +32,12 @@ public:
 		Clear(olc::DARK_BLUE);
 		SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
 
-		DrawSprite(olc::vi2d(16, 16), sprTile.get());
+		// DrawSprite(olc::vi2d(16, 16), sprTile.get());
+		// AnimationData animationData = spriteAnimation.GetInfo(fElapsedTime);
+		olc::vf2d size = { 16, 16 };
+		olc::vf2d sourceSize = { 16, 16 };
+		
+		DrawPartialDecal(position, size, decalPtr.get(), getSourcePos(), sourceSize);
 	
 		SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 		return true;
@@ -37,6 +46,22 @@ public:
 private:
 	std::unique_ptr<olc::Sprite> sprTile;
 	std::shared_ptr<Tank> PTank;
+	std::unique_ptr<olc::Sprite> spritePtr;
+	std::unique_ptr<olc::Decal> decalPtr;
+	olc::vf2d position{ 50, 69 };
+	olc::vf2d getSourcePos()
+	{
+		int r = rand() % 256;
+
+		olc::vf2d result;
+		if (r > 35)
+		{
+			
+			return olc::vf2d{ 0, 0 };
+		}
+		
+		return olc::vf2d{ 16, 0 };
+	}
 };
 
 int main()
