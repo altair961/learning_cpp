@@ -54,16 +54,11 @@ private:
 	olc::vf2d position{ 50, 69 };
 	int currentTile;
 	float currentTime = 0.0f;
-//	float mInterval = 0.007f;
-//	float mInterval = 0.000000001f;
 	float mInterval = 0.005066;
 
 
 	olc::vf2d getSourcePos(int currentTile, float fElapsedTime)
 	{
-		//fElapsedTime
-
-		//cout << "currentTile: " << currentTile << endl;
 		if (currentTile == 0)
 			return olc::vf2d{ 0, 0 };
 
@@ -80,7 +75,6 @@ private:
 			throw invalid_argument("Current tile index cannot be greater than maximum index");
 
 		currentTime += fElapsedTime;
-		cout << "currentTime: " << currentTime << endl;
 		if (currentTime >= mInterval)
 		{
 			currentTime = 0.0f;
@@ -92,11 +86,11 @@ private:
 			}
 
 		}
-			if (currentTile == maxIndexValue)
-			{
-				currentTile = 0;
-				return currentTile;
-			}
+		if (currentTile == maxIndexValue)
+		{
+			currentTile = 0;
+			return currentTile;
+		}
 
 		return currentTile;
 	}
