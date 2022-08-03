@@ -7,6 +7,7 @@ using std::string;
 Tank::Tank(string n) : name(n)
 {
 	cout << "constructing " << name << endl;
+
 }
 
 Tank::~Tank()

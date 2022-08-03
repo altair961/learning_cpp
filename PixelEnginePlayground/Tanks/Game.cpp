@@ -2,6 +2,7 @@
 #include "olcPixelGameEngine.h"
 #include "Tank.h"
 #include <stdexcept>
+#include "EntitiesRenderer.h"
 
 using namespace std;
 
@@ -18,12 +19,14 @@ public:
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
-		PTank.reset();
-		PTank = make_shared<Tank>("Player's tank");
+		//PTank.reset();
+		//PTank = make_shared<Tank>("Player's tank");
 
-		spritePtr = make_unique<olc::Sprite>("./player's_tank_sprite_sheet.png");
-		decalPtr = make_unique<olc::Decal>(spritePtr.get());
-		currentTile = 0;
+		
+		//tank drwing init
+		//spritePtr = make_unique<olc::Sprite>("./player's_tank_sprite_sheet.png");
+		//decalPtr = make_unique<olc::Decal>(spritePtr.get());
+		//currentTile = 0;
 
 		return true;
 	}
@@ -34,28 +37,22 @@ public:
 		Clear(olc::DARK_BLUE);
 		SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
 
-		olc::vf2d size = { 16, 16 };
-		olc::vf2d sourceSize = { 16, 16 };
-		
-		
-		DrawPartialDecal(position, size, decalPtr.get(), getSourcePos(currentTile, fElapsedTime), sourceSize);
-		
-		currentTile = GetNextTileIndex(currentTile, fElapsedTime);
+		// Tank drawing logic
+		pEntitiesRenderer->Render();
+
+		//olc::vf2d size = { 16, 16 };
+		//olc::vf2d sourceSize = { 16, 16 };
+		//DrawPartialDecal(position, size, decalPtr.get(), getSourcePos(currentTile, fElapsedTime), sourceSize);
+		//currentTile = GetNextTileIndex(currentTile, fElapsedTime);
+
 
 		SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 		return true;
 	}
 
 private:
-	unique_ptr<olc::Sprite> sprTile;
-	shared_ptr<Tank> PTank;
-	unique_ptr<olc::Sprite> spritePtr;
-	unique_ptr<olc::Decal> decalPtr;
-	olc::vf2d position{ 50, 69 };
-	int currentTile;
-	float currentTime = 0.0f;
-	float mInterval = 0.005066;
-
+	shared_ptr<Tank> pTank;
+	unique_ptr<EntitiesRenderer> pEntitiesRenderer;
 
 	olc::vf2d getSourcePos(int currentTile, float fElapsedTime)
 	{
@@ -65,7 +62,7 @@ private:
 		if (currentTile == 1)
 			return olc::vf2d{ 16, 0 };
 	}
-
+	/*
 	int GetNextTileIndex(int currentTile, float fElapsedTime)
 	{
 		int tilesTotal = 2;
@@ -93,7 +90,7 @@ private:
 		}
 
 		return currentTile;
-	}
+	}*/
 };
 
 int main()
