@@ -1,25 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks.GameApp.Client", "Tanks.GameApp.Client\Tanks.GameApp.Client.vcxproj", "{5E8F06A1-A8C2-4F90-B605-98CDC0A64A33}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks", "Tanks\Tanks.vcxproj", "{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E8F06A1-A8C2-4F90-B605-98CDC0A64A33}.Debug|x64.ActiveCfg = Debug|x64
-		{5E8F06A1-A8C2-4F90-B605-98CDC0A64A33}.Debug|x64.Build.0 = Debug|x64
-		{5E8F06A1-A8C2-4F90-B605-98CDC0A64A33}.Release|x64.ActiveCfg = Release|x64
-		{5E8F06A1-A8C2-4F90-B605-98CDC0A64A33}.Release|x64.Build.0 = Release|x64
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Debug|x64.ActiveCfg = Debug|x64
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Debug|x64.Build.0 = Debug|x64
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Debug|x86.ActiveCfg = Debug|Win32
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Debug|x86.Build.0 = Debug|Win32
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Release|x64.ActiveCfg = Release|x64
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Release|x64.Build.0 = Release|x64
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Release|x86.ActiveCfg = Release|Win32
+		{CA338E3F-54B7-4A83-9752-DCAE0B21F1D3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {347A6F97-1149-4F42-B29D-70914BE5CBE6}
+		SolutionGuid = {4CF96BD4-343F-4B20-9015-D202A12019E1}
 	EndGlobalSection
 EndGlobal
