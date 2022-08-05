@@ -4,8 +4,8 @@
 
 Game::Game()
 {
-	PTank.reset();
-	PTank = std::make_shared<Tank>();
+	pTank.reset();
+	pTank = std::make_unique<Tank>();
 
 	std::cout << "Game was constructed. " << std::endl;
 }

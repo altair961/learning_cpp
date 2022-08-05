@@ -5,7 +5,7 @@
 class Game 
 {
 public:
-	std::shared_ptr<Tank> PTank;
+	std::unique_ptr<Tank> pTank;
 	Game();
 	~Game();
 };

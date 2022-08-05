@@ -3,6 +3,7 @@
 
 Tank::Tank()
 {
+	PathToSpriteSheet = "./player's_tank_sprite_sheet.png";
 	std::cout << "Tank was constructed. " << std::endl;
 }
 

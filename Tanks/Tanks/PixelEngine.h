@@ -9,6 +9,11 @@ private:
 	bool IsInitialized = false;
 	void SetIsInitialized(bool isInitializedValue);
 	std::shared_ptr<Game> pGame;
+	std::unique_ptr<olc::Sprite>pSprite;
+	std::unique_ptr<olc::Decal>pDecal;
+	int GetNextTileIndex(int currentTile, float fElapsedTime);
+	int currentTile;
+	olc::vf2d getSourcePos(int currentTile, float fElapsedTime);
 public:
 	bool GetIsInitialized();
 	void Initialize(int screenWidth, int screenHeight, int pixelWidth, 

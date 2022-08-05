@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{ca338e3f-54b7-4a83-9752-dcae0b21f1d3}</ProjectGuid>
-    <RootNamespace>Tanks4</RootNamespace>
+    <RootNamespace>Tanks</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Tanks</ProjectName>
   </PropertyGroup>

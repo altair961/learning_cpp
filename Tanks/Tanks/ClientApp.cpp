@@ -9,7 +9,7 @@ int main()
     pGame.reset();
     pGame = std::make_shared<Game>();
     PixelEngine pe(pGame);
-    pe.Initialize(256, 240, 4, 4, false, false);
+    pe.Initialize(256, 240, 4, 4, false, true);
     bool isPeInitialized = pe.GetIsInitialized();
 
     if (isPeInitialized)
