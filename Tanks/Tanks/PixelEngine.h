@@ -14,6 +14,7 @@ private:
 	int GetNextTileIndex(int currentTile, float fElapsedTime);
 	int currentTile;
 	olc::vf2d getSourcePos(int currentTile, float fElapsedTime);
+	olc::vf2d position;
 public:
 	bool GetIsInitialized();
 	void Initialize(int screenWidth, int screenHeight, int pixelWidth, 

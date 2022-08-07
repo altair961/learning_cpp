@@ -54,6 +54,7 @@ bool PixelEngine::OnUserCreate()
 	
 	pDecal.reset();
 	pDecal = std::make_unique<olc::Decal>(pSprite.get());
+	position = { 150, 169 };
 
 	return true;
 }
@@ -67,7 +68,6 @@ bool PixelEngine::OnUserUpdate(float fElapsedTime)
 
 	// process user inputs
 	// updates game state
-	pGame->pTank->Move();// Move updates Map (map has no walls)
 	// renders
 	//ask Map about tank position and draw it
 
@@ -77,12 +77,27 @@ bool PixelEngine::OnUserUpdate(float fElapsedTime)
 
 	olc::vf2d size = { 16, 16 };
 	olc::vf2d sourceSize = { 16, 16 };
-	olc::vf2d position{ 50, 69 };
 
 
-
-	DrawPartialDecal(position, size, pDecal.get(), getSourcePos(currentTile, fElapsedTime), sourceSize);
+	DrawPartialDecal(position, size, pDecal.get(), olc::vf2d{ 0, 0 }, sourceSize);
+	
 	currentTile = GetNextTileIndex(currentTile, fElapsedTime);
+
+	//if (GetKey(olc::UP).bPressed) {
+	//	pGame->pTank->Move();// Move updates Map (map has no walls)
+	//}
+
+	if (GetKey(olc::UP).bHeld)
+	{
+		position.y--;
+		DrawPartialDecal(position, size, pDecal.get(), getSourcePos(currentTile, fElapsedTime), sourceSize);
+		pGame->pTank->Move();// Move updates Map (map has no walls)
+	}
+
+	if (GetKey(olc::RIGHT).bPressed)
+	{
+		DrawPartialRotatedDecal(position, pDecal.get(), 90, position, getSourcePos(currentTile, fElapsedTime), sourceSize);
+	}
 
 	SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 
@@ -96,6 +111,8 @@ int PixelEngine::GetNextTileIndex(int currentTile, float fElapsedTime)
 
 	if (currentTile > maxIndexValue)
 		throw std::invalid_argument("Current tile index cannot be greater than maximum index");
+
+
 
 	/*currentTime += fElapsedTime;
 	if (currentTime >= mInterval)
