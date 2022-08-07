@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <gmock/gmock.h>
+using ::testing::Eq;
 
 class Soundex
 {
@@ -14,5 +15,5 @@ TEST(SoundexEncoding, RetainsSoleLetterOfOneLetterWord) {
 
 	auto encoded = soundex.encode("A");
 
-	ASSERT_THAT(encoded, testing::Eq("A"));
+	ASSERT_THAT(encoded, Eq("A"));
 }
