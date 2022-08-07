@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Soundex.Tests", "Soundex.Tests\Soundex.Tests.vcxproj", "{0178AC73-5637-48DF-BFDA-F95B874DC809}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Soundex.Tests", "Soundex.Tests\Soundex.Tests.vcxproj", "{9626DE6F-753B-4EDA-A543-AC33DD0E508A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Debug|x64.ActiveCfg = Debug|x64
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Debug|x64.Build.0 = Debug|x64
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Debug|x86.ActiveCfg = Debug|Win32
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Debug|x86.Build.0 = Debug|Win32
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Release|x64.ActiveCfg = Release|x64
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Release|x64.Build.0 = Release|x64
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Release|x86.ActiveCfg = Release|Win32
-		{0178AC73-5637-48DF-BFDA-F95B874DC809}.Release|x86.Build.0 = Release|Win32
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Debug|x64.ActiveCfg = Debug|x64
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Debug|x64.Build.0 = Debug|x64
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Debug|x86.ActiveCfg = Debug|Win32
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Debug|x86.Build.0 = Debug|Win32
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Release|x64.ActiveCfg = Release|x64
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Release|x64.Build.0 = Release|x64
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Release|x86.ActiveCfg = Release|Win32
+		{9626DE6F-753B-4EDA-A543-AC33DD0E508A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
