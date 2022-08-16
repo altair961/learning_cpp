@@ -46,11 +46,11 @@ int main()
     int halfDollars = 0;
     cin >> halfDollars;
 
-    cout << endl << "You have " << pennies << " pennies.";
-    cout << endl << "You have " << nickels << " nickels.";
-    cout << endl << "You have " << dimes << " dimes.";
-    cout << endl << "You have " << quarters << " quarters.";
-    cout << endl << "You have " << halfDollars << " half dollars.";
+    cout << endl << "You have " << pennies << " " << (pennies == 1 ? "penny" : "pennies.");
+    cout << endl << "You have " << nickels << " " << (nickels == 1 ? "nickel" : "nickels.");
+    cout << endl << "You have " << dimes << " " << (dimes == 1 ? "dime" : "dimes.");
+    cout << endl << "You have " << quarters << " " << (quarters == 1 ? "quarter" : "quarters.");
+    cout << endl << "You have " << halfDollars << " " << (halfDollars == 1 ? "half dollar" : "half dollars.");
 
     int nickelsInCents = nickelsToCents(nickels);
     int dimesInCents = dimesToCents(dimes);
@@ -58,6 +58,9 @@ int main()
     int halfDollarsInCents = halfDollarsToCents(halfDollars);
     
     int totalValueInCents = pennies + nickelsInCents + dimesInCents + quartersInCents + halfDollarsInCents;
-
-    cout << endl << "The value of all of your coins is " << totalValueInCents << " cents." << endl;
+    
+    auto dollarFractionInCents = totalValueInCents % 100;
+    int wholeDollars = totalValueInCents / 100;
+    cout << endl << "The value of all of your coins is " 
+        << "$" << wholeDollars << "." << dollarFractionInCents << "." << endl;
 }
