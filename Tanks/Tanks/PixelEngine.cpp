@@ -44,7 +44,13 @@ void PixelEngine::Launch()
 
 void PixelEngine::InitializeWithDefaults() 
 {
-	Construct(256, 240, 4, 4, false, true);
+	constexpr int width = 256;
+	constexpr int height = 240;
+	constexpr int pixelSide = 4;
+	constexpr bool isFullScrOn = false;
+	constexpr bool isVSyncOn = true;
+
+	Construct(width, height, pixelSide, pixelSide, isFullScrOn, isVSyncOn);
 }
 
 bool PixelEngine::OnUserCreate()

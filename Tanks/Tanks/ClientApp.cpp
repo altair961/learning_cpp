@@ -9,7 +9,14 @@ int main()
     pGame.reset();
     pGame = std::make_shared<Game>();
     PixelEngine pe(pGame);
-    pe.Initialize(256, 240, 4, 4, false, true);
+
+    constexpr int width = 256;
+    constexpr int height = 240;
+    constexpr int pixelSide = 4;
+    constexpr bool isFullScrOn = false;
+    constexpr bool isVSyncOn = true;
+
+    pe.Initialize(width, height, pixelSide, pixelSide, isFullScrOn, isVSyncOn);
     bool isPeInitialized = pe.GetIsInitialized();
 
     if (isPeInitialized)
