@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt1_currency_convertor"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt2_switch_based_currency_convertor", "ch4_tt2_switch_based_currency_convertor\ch4_tt2_switch_based_currency_convertor.vcxproj", "{05A1789B-B60E-4BCE-958A-43980D1A695A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt3_looping_through_characters", "ch4_tt3_looping_through_characters\ch4_tt3_looping_through_characters.vcxproj", "{10376240-B5A8-491E-8E24-624EF535607D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{05A1789B-B60E-4BCE-958A-43980D1A695A}.Release|x64.Build.0 = Release|x64
 		{05A1789B-B60E-4BCE-958A-43980D1A695A}.Release|x86.ActiveCfg = Release|Win32
 		{05A1789B-B60E-4BCE-958A-43980D1A695A}.Release|x86.Build.0 = Release|Win32
+		{10376240-B5A8-491E-8E24-624EF535607D}.Debug|x64.ActiveCfg = Debug|x64
+		{10376240-B5A8-491E-8E24-624EF535607D}.Debug|x64.Build.0 = Debug|x64
+		{10376240-B5A8-491E-8E24-624EF535607D}.Debug|x86.ActiveCfg = Debug|Win32
+		{10376240-B5A8-491E-8E24-624EF535607D}.Debug|x86.Build.0 = Debug|Win32
+		{10376240-B5A8-491E-8E24-624EF535607D}.Release|x64.ActiveCfg = Release|x64
+		{10376240-B5A8-491E-8E24-624EF535607D}.Release|x64.Build.0 = Release|x64
+		{10376240-B5A8-491E-8E24-624EF535607D}.Release|x86.ActiveCfg = Release|Win32
+		{10376240-B5A8-491E-8E24-624EF535607D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
