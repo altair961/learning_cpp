@@ -1,11 +1,11 @@
 #include "../std_lib_facilities.h"
 
-int square(int x)
+int square(int argument)
 {
 	int square = 0;
-	for (int i = 0; i < x; ++i)
+	for (int i = 0; i < argument; ++i)
 	{
-		square += x;
+		square += argument;
 	}
 
 	return square;
