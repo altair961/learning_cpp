@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt3_looping_through_cha
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt4_square_function_implementation", "ch4_tt4_square_function_implementation\ch4_tt4_square_function_implementation.vcxproj", "{744A852D-62C7-4764-869A-4C1976ADCFA2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt5_words_bleeping", "ch4_tt5_words_bleeping\ch4_tt5_words_bleeping.vcxproj", "{21099FA5-800D-4E36-B2B2-F6A28EF99E88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +103,14 @@ Global
 		{744A852D-62C7-4764-869A-4C1976ADCFA2}.Release|x64.Build.0 = Release|x64
 		{744A852D-62C7-4764-869A-4C1976ADCFA2}.Release|x86.ActiveCfg = Release|Win32
 		{744A852D-62C7-4764-869A-4C1976ADCFA2}.Release|x86.Build.0 = Release|Win32
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Debug|x64.ActiveCfg = Debug|x64
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Debug|x64.Build.0 = Debug|x64
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Debug|x86.ActiveCfg = Debug|Win32
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Debug|x86.Build.0 = Debug|Win32
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Release|x64.ActiveCfg = Release|x64
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Release|x64.Build.0 = Release|x64
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Release|x86.ActiveCfg = Release|Win32
+		{21099FA5-800D-4E36-B2B2-F6A28EF99E88}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
