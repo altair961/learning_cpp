@@ -10,13 +10,16 @@ int main()
 	for (string inputStr; cin >> inputStr;)
 		words.push_back(inputStr);
 
-	string disliked = "Broccoli";
+	vector<string> disliked = { "Broccoli", "Cucumber", "Tomato"};
 
 	for (int i = 0; i < words.size(); i++)
 	{
-		if (words[i] == disliked)
+		for (int j = 0; j < disliked.size(); j++)
 		{
-			words[i] = "BLEEP";
+			if (words[i] == disliked[j])
+			{
+				words[i] = "BLEEP";
+			}
 		}
 	}
 
