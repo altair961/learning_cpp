@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_tt5_words_bleeping", "c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_dr1_language_features", "ch4_dr1_language_features\ch4_dr1_language_features.vcxproj", "{90635EA2-7BBF-4F80-AB04-863857DEFE3F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_dr2_language_features", "ch4_dr2_language_features\ch4_dr2_language_features.vcxproj", "{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{90635EA2-7BBF-4F80-AB04-863857DEFE3F}.Release|x64.Build.0 = Release|x64
 		{90635EA2-7BBF-4F80-AB04-863857DEFE3F}.Release|x86.ActiveCfg = Release|Win32
 		{90635EA2-7BBF-4F80-AB04-863857DEFE3F}.Release|x86.Build.0 = Release|Win32
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Debug|x64.ActiveCfg = Debug|x64
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Debug|x64.Build.0 = Debug|x64
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Debug|x86.ActiveCfg = Debug|Win32
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Debug|x86.Build.0 = Debug|Win32
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Release|x64.ActiveCfg = Release|x64
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Release|x64.Build.0 = Release|x64
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Release|x86.ActiveCfg = Release|Win32
+		{E9BF4F5C-5146-468E-ABBB-2BD1D772DA25}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
