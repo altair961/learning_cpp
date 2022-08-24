@@ -2,10 +2,14 @@
 
 int main()
 {
-	string input1, input2;
-	while (cin >> input1 && input1 != "|" && cin >> input2 && input2 != "|")
+	cout << "Please, provide two integer numbers or \"pipe\"-sign \"|\" to terminate input: " << "\n";
+	string numStr1, numStr2;
+	while (cin >> numStr1 && numStr1 != "|" && cin >> numStr2 && numStr2 != "|")
 	{
-		cout << "input1: " << input1 << "\n";
-		cout << "input2: " << input2 << "\n";
+		int num1 = stoi(numStr1);
+		int num2 = stoi(numStr2);
+
+		cout << "num1: " << num1 << "\n";
+		cout << "num2: " << num2 << "\n";
 	}
 }
