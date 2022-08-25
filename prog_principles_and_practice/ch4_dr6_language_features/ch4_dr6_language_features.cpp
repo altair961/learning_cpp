@@ -49,8 +49,8 @@ int main()
 			double smaller = GetSmallest(newNum, prevNum);
 			double larger = GetLargest(newNum, prevNum);
 
-			cout << "The smaller number is: " << smaller << "\n";
-			cout << "The larger number is: " << larger << "\n";
+			cout << "The smallest so far: " << smaller << "\n";
+			cout << "The largest so far: " << larger << "\n";
 
 			bool isDiffSmall = IsDiffSmall(newNum, prevNum);
 
