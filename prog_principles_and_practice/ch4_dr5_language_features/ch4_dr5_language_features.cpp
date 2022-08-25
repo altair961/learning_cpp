@@ -31,7 +31,7 @@ bool IsDiffSmall(double num1, double num2)
 
 int main()
 {
-	cout << "Please, provide two integer numbers or \"pipe\"-sign \"|\" to terminate input: " << "\n";
+	cout << "Please, provide two double numbers or \"pipe\"-sign \"|\" to terminate input: " << "\n";
 	string numStr1, numStr2;
 	while (cin >> numStr1 && numStr1 != "|" && cin >> numStr2 && numStr2 != "|")
 	{
