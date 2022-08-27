@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_dr7_language_features",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_dr9_language_features", "ch4_dr9_language_features\ch4_dr9_language_features.vcxproj", "{13926187-BC5D-4A75-A5D2-1F07F8870DBF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4_dr10_language_features", "ch4_dr10_language_features\ch4_dr10_language_features.vcxproj", "{76C5241C-CB06-4970-A91C-054F5DF4E8B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -191,6 +193,14 @@ Global
 		{13926187-BC5D-4A75-A5D2-1F07F8870DBF}.Release|x64.Build.0 = Release|x64
 		{13926187-BC5D-4A75-A5D2-1F07F8870DBF}.Release|x86.ActiveCfg = Release|Win32
 		{13926187-BC5D-4A75-A5D2-1F07F8870DBF}.Release|x86.Build.0 = Release|Win32
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Debug|x64.ActiveCfg = Debug|x64
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Debug|x64.Build.0 = Debug|x64
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Debug|x86.ActiveCfg = Debug|Win32
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Debug|x86.Build.0 = Debug|Win32
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Release|x64.ActiveCfg = Release|x64
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Release|x64.Build.0 = Release|x64
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Release|x86.ActiveCfg = Release|Win32
+		{76C5241C-CB06-4970-A91C-054F5DF4E8B7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
