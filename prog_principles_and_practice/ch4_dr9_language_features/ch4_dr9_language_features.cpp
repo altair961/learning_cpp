@@ -73,16 +73,19 @@ int main()
 	double prevInput = 0.0;
 	double input;
 	double sumMeters = 0.0;
-
+	vector<double> inputNums;
 	cout << "Please, provide a real number, followed by a unit or \"pipe\"-sign \"|\" to terminate input: " << "\n";
 
 	while (cin >> input >> unit && isUnitAcceptable(unit))
 	{
+		inputNums.push_back(input);
+
 		if (input == prevInput)
 			cout << "The numbers are equal\n";
 
 		if (input != prevInput)
 		{
+
 			double smaller = GetSmallest(input, prevInput);
 			double larger = GetLargest(input, prevInput);
 
@@ -100,5 +103,16 @@ int main()
 		sumMeters += meters;
 	}
 
-	cout << "sum: " << sumMeters << " meters.";
+	cout << "\n";
+	sort(inputNums);
+
+	double smallest = inputNums.at(0);
+	cout << "The smallest number: " << smallest << "\n";
+
+	double largest = inputNums.at(inputNums.size() - 1);
+	cout << "The largest number: " << largest << "\n";
+
+	double numOfVals = inputNums.size();
+	cout << "The number of values: " << numOfVals << "\n";
+	cout << "The sum: " << sumMeters << " meters.\n";
 }
