@@ -17,7 +17,7 @@ double GetAvg(double num1, double num2)
 
 int main()
 {
-	cout << "Please, provide floating-point numbers and terminate the input with pipe-sign \"|\" when you're done: ";
+	cout << "Please, provide floating-point numbers \nand terminate the input with pipe-sign \"|\" when you're done: ";
 
 	vector<double> temps;
 	for (double temp; cin>>temp;)
@@ -33,13 +33,13 @@ int main()
 		int nonZeroBasedIndex1 = temps.size() / 2;
 		int zeroBasedIndex1 = nonZeroBasedIndex1 - 1; 
 		int zeroBasedIndex2 = zeroBasedIndex1 + 1;
-		                            //5.6                   //7.8
+
 		median = GetAvg(temps.at(zeroBasedIndex1), temps.at(zeroBasedIndex2));
 	}
 
 	if (!isEven) 
 	{
-		int nonZeroBasedIndex = (temps.size() + 1) / 2; // 3
+		int nonZeroBasedIndex = (temps.size() + 1) / 2;
 		int zeroBasedIndex = nonZeroBasedIndex - 1;
 		median = temps[zeroBasedIndex];
 	}

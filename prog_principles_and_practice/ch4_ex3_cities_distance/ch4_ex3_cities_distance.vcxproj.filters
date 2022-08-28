@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ch4_ex2_median.cpp">
+    <ClCompile Include="ch4_ex3_cities_distance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
