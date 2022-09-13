@@ -41,8 +41,139 @@ char GetUsersInput()
     return input;
 }
 
+vector<int> GetCompositeNumSubvector(vector<int> numbers)
+{
+    vector<int> compositeNums;
+    for (int number : numbers)
+    {
+        vector<int>::const_iterator first = numbers.begin() + 0;
+        vector<int>::const_iterator last = numbers.begin() + number;
+        vector<int> oneToNumber(first, last);
+
+        if (number == 1)
+            continue;
+
+        if (number == 2)
+            continue;
+
+        for (int i = 0; i < numbers.size() - 1; i++)
+        {
+            int denominator = numbers.at(i);
+            
+            if (denominator >= number)
+                continue;
+
+            if (denominator == 1)
+                continue;
+
+            int remainder = number % denominator;
+            
+            if (remainder == 0)
+            {
+                compositeNums.push_back(number);
+                break;
+            }
+        }
+    }
+    return compositeNums;
+}
+
+vector<int> GetPrimeNumSubvector()//(vector<int> numbers)
+{
+    vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+
+    vector<int> primeNums;
+
+    for (int number : numbers)
+    {
+        vector<int>::const_iterator first = numbers.begin() + 0;
+        vector<int>::const_iterator last = numbers.begin() + number;
+        vector<int> oneToNumber(first, last);
+
+        if (number == 1)
+            continue;
+
+        if (number == 2)
+        {
+            primeNums.push_back(number);
+            continue;
+        }
+
+        vector<int> currentNumberDivisors;
+        
+        for (int i = 0; i < numbers.size() - 1; i++)
+        {
+            int divisor = numbers.at(i);
+
+            if (divisor > number)
+                continue;
+
+            if (divisor == 1)
+                continue;
+
+            int remainder = number % divisor;
+
+            if (remainder == 0)
+            {
+                currentNumberDivisors.push_back(divisor);
+            }
+
+            if (currentNumberDivisors.size() == 0)
+            {
+                primeNums.push_back(number);
+                break;
+            }
+
+        }
+    }
+    return primeNums;
+}
+
+vector<int> GetPrimeNumSubvector2()//(vector<int> numbers)
+{
+    vector<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+
+    vector<int> primeNums;
+
+
+    for (int number : numbers)
+    {
+        vector<int>::const_iterator first = numbers.begin() + 0;
+        vector<int>::const_iterator last = numbers.begin() + number;
+        vector<int> oneToNumber(first, last);
+
+        if (number == 1)
+            continue;
+
+        if (number == 2)
+        {
+            primeNums.push_back(number);
+            continue;
+        }
+
+        for (int divisor : oneToNumber) // 2 3 4 5 6 7 8 9
+        {
+            if (divisor == 1)
+                continue;
+
+            int remainder = number % divisor;
+
+            if (remainder == 0)
+                break;
+
+            if (divisor == number - 1)
+                primeNums.push_back(number);
+
+            if (divisor == number)
+                break;
+        }
+    }
+    return primeNums;
+}
+
 int main()
 {
+    GetPrimeNumSubvector2();
     vector<int> numbers = GetNums();
 
     cout << "Please, think of a number between 1 and 100.\n"
@@ -60,7 +191,6 @@ int main()
 
         cout << "Is the number you are thinking of less than 26? ";
         input = GetUsersInput();
-
         if (input == 'y')
         {
             // [1, 25]
@@ -68,7 +198,29 @@ int main()
             vector<int>::const_iterator last = numbers.begin() + 25;
             vector<int> oneToTwentyFive(first, last);
 
+            cout << "Is the number you are thinking of less than 15? ";
+            input = GetUsersInput();
+            if (input == 'y') 
+            {
+                vector<int>::const_iterator first = numbers.begin() + 0;
+                vector<int>::const_iterator last = numbers.begin() + 14;
+                vector<int> oneToFourteen(first, last);
 
+                cout << "Is the number you are thinking of composite? ";
+                input = GetUsersInput();
+
+                if (input == 'y')
+                {
+                    vector<int> oneToFourteenComposite;
+                    oneToFourteenComposite = GetCompositeNumSubvector(oneToFourteen);
+                }
+
+                if (input == 'n')
+                {
+                    vector<int> oneToFourteenPrime;
+                //    oneToFourteenPrime = GetPrimeNumSubvector(oneToFourteen);
+                }
+            }
         }
 
         if (input == 'n')
@@ -77,6 +229,7 @@ int main()
             vector<int>::const_iterator first = numbers.begin() + 25;
             vector<int>::const_iterator last = numbers.begin() + 50;
             vector<int> twentySixToFifty(first, last);
+
 
         }
     }
