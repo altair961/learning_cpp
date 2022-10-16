@@ -78,7 +78,6 @@ vector<int> GetCompositeNumSubvector(vector<int> numbers)
     return compositeNums;
 }
 
-
 vector<int> GetPrimeNumSubvector(vector<int> numbers)
 {
     vector<int> primeNums;
@@ -118,6 +117,12 @@ vector<int> GetPrimeNumSubvector(vector<int> numbers)
     }
     return primeNums;
 }
+
+//bool IsEven(int number) 
+//{
+//    int remainder = number % 2;
+//    
+//}
 
 int main()
 {
@@ -365,6 +370,7 @@ int main()
 
                                 int result = oneToFourteenPrimeNotLessThanSixNotLessThanTenNotLessThanTwelve[0];
                                 cout << "The number you are thinking of is " << result;
+                                // TODO: Exit from app after telling the answer
                             }
                         }
                     }
@@ -378,8 +384,46 @@ int main()
             vector<int>::const_iterator first = numbers.begin() + 25;
             vector<int>::const_iterator last = numbers.begin() + 50;
             vector<int> twentySixToFifty(first, last);
+            
+            cout << "Is the number you are thinking of less than 38? ";
+            input = GetUsersInput();
+            if (input == 'y') // 26 27 28 29 30 31 32 33 34 35 36 37
+            {
+                vector<int> twentySixToFiftyLessThanThirtyEight;
+                for (int number : twentySixToFifty)
+                {
+                    if (number < 38)
+                        twentySixToFiftyLessThanThirtyEight.push_back(number);
+                }
+
+                cout << "Is the number you are thinking of less than 32? ";
+                input = GetUsersInput();
+                if (input == 'y') // 26 27 28 29 30 31
+                {
+                    vector<int> twentySixToFiftyLessThanThirtyEightLessThanThirtyTwo;
+                    for (int number : twentySixToFiftyLessThanThirtyEight)
+                    {
+                        if (number < 32)
+                            twentySixToFiftyLessThanThirtyEightLessThanThirtyTwo.push_back(number);
+                    }
+
+                    cout << "Is the number you are thinking of even? ";
+                    input = GetUsersInput();
+                    if (input == 'y') // 26 28 30
+                    {
+                        vector<int> twentySixToFiftyLessThanThirtyEightLessThanThirtyTwoEven;
+                        for (int number : twentySixToFiftyLessThanThirtyEightLessThanThirtyTwo)
+                        {
+                            
+                            //if (IsEven(number))
+                            //{
+                            //}
+                        }
+                    }
+                }
 
 
+            }
         }
     }
     if (input == 'n')
