@@ -1,24 +1,31 @@
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    VideoMode vm(1920, 1080);
+    RenderWindow window(vm, "Timber!!!", Style::Fullscreen);
+    CircleShape shape(100.f);
+    shape.setFillColor(Color::Yellow);
 
     while (window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        // Handle the players input
+        if(Keyboard::isKeyPressed(Keyboard::Escape))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            window.close();
         }
 
+        // Update the scene
+
+        // Draw the scene
+        // Clear everything from the last frame
         window.clear();
-        window.draw(shape);
+
+        // Draw our game scene here
+        // Show everything we just drew
         window.display();
     }
-
     return 0;
 }
