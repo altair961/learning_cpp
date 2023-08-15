@@ -1,4 +1,6 @@
+#include <sstream>
 #include <SFML/Graphics.hpp>
+
 using namespace sf;
 
 int main()
@@ -46,6 +48,26 @@ int main()
 	Clock clock;
 
 	bool paused = true;
+
+	int score = 0;
+	Text messageText;
+	Text scoreText;
+	Font font;
+	font.loadFromFile("fonts/KOMIKAP_.ttf");
+	messageText.setFont(font);
+	scoreText.setFont(font);
+	messageText.setString("Press Enter to start!");
+	scoreText.setString("Score = 0");
+	messageText.setCharacterSize(75);
+	scoreText.setCharacterSize(100);
+	messageText.setFillColor(Color::White);
+	scoreText.setFillColor(Color::White);
+	FloatRect textRect = messageText.getLocalBounds();
+	messageText.setOrigin(
+		textRect.left + textRect.width / 2.0f,
+		textRect.top + textRect.height / 2.0f);
+	messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+	scoreText.setPosition(20, 20);
 
 	while (window.isOpen())
 	{
@@ -147,6 +169,9 @@ int main()
 					cloud3Active = false;
 				}
 			}
+			std::stringstream ss;
+			ss << "Score = " << score;
+			scoreText.setString(ss.str());
 		}
 
 		// Draw the scene
@@ -157,6 +182,12 @@ int main()
 		window.draw(spriteCloud3);
 		window.draw(spriteTree);
 		window.draw(spriteBee);
+		window.draw(scoreText);
+
+		if (paused) 
+		{
+			window.draw(messageText);
+		}
 
 		window.display(); // flips from the previously displayed surface to the newly updated(previously hidden) one.
 
