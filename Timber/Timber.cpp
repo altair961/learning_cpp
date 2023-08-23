@@ -3,6 +3,12 @@
 
 using namespace sf;
 
+void updateBranches(int seed);
+const int NUM_BRANCHES = 6;
+Sprite branches[NUM_BRANCHES];
+enum class side { LEFT, RIGHT, NONE };
+side branchPositions[NUM_BRANCHES];
+
 int main()
 {
 	VideoMode vm(1920, 1080);
@@ -79,13 +85,24 @@ int main()
 	messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
 	scoreText.setPosition(20, 20);
 
+	Texture textureBranch;
+	textureBranch.loadFromFile("graphics/branch.png");
+
+	for (size_t i = 0; i < NUM_BRANCHES; i++)
+	{
+		branches[i].setTexture(textureBranch);
+		branches[i].setPosition(-2000, -2000);
+		branches[i].setOrigin(220, 20);
+
+	}
+
 	while (window.isOpen())
 	{
 		// Handle the players input
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 			window.close();
 
-		if (Keyboard::isKeyPressed(Keyboard::Return)) 
+		if (Keyboard::isKeyPressed(Keyboard::Return))
 		{
 			paused = false;
 			score = 0;
@@ -99,7 +116,7 @@ int main()
 			timeRemaining -= deltaTime.asSeconds();
 			timeBar.setSize(Vector2f(timeBarWidthPerSecond * timeRemaining, timeBarHeight));
 
-			if (timeRemaining <= 0.0f) 
+			if (timeRemaining <= 0.0f)
 			{
 				paused = true;
 				messageText.setString("Out of time!");
@@ -196,8 +213,28 @@ int main()
 				}
 			}
 			std::stringstream ss;
-			ss << "Score = " << score;
+			ss << "Score: " << score;
 			scoreText.setString(ss.str());
+
+			for (int i = 0; i < NUM_BRANCHES; i++)
+			{
+				float height = i * 150;
+
+				if (branchPositions[i] == side::LEFT)
+				{
+					branches[i].setPosition(610, height);
+					branches[i].setRotation(180);
+				}
+				else if (branchPositions[i] == side::RIGHT)
+				{
+					branches[i].setPosition(1330, height);
+					branches[i].setRotation(0);
+				}
+				else 
+				{
+					branches[i].setPosition(3000, height);
+				}
+			}
 		}
 
 		// Draw the scene
@@ -206,18 +243,27 @@ int main()
 		window.draw(spriteCloud1);
 		window.draw(spriteCloud2);
 		window.draw(spriteCloud3);
+
+		for (int i = 0; i < NUM_BRANCHES; i++)
+		{
+			window.draw(branches[i]);
+		}
+
 		window.draw(spriteTree);
 		window.draw(spriteBee);
 		window.draw(scoreText);
 		window.draw(timeBar);
 
-		if (paused) 
+
+		if (paused)
 		{
 			window.draw(messageText);
 		}
 
-		window.display(); // flips from the previously displayed surface to the newly updated(previously hidden) one.
+		window.display(); // flips from the previously displayed surface to the newly updated (previously hidden) one.
 
 	}
+
 	return 0;
 }
+
