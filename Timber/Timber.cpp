@@ -96,6 +96,39 @@ int main()
 
 	}
 
+	Texture texturePlayer;
+	texturePlayer.loadFromFile("graphics/player.png");
+	Sprite spritePlayer;
+	spritePlayer.setTexture(texturePlayer);
+	spritePlayer.setPosition(580, 720);
+
+	side playerSide = side::LEFT;
+
+	Texture textureRIP;
+	textureRIP.loadFromFile("graphics/rip.png");
+	Sprite spriteRIP;
+	spriteRIP.setTexture(textureRIP);
+	spriteRIP.setPosition(600, 860);
+
+	Texture textureAxe;
+	textureAxe.loadFromFile("graphics/axe.png");
+	Sprite spriteAxe;
+	spriteAxe.setTexture(textureAxe);
+	spriteAxe.setPosition(700, 830);
+	
+	const float AXE_POSITION_LEFT = 700;
+	const float AXE_POSITION_RIGHT = 1075;
+
+	Texture textureLog;
+	textureLog.loadFromFile("graphics/log.png");
+	Sprite spriteLog;
+	spriteLog.setTexture(textureLog);
+	spriteLog.setPosition(810, 720);
+
+	bool logActive = false;
+	float logSpeedX = 1000;
+	float logSpeed7 = -1500;
+
 	while (window.isOpen())
 	{
 		// Handle the players input
@@ -250,6 +283,11 @@ int main()
 		}
 
 		window.draw(spriteTree);
+		window.draw(spritePlayer);
+		window.draw(spriteAxe);
+		window.draw(spriteLog);
+		window.draw(spriteRIP);
+
 		window.draw(spriteBee);
 		window.draw(scoreText);
 		window.draw(timeBar);
