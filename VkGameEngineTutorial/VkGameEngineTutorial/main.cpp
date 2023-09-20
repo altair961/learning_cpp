@@ -1,6 +1,6 @@
-#include "first_app.h"
+#include "first_app.hpp"
 
-// std
+//std
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
@@ -10,7 +10,8 @@ int main() {
 
 	try {
 		app.run();
-	} catch (const std::exception& e) {
+	}
+	catch (const std::exception& e) {
 		std::cerr << e.what() << '\n';
 		return EXIT_FAILURE;
 	}
