@@ -171,11 +171,13 @@ copy /Y "$(SolutionDir)$(ProjectName)\shaders\simple_shader.frag.spv" "$(TargetD
     <ClCompile Include="lve_pipeline.cpp" />
     <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="lve_device.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="first_app.hpp" />
     <ClInclude Include="lve_pipeline.hpp" />
     <ClInclude Include="lve_window.hpp" />
+    <ClInclude Include="lve_device.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="compile_shaders.bat" />
