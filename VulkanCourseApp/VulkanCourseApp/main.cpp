@@ -30,5 +30,9 @@ int main()
 		glfwPollEvents();
 	}
 
+	// Destroy GLFW window and stop GLFW
+	glfwDestroyWindow(window);
+	glfwTerminate();
+
 	return 0;
 }
