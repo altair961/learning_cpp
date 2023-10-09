@@ -5,7 +5,10 @@
 #include <vector>
 #include <iostream>
 
+#include "VulkanRenderer.h"
+
 GLFWwindow* window;
+VulkanRenderer vulkanRenderer;
 
 void initWindow(std::string wName = "Test Window", const int width = 800, const int height = 600)
 {
@@ -23,6 +26,13 @@ int main()
 {
 	// Create Window
 	initWindow("Model viewer", 800, 600);
+
+	// Create Vulkan Renderer
+	if (vulkanRenderer.init(window) == EXIT_FAILURE)
+	{
+		return EXIT_FAILURE;
+	}
+
 
 	// Loop until close
 	while (!glfwWindowShouldClose(window)) 
