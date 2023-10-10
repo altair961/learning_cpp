@@ -22,5 +22,9 @@ private:
 	VkInstance instance;
 
 	// Vulkan functions
+	// - Create Functions
 	void createInstance();
+
+	// - Support Functions
+	bool checkInstanceExtensionsSupport(std::vector<const char*> * checkExtensions);
 };
