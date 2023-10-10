@@ -12,6 +12,7 @@ public:
 	VulkanRenderer();
 
 	int init(GLFWwindow* newWindow);
+	void cleanup();
 
 	~VulkanRenderer();
 

@@ -23,6 +23,11 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 	return 0;
 }
 
+void VulkanRenderer::cleanup()
+{
+	vkDestroyInstance(instance, nullptr);
+}
+
 void VulkanRenderer::createInstance()
 {
 	// Information about application itself. Not just Vulkan, but the whole app we are making here.
