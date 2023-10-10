@@ -14,6 +14,7 @@ int VulkanRenderer::init(GLFWwindow* newWindow)
 
 	try {
 		createInstance();
+		getPhysicalDevice();
 	}
 	catch(const std::runtime_error e) {
 		printf("ERROR: %s\n", e.what());
@@ -82,6 +83,26 @@ void VulkanRenderer::createInstance()
 	{
 		throw std::runtime_error("Failed to create Vulkan Instance!");
 	}
+}
+
+void VulkanRenderer::getPhysicalDevice()
+{
+	// Enumerate physical devices the vkInstance can access
+	uint32_t deviceCount = 0;
+	vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);	// here we get deviceCount
+	
+	// If no devices available, then non support Vulkan!
+	if (deviceCount == 0)
+	{
+		throw std::runtime_error("Can't find GPUs that support Vulkan Instance!");
+	}
+
+	// Get list of Physical Devices
+	std::vector<VkPhysicalDevice> deviceList(deviceCount);			// here we defined an empty vector of the correct size
+	vkEnumeratePhysicalDevices(instance, &deviceCount, deviceList.data());	// here we get deviceCount
+
+	// TEMP: Just pick first device
+	mainDevice.physicalDevice = deviceList[0];
 }
 
 bool VulkanRenderer::checkInstanceExtensionsSupport(std::vector<const char*>* checkExtensions)

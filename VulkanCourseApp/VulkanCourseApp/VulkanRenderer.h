@@ -21,11 +21,18 @@ private:
 
 	// Vulkan Components
 	VkInstance instance;
+	struct {
+		VkPhysicalDevice physicalDevice;
+		VkDevice logicalDevice;
+	} mainDevice;
 
 	// Vulkan functions
 	// - Create Functions
 	void createInstance();
 
-	// - Support Functions
+	// - Get Functions
+	void getPhysicalDevice();
+
+	// - Support Functions (they check what extensions are supported etc)
 	bool checkInstanceExtensionsSupport(std::vector<const char*> * checkExtensions);
 };
