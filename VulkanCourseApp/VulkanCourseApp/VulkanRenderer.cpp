@@ -138,3 +138,18 @@ bool VulkanRenderer::checkInstanceExtensionsSupport(std::vector<const char*>* ch
 
 	return true;
 }
+
+bool VulkanRenderer::checkDeviceSuitable(VkPhysicalDevice device)
+{
+	/*
+	// Information about the device itself (ID, name, type, vendor, etc)
+	VkPhysicalDeviceProperties deviceProperties;
+	vkGetPhysicalDeviceProperties(device, &deviceProperties);
+
+	// Information about what the device can do (geo shader, tess shader, wide lines, etc)
+	VkPhysicalDeviceFeatures deviceFeatures;
+	vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
+	*/
+
+	return true;
+}

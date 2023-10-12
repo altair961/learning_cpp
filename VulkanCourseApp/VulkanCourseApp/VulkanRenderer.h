@@ -35,4 +35,5 @@ private:
 
 	// - Support Functions (they check what extensions are supported etc)
 	bool checkInstanceExtensionsSupport(std::vector<const char*> * checkExtensions);
+	bool checkDeviceSuitable(VkPhysicalDevice device);
 };
