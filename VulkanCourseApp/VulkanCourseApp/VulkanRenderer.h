@@ -31,6 +31,7 @@ private:
 	// Vulkan functions
 	// - Create Functions
 	void createInstance();
+	void createLogicalDevice();
 
 	// - Get Functions
 	void getPhysicalDevice();
