@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <vector>
 
+#include "Utilities.h"
+
 class VulkanRenderer 
 {
 public:
@@ -34,6 +36,10 @@ private:
 	void getPhysicalDevice();
 
 	// - Support Functions (they check what extensions are supported etc)
+	// -- Checker Functions
 	bool checkInstanceExtensionsSupport(std::vector<const char*> * checkExtensions);
 	bool checkDeviceSuitable(VkPhysicalDevice device);
+
+	// -- Getter Functions
+	QueueFamilyIndices getQueueFamilies(VkPhysicalDevice device);
 };

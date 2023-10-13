@@ -101,8 +101,15 @@ void VulkanRenderer::getPhysicalDevice()
 	std::vector<VkPhysicalDevice> deviceList(deviceCount);			// here we defined an empty vector of the correct size
 	vkEnumeratePhysicalDevices(instance, &deviceCount, deviceList.data());	// here we get deviceCount
 
-	// TEMP: Just pick first device
-	mainDevice.physicalDevice = deviceList[0];
+
+	for (const auto &device : deviceList)
+	{
+		if (checkDeviceSuitable(device))
+		{
+			mainDevice.physicalDevice = device;
+			break;
+		}
+	}
 }
 
 bool VulkanRenderer::checkInstanceExtensionsSupport(std::vector<const char*>* checkExtensions)
@@ -151,5 +158,41 @@ bool VulkanRenderer::checkDeviceSuitable(VkPhysicalDevice device)
 	vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
 	*/
 
-	return true;
+	QueueFamilyIndices indices = getQueueFamilies(device);
+
+	return indices.isValid();
+}
+
+QueueFamilyIndices VulkanRenderer::getQueueFamilies(VkPhysicalDevice device)
+{
+	QueueFamilyIndices indices;
+
+	// Get all Queue Family Property info for the given device
+	uint32_t queueFamilyCount = 0;
+	vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+	std::vector<VkQueueFamilyProperties> queueFamilyList(queueFamilyCount);
+	vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilyList.data());
+
+	// Go through each queue family and check if it has at least 1 of the required types of queues
+	int i = 0;
+	for (const auto& queueFamily : queueFamilyList)
+	{
+		// First check if queue family has at least 1 queue in that family (could have no queues)
+		// Queue can be multiple types defined through bitfield. Need to bitwise AND with VK_QUEUE_*_BIT check if has required type
+		if (queueFamily.queueCount > 0 && queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+		{
+			indices.graphicsFamily = 1; // If queue family is valid, then get index
+		}
+
+		// Check if queue family indices are in a valid state, stop searching if so
+		if (indices.isValid())
+		{
+			break;
+		}
+
+		i++;
+	}
+
+	return indices;
 }
