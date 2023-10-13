@@ -119,6 +119,11 @@ void VulkanRenderer::createLogicalDevice()
 	{
 		throw std::runtime_error("Failed to create a Logical Device!");
 	}
+
+	// Queues are created at the same time as the device...
+	// So we want handle to queues
+	// From given logical device, of given Queue Family, of given Queue index (0 since only one queue), place reference in given VkQueue
+	vkGetDeviceQueue(mainDevice.logicalDevice, indices.graphicsFamily, 0, &graphicsQueue);
 }
 
 void VulkanRenderer::getPhysicalDevice()

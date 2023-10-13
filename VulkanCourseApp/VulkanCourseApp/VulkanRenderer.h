@@ -27,6 +27,7 @@ private:
 		VkPhysicalDevice physicalDevice;
 		VkDevice logicalDevice;
 	} mainDevice;
+	VkQueue graphicsQueue;
 
 	// Vulkan functions
 	// - Create Functions
