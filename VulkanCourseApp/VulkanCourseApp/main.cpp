@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <vector>
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
@@ -32,15 +33,27 @@ private:
         
         window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
     }
+
     void initVulkan()
     {
         std::cout << "at initVulkan()" << std::endl;
 
         createInstance();
     }
+    
     void createInstance() 
     {
         std::cout << "at createInstance()" << std::endl;
+
+        uint32_t extensionCount = 0;
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+        std::vector<VkExtensionProperties> extensions(extensionCount);
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+        std::cout << "available extensions:" << std::endl;
+        for (const auto& extension : extensions)
+        {
+            std::cout << '\t' << extension.extensionName << '\n';
+        }
 
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -61,11 +74,33 @@ private:
         createInfo.ppEnabledExtensionNames = glfwExtensions;
         createInfo.enabledLayerCount = 0;
 
+        if(!requiredExtPresented(extensions))
+        {
+            throw std::runtime_error("Required extension not found!");
+        }
+
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) 
         {
             throw std::runtime_error("failed to create instance!");
         }
     }
+
+    bool requiredExtPresented(std::vector<VkExtensionProperties>& extensions)
+    {
+        for (const auto& extension : extensions)
+        {
+            std::cout << '\t' << extension.extensionName << '\n';
+            
+            if (extension.extensionName == 
+                static_cast<std::string>("VK_EXT_swapchain_colorspace"))
+            {                
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void mainLoop() 
     {
         std::cout << "at mainLoop()" << std::endl;
@@ -75,6 +110,7 @@ private:
             glfwPollEvents();
         }
     }
+
     void cleanup()
     {
         std::cout << "at cleanup()" << std::endl;
@@ -97,4 +133,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
