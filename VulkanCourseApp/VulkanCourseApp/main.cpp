@@ -50,10 +50,9 @@ private:
         std::vector<VkExtensionProperties> extensions(extensionCount);
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
         std::cout << "available extensions:" << std::endl;
+        
         for (const auto& extension : extensions)
-        {
             std::cout << '\t' << extension.extensionName << '\n';
-        }
 
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -74,31 +73,36 @@ private:
         createInfo.ppEnabledExtensionNames = glfwExtensions;
         createInfo.enabledLayerCount = 0;
 
-        if(!requiredExtPresented(extensions))
-        {
-            throw std::runtime_error("Required extension not found!");
-        }
+        if (!requiredExtensionsPresented(extensions, glfwExtensions))
+            throw std::runtime_error("Required extensions not found!");
 
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) 
-        {
             throw std::runtime_error("failed to create instance!");
-        }
     }
 
-    bool requiredExtPresented(std::vector<VkExtensionProperties>& extensions)
+    bool requiredExtensionsPresented(
+        std::vector<VkExtensionProperties>& availableExtensions, 
+        const char** ppRequiredExtArr)
     {
-        for (const auto& extension : extensions)
+        int requiredExtArrLength = sizeof(ppRequiredExtArr) / sizeof(ppRequiredExtArr[0]);
+        std::vector<std::string> availableRequiredMatches;
+        for (int i = 0; i < requiredExtArrLength; i++)
         {
-            std::cout << '\t' << extension.extensionName << '\n';
-            
-            if (extension.extensionName == 
-                static_cast<std::string>("VK_EXT_swapchain_colorspace"))
-            {                
-                return true;
+            for(VkExtensionProperties availableExtension : availableExtensions)
+            {
+                std::string requiredExtName = static_cast<std::string>(ppRequiredExtArr[i]);
+                if (requiredExtName == availableExtension.extensionName)
+                    availableRequiredMatches.push_back(requiredExtName);
             }
+ 
+            if (availableRequiredMatches.size() == 0) 
+                break;
         }
 
-        return false;
+        if (availableRequiredMatches.size() != requiredExtArrLength) 
+            return false;
+
+        return true;
     }
 
     void mainLoop() 
