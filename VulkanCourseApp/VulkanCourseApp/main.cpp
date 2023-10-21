@@ -118,7 +118,7 @@ private:
     void cleanup()
     {
         std::cout << "at cleanup()" << std::endl;
-
+        vkDestroyInstance(instance, nullptr);
         glfwDestroyWindow(window);
         glfwTerminate();
     }
