@@ -9,11 +9,21 @@
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 
+const std::vector<const char*> validationLayers = {
+    "VK_LAYER_KHRONOS_validation"
+};
+
+#ifdef NDEBUG
+const bool enableValidationLayers = false;
+#else
+const bool enableValidationLayers = true;
+#endif
+
 class HelloTriangleApplication
 {
 public:
     void run()
-    {   
+    {
         initWindow();
         initVulkan();
         mainLoop();
@@ -44,6 +54,8 @@ private:
     void createInstance() 
     {
         std::cout << "at createInstance()" << std::endl;
+        if (enableValidationLayers && !checkValidationLayerSupport()) 
+            throw std::runtime_error("validation layers requested, but not available!");
 
         uint32_t extensionCount = 0;
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
@@ -73,34 +85,64 @@ private:
         createInfo.ppEnabledExtensionNames = glfwExtensions;
         createInfo.enabledLayerCount = 0;
 
-        if (!requiredExtensionsPresented(extensions, glfwExtensions))
+        if (!requiredExtensionsPresented(extensions, glfwExtensions, glfwExtensionCount))
             throw std::runtime_error("Required extensions not found!");
 
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) 
             throw std::runtime_error("failed to create instance!");
+
+
+        
     }
 
     bool requiredExtensionsPresented(
         std::vector<VkExtensionProperties>& availableExtensions, 
-        const char** ppRequiredExtArr)
+        const char* requiredExtArr[], int requiredExtCount)
     {
-        int requiredExtArrLength = sizeof(ppRequiredExtArr) / sizeof(ppRequiredExtArr[0]);
-        std::vector<std::string> availableRequiredMatches;
-        for (int i = 0; i < requiredExtArrLength; i++)
+        bool extFound = false;
+        for (int i = 0; i < requiredExtCount; i++)
         {
-            for(VkExtensionProperties availableExtension : availableExtensions)
+            for (const auto& availableExtension : availableExtensions)
             {
-                std::string requiredExtName = static_cast<std::string>(ppRequiredExtArr[i]);
-                if (requiredExtName == availableExtension.extensionName)
-                    availableRequiredMatches.push_back(requiredExtName);
+                if (strcmp(requiredExtArr[i], availableExtension.extensionName) == 0) 
+                {
+                    extFound = true;
+                    break;
+                }
+            }  
+
+            if (!extFound) {
+                return false;
             }
- 
-            if (availableRequiredMatches.size() == 0) 
-                break;
         }
 
-        if (availableRequiredMatches.size() != requiredExtArrLength) 
-            return false;
+        return true;
+    }
+
+    bool checkValidationLayerSupport() 
+    {
+        uint32_t layerCount;
+        vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+        std::vector<VkLayerProperties> availableLayers(layerCount);
+        vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+        for (const char* layerName : validationLayers) 
+        {
+            bool layerFound = false;
+
+            for (const auto& layerProperties : availableLayers)
+            {
+                if (strcmp(layerName, layerProperties.layerName) == 0)
+                {
+                    layerFound = true;
+                    break;
+                }
+            }
+
+            if (!layerFound)
+                return false;
+        }
 
         return true;
     }
