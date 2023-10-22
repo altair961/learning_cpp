@@ -83,7 +83,16 @@ private:
         glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
         createInfo.enabledExtensionCount = glfwExtensionCount;
         createInfo.ppEnabledExtensionNames = glfwExtensions;
-        createInfo.enabledLayerCount = 0;
+        
+        if (enableValidationLayers)
+        {
+            createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+            createInfo.ppEnabledLayerNames = validationLayers.data();
+        }
+        else {
+            createInfo.enabledLayerCount = 0;
+        }
+        
 
         if (!requiredExtensionsPresented(extensions, glfwExtensions, glfwExtensionCount))
             throw std::runtime_error("Required extensions not found!");
