@@ -32,6 +32,7 @@ public:
 private:
     GLFWwindow* window;
     VkInstance instance;
+    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
     void initWindow() 
     {
         std::cout << "at initWindow()" << std::endl;
@@ -49,6 +50,7 @@ private:
         std::cout << "at initVulkan()" << std::endl;
 
         createInstance();
+        pickPhysicalDevice();
     }
     
     void createInstance() 
@@ -92,18 +94,38 @@ private:
         else {
             createInfo.enabledLayerCount = 0;
         }
-        
 
         if (!requiredExtensionsPresented(extensions, glfwExtensions, glfwExtensionCount))
             throw std::runtime_error("Required extensions not found!");
 
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) 
             throw std::runtime_error("failed to create instance!");
-
-
-        
     }
+    void pickPhysicalDevice() 
+    {
+        std::cout << "at pickPhysicalDevice()" << std::endl;
+        uint32_t deviceCount = 0;
+        vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+        if (deviceCount == 0) 
+            throw std::runtime_error("failed to find GPUs with Vulkan support!");
 
+        std::vector<VkPhysicalDevice> devices(deviceCount);
+        vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+        for (const auto &device : devices)
+        {
+            if (isDeviceSuitable(device))
+            {
+                physicalDevice = device;
+                break;
+            }
+        }
+
+        if (physicalDevice == VK_NULL_HANDLE) 
+        {
+            throw std::runtime_error("failed to find a suitable GPU!");
+        }
+    }
     bool requiredExtensionsPresented(
         std::vector<VkExtensionProperties>& availableExtensions, 
         const char* requiredExtArr[], int requiredExtCount)
@@ -152,6 +174,13 @@ private:
             if (!layerFound)
                 return false;
         }
+
+        return true;
+    }
+
+    bool isDeviceSuitable(VkPhysicalDevice device) 
+    {
+        std::cout << "at isDeviceSuitable()" << std::endl;
 
         return true;
     }
