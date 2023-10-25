@@ -7,19 +7,6 @@
 #include <vector>
 #include <optional>
 
-const uint32_t WIDTH = 800;
-const uint32_t HEIGHT = 600;
-
-const std::vector<const char*> validationLayers = {
-    "VK_LAYER_KHRONOS_validation"
-};
-
-#ifdef NDEBUG
-const bool enableValidationLayers = false;
-#else
-const bool enableValidationLayers = true;
-#endif
-
 class HelloTriangleApplication
 {
 public:
@@ -31,9 +18,23 @@ public:
         cleanup();
     }
 private:
+    const uint32_t WIDTH = 800;
+    const uint32_t HEIGHT = 600;
+
+    const std::vector<const char*> validationLayers = {
+        "VK_LAYER_KHRONOS_validation"
+    };
+
+#ifdef NDEBUG
+    const bool enableValidationLayers = false;
+#else
+    const bool enableValidationLayers = true;
+#endif
+
     GLFWwindow* window;
     VkInstance instance;
     VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+
     void initWindow() 
     {
         std::cout << "at initWindow()" << std::endl;
@@ -102,6 +103,7 @@ private:
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) 
             throw std::runtime_error("failed to create instance!");
     }
+
     void pickPhysicalDevice() 
     {
         std::cout << "at pickPhysicalDevice()" << std::endl;
@@ -127,10 +129,12 @@ private:
             throw std::runtime_error("failed to find a suitable GPU!");
         }
     }
+
     bool requiredExtensionsPresented(
         std::vector<VkExtensionProperties>& availableExtensions, 
         const char* requiredExtArr[], int requiredExtCount)
     {
+        std::cout << "at requiredExtensionsPresented()" << std::endl;
         bool extFound = false;
         for (int i = 0; i < requiredExtCount; i++)
         {
