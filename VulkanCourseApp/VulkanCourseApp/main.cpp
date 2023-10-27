@@ -253,8 +253,10 @@ private:
         
         if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS)
         {
-            vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
+            throw std::runtime_error("failed to create logical device!");
         }
+
+        vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
     }
 
     void mainLoop() 
