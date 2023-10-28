@@ -33,6 +33,7 @@ private:
 
     GLFWwindow* window;
     VkInstance instance;
+    VkSurfaceKHR surface;
     VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
     VkDevice device;
     VkQueue graphicsQueue;
@@ -54,6 +55,7 @@ private:
         std::cout << "at initVulkan()" << std::endl;
 
         createInstance();
+        createSurface();
         pickPhysicalDevice();
         createLogicalDevice();
     }
@@ -225,6 +227,7 @@ private:
 
     void createLogicalDevice() 
     {
+        std::cout << "at createLogicalDevice()" << std::endl;
         QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
         VkDeviceQueueCreateInfo queueCreateInfo{};
         queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
@@ -259,6 +262,15 @@ private:
         vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
     }
 
+    void createSurface()
+    {
+        std::cout << "at createSurface()" << std::endl;
+        if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS)
+        {
+            throw std::runtime_error("failed to create window surface!");
+        }
+    }
+
     void mainLoop() 
     {
         std::cout << "at mainLoop()" << std::endl;
@@ -273,6 +285,7 @@ private:
     {
         std::cout << "at cleanup()" << std::endl;
         vkDestroyDevice(device, nullptr);
+        vkDestroySurfaceKHR(instance, surface, nullptr);
         vkDestroyInstance(instance, nullptr);
         glfwDestroyWindow(window);
         glfwTerminate();
