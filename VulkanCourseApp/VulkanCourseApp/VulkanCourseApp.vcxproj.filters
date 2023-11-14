@@ -24,6 +24,9 @@
     <ClCompile Include="first_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lve_pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tiny_obj_loader.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="first_app.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lve_pipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
