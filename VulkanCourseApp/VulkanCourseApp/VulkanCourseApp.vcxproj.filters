@@ -58,7 +58,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="compile.bat">
+    <None Include="compileShaders.bat">
       <Filter>Source Files</Filter>
     </None>
     <None Include="shader.frag" />
