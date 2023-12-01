@@ -26,6 +26,12 @@ namespace lve {
 		void run();
 
 	private:
+		void getSierpinskiTriangle(std::vector<LveModel::Vertex> &vertices);
+		void convertToCartesianCoordinates(std::vector<lve::LveModel::Vertex>& vertices);
+		void convertToVulkanCoordinates(std::vector<lve::LveModel::Vertex>& vertices);
+		void flipYCoordinate(std::vector<lve::LveModel::Vertex>& vertices);
+		void getNextLevelTriangle(int recursionStep, 
+			std::vector<LveModel::Vertex>& vertices);
 		void loadModels();
 		void createPipelineLayout();
 		void createPipeline();

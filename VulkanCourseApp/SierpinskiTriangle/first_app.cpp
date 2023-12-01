@@ -3,6 +3,7 @@
 // std
 #include <stdexcept>
 #include <array>
+#include <iostream>
 
 namespace lve {
 
@@ -27,9 +28,8 @@ namespace lve {
 	}
 
 	void FirstApp::loadModels() {
-		std::vector<LveModel::Vertex> vertices{{{0.0f, -0.5f}},	{{0.5f, 0.5f}},
-			{{-0.5f, 0.5f}}
-		};
+		std::vector<LveModel::Vertex> vertices{};
+		getSierpinskiTriangle(vertices);
 		lveModel = std::make_unique<LveModel>(lveDevice, vertices);
 	}
 
@@ -125,4 +125,111 @@ namespace lve {
 		}
 	}
 
+	void FirstApp::getSierpinskiTriangle(std::vector<LveModel::Vertex> &vertices) {
+		vertices.push_back({ {0.0f, -0.5f} }); // top-center
+		vertices.push_back({ {0.5f, 0.5f} }); // bottom-right
+		vertices.push_back({ {-0.5f, 0.5f} }); // bottom-right
+		
+		//vertices.clear();
+		//vertices.push_back({ {0.0f, 0.0f} }); // top-center
+		//vertices.push_back({ {0.0f, 0.0f} }); // bottom-right
+		//vertices.push_back({ {0.0f, 0.0f} }); // bottom-right
+
+
+
+	/*	vertices.push_back({ {1.0f, -1.5f} });
+		vertices.push_back({ {1.5f, 1.5f} });
+		vertices.push_back({ {-0.5f, 0.5f} });*/
+
+
+		convertToCartesianCoordinates(vertices);
+
+		//std::vector<LveModel::Vertex> vertices{ {{0.0f, -0.5f}},	{{0.5f, 0.5f}},
+		//	{{-0.5f, 0.5f}}
+		//};
+		
+		getNextLevelTriangle(7, vertices);
+		std::cout << "exited recursion ";
+
+		convertToVulkanCoordinates(vertices);
+	}
+
+	void FirstApp::getNextLevelTriangle(int recursionStep,
+		std::vector<LveModel::Vertex>& vertices) {
+		if (recursionStep == 0 || recursionStep < 0)
+			return;
+
+		auto& v0 = vertices.at(0); // top-center
+		auto& v1 = vertices.at(1); // bottom-right
+		auto& v2 = vertices.at(2); // bottom-left
+		//v2.position.x += 0.7f;
+
+
+		auto m0X = (v0.position.x + v1.position.x) / 2;
+		auto m0Y = (v0.position.y + v1.position.y) / 2;
+		LveModel::Vertex m0 = { {m0X, m0Y} };
+
+		auto m1X = (v1.position.x + v2.position.x) / 2;
+		auto m1Y = (v1.position.y + v2.position.y) / 2;
+		LveModel::Vertex m1 = { {m1X, m1Y} };
+
+		auto m2X = (v2.position.x + v0.position.x) / 2;
+		auto m2Y = (v2.position.y + v0.position.y) / 2;
+		LveModel::Vertex m2 = { {m2X, m2Y} };
+
+
+
+		//vertices.at(0) = { {m0X, m0Y} };
+
+		vertices.clear();
+		LveModel::Vertex t2v1{ {v1.position.x, v1.position.y}};
+		LveModel::Vertex t2v2{ {v2.position.x, v2.position.y}};
+
+		vertices.push_back(v0);
+		vertices.push_back(m0);
+		vertices.push_back(m2);
+
+		vertices.push_back(m0); //0.25 0.0
+		vertices.push_back(t2v1);
+		vertices.push_back(m1);
+
+		vertices.push_back(m2);
+		vertices.push_back(m1);
+		vertices.push_back(t2v2);
+
+
+		//LveModel::Edge edge{};
+		//edge.vertices.push_back(v0);
+		//edge.vertices.push_back(v1);
+
+		// getEdges
+		//for (int i = 0; i < 3; i++)
+		//{
+		//	auto a = vertices.at(i);
+		//	auto b = vertices.at(i + 1);
+		//}
+
+//		LveModel::Vertex vert = { {mX, mY } };
+
+		//vertices.at(0) = vert;
+
+		recursionStep--;
+		std::cout << "heigh ho step " << recursionStep << '\n';
+		getNextLevelTriangle(recursionStep, vertices);
+	}
+
+	void FirstApp::convertToCartesianCoordinates(std::vector<lve::LveModel::Vertex>& vertices)
+	{
+		flipYCoordinate(vertices);
+	}
+
+	void FirstApp::convertToVulkanCoordinates(std::vector<lve::LveModel::Vertex>& vertices)
+	{
+		flipYCoordinate(vertices);
+	}
+	
+	void FirstApp::flipYCoordinate(std::vector<lve::LveModel::Vertex>& vertices) {
+		for (auto& vertex : vertices)
+			vertex.position.y = vertex.position.y * -1;
+	}
 }

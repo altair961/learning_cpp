@@ -19,6 +19,10 @@ namespace lve {
 			static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
 		};
 
+		//struct Edge {
+		//	std::vector<Vertex> vertices;
+		//};
+
 		LveModel(LveDevice &device, const std::vector<Vertex>& vertices);
 		~LveModel();
 
