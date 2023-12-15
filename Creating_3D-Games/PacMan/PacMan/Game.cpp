@@ -28,6 +28,14 @@ void Game::ProcessInput() {
 			break;
 		}
 	}
+
+	// Get the state of keyboard
+	const Uint8* state = SDL_GetKeyboardState(NULL);
+	// if escape is pressed, also end loop
+	if (state[SDL_SCANCODE_ESCAPE])
+	{
+		mIsRunning = false;
+	}
 }
 void Game::UpdateGame() {
 }
