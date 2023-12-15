@@ -17,27 +17,21 @@ Game::Game() {
 	mIsRunning = true;
 }
 void Game::ProcessInput() {
-	// JoystickData j = GetJoystickData();
+	SDL_Event event;
+	// While there are still events in the queue
+	while (SDL_PollEvent(&event)) 
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			mIsRunning = false;
+			break;
+		}
+	}
 }
 void Game::UpdateGame() {
-	//UpdatePlayerPosition(j);
-	//for (Ghost& g : mGhost)
-	//{
-	//	if (g.Collides(player))
-	//	{
-	//		// Handle Pac-Man colliding with a ghost
-	//	}
-	//	else
-	//	{
-	//		g.Update();
-	//	}
-	//}
-	// Handle Pac-Man eating pellets
-	// ...
 }
 void Game::GenerateOutput() {
-	//RenderGraphics();
-	//RenderAudio();
 }
 bool Game::Initialize() {
 	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
