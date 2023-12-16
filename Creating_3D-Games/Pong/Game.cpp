@@ -40,11 +40,11 @@ void Game::ProcessInput() {
 void Game::UpdateGame() {
 }
 void Game::GenerateOutput() {
-	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
-	//SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	//SDL_Rect wall{ 0, 0, 1024, thickness };
-
+	SDL_Rect wall{ 0, 0, 1024, thickness };
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(mRenderer, &wall);
 	SDL_RenderPresent(mRenderer);
+	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
 	SDL_RenderClear(mRenderer);
 }
 bool Game::Initialize() {
