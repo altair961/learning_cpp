@@ -40,6 +40,9 @@ void Game::ProcessInput() {
 void Game::UpdateGame() {
 }
 void Game::GenerateOutput() {
+	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);
+	SDL_RenderPresent(mRenderer);
+	SDL_RenderClear(mRenderer);
 }
 bool Game::Initialize() {
 	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
@@ -61,8 +64,20 @@ bool Game::Initialize() {
 		SDL_Log("Failed to create window: %s", SDL_GetError());
 		return false;
 	}
+	mRenderer = SDL_CreateRenderer(
+		mWindow, // Window to create renderer for
+		-1,
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+	);
+	
+	if (!mRenderer)
+	{
+		SDL_Log("Failed to create renderer: %s", SDL_GetError());
+		return false;
+	}
 }
 void Game::Shutdown() {
+	SDL_DestroyRenderer(mRenderer);
 	SDL_DestroyWindow(mWindow);
 	SDL_Quit();
 }
