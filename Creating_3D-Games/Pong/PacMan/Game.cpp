@@ -40,7 +40,7 @@ void Game::ProcessInput() {
 void Game::UpdateGame() {
 }
 void Game::GenerateOutput() {
-	SDL_SetRenderDrawColor(mRenderer, 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
 	SDL_RenderPresent(mRenderer);
 	SDL_RenderClear(mRenderer);
 }
