@@ -17,6 +17,7 @@ Game::Game() {
 	mIsRunning = true;
 	mBallPos = { 1024 / 2, 768 / 2 };
 	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
+	mTicksCount = 0;
 }
 void Game::ProcessInput() {
 	SDL_Event event;
@@ -40,6 +41,23 @@ void Game::ProcessInput() {
 	}
 }
 void Game::UpdateGame() {
+	// Wait until 16ms has elapsed since last frame
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + 16))
+		;
+
+	// Delta time is the difference in ticks from last frame
+	// Converted to seconds
+	float deltaTime = (SDL_GetTicks() - mTicksCount) / 1000.0f; // deltTime is in seconds
+	/*
+	// Update tick counts (for next frame)
+	mTicksCount = SDL_GetTicks();
+	*/
+
+	// Clamp maximum delta time value
+	if (deltaTime > 0.05f) 
+	{
+		deltaTime = 0.5f;
+	}
 }
 void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);

@@ -27,4 +27,5 @@ private:
 	Vector2 mBallPos
 	{
 	};
+	Uint32 mTicksCount;
 };
