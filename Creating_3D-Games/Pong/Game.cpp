@@ -40,12 +40,26 @@ void Game::ProcessInput() {
 void Game::UpdateGame() {
 }
 void Game::GenerateOutput() {
+	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
+	SDL_RenderClear(mRenderer);
+
 	SDL_Rect wall{ 0, 0, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &wall);
+
+	SDL_Rect wall1{ 0, 768 - thickness, 1024, thickness };
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(mRenderer, &wall1);
+
+	SDL_Rect wall2{ 0, 0, thickness, 768 };
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(mRenderer, &wall2);
+
+	SDL_Rect wall3{ 1024 - thickness, 0, thickness, 768 };
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(mRenderer, &wall3);
+
 	SDL_RenderPresent(mRenderer);
-	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
-	SDL_RenderClear(mRenderer);
 }
 bool Game::Initialize() {
 	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
