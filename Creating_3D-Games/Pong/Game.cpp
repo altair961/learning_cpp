@@ -18,6 +18,7 @@ Game::Game() {
 	mBallPos = { 1024 / 2, 768 / 2 };
 	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
 	mTicksCount = 0;
+	mPaddleDir = 0;
 }
 void Game::ProcessInput() {
 	SDL_Event event;
@@ -39,6 +40,16 @@ void Game::ProcessInput() {
 	{
 		mIsRunning = false;
 	}
+
+	mPaddleDir = 0;
+	if (state[SDL_SCANCODE_W]) 
+	{
+		mPaddleDir -= 1;
+	}
+	if (state[SDL_SCANCODE_S])
+	{
+		mPaddleDir += 1;
+	}
 }
 void Game::UpdateGame() {
 	// Wait until 16ms has elapsed since last frame
@@ -48,15 +59,27 @@ void Game::UpdateGame() {
 	// Delta time is the difference in ticks from last frame
 	// Converted to seconds
 	float deltaTime = (SDL_GetTicks() - mTicksCount) / 1000.0f; // deltTime is in seconds
-	/*
+	
 	// Update tick counts (for next frame)
 	mTicksCount = SDL_GetTicks();
-	*/
+	
 
 	// Clamp maximum delta time value
 	if (deltaTime > 0.05f) 
 	{
 		deltaTime = 0.5f;
+	}
+
+	if (mPaddleDir != 0)
+	{
+		mPaddlePos.y += mPaddleDir * 300.0f * deltaTime;
+		// make sure paddle doesn't go off screen
+		if (mPaddlePos.y < (paddleH / 2.0f + thickness))
+			mPaddlePos.y = paddleH / 2.0f + thickness;
+		else if (mPaddlePos.y > (768.0f - paddleH / 2.0f - thickness))
+		{
+			mPaddlePos.y = (768.0f - paddleH / 2.0f - thickness);
+		}
 	}
 }
 void Game::GenerateOutput() {
@@ -85,9 +108,9 @@ void Game::GenerateOutput() {
 
 	SDL_Rect paddle{
 		static_cast<int>(mPaddlePos.x - thickness / 2),
-		mPaddlePos.y - (thickness * 6.5) / 2,
+		mPaddlePos.y - paddleH / 2,
 		thickness,
-		thickness * 6.5
+		paddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle);
 

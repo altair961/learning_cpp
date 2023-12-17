@@ -28,4 +28,6 @@ private:
 	{
 	};
 	Uint32 mTicksCount;
+	int mPaddleDir;
+	const int paddleH = thickness * 6.5;
 };
