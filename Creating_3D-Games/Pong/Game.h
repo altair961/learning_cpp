@@ -16,4 +16,15 @@ private:
 	bool mIsRunning;
 	SDL_Renderer* mRenderer;
 	const int thickness = 15;
+	struct Vector2 
+	{
+		float x;
+		float y;
+	};
+	Vector2 mPaddlePos
+	{
+	};
+	Vector2 mBallPos
+	{
+	};
 };

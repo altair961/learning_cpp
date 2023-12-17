@@ -15,6 +15,8 @@ void Game::RunLoop()
 Game::Game() {
 	mWindow = nullptr;
 	mIsRunning = true;
+	mBallPos = { 1024 / 2, 768 / 2 };
+	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
 }
 void Game::ProcessInput() {
 	SDL_Event event;
@@ -54,6 +56,22 @@ void Game::GenerateOutput() {
 	SDL_Rect rightWall{ 1024 - thickness, 0, thickness, 768 };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &rightWall);
+
+	SDL_Rect ball{
+		static_cast<int>(mBallPos.x - thickness / 2),
+		static_cast<int>(mBallPos.y - thickness / 2),
+		thickness,
+		thickness
+	};
+	SDL_RenderFillRect(mRenderer, &ball);
+
+	SDL_Rect paddle{
+		static_cast<int>(mPaddlePos.x - thickness / 2),
+		mPaddlePos.y - (thickness * 6.5) / 2,
+		thickness,
+		thickness * 6.5
+	};
+	SDL_RenderFillRect(mRenderer, &paddle);
 
 	SDL_RenderPresent(mRenderer);
 }
