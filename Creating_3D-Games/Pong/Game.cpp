@@ -81,6 +81,47 @@ void Game::UpdateGame() {
 			mPaddlePos.y = (768.0f - paddleH / 2.0f - thickness);
 		}
 	}
+
+	mBallPos.x += mBallVel.x * deltaTime;
+	mBallPos.y += mBallVel.y * deltaTime;
+
+	// Did the ball collide with the top wall?
+	if (mBallPos.y <= (thickness + thickness/2)&& mBallVel.y < 0.0f)
+	{
+		mBallVel.y *= -1;
+	}
+
+	// Did the ball collide with the bottom wall?
+	if (mBallPos.y >= 768 - thickness - (thickness /2) && mBallVel.y > 0.0f)
+	{
+		mBallVel.y *= -1;
+	}
+
+	// Did the ball collide with the right wall?
+	if (mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f)
+	{
+		mBallVel.x *= -1;
+	}
+
+	// Did we intersect with the paddle?
+//	float diff = mPaddlePos.y - mBallPos.y;
+
+	if (
+		// Our y-difference is small enough
+//		diff <= paddleH / 2.0f &&
+		//(mBallPos.y < mPaddlePos.y 
+		//	|| mBallPos.y > (mPaddlePos.y + paddleH))
+		//&&
+		mBallPos.y > (mPaddlePos.y - (paddleH / 2))
+		&& mBallPos.y < (mPaddlePos.y + (paddleH / 2))
+		&&
+		// Ball is at the correct x-position
+		mBallPos.x <= (mPaddlePos.x + thickness) && mBallPos.x >= mPaddlePos.x &&
+		// the ball is moving to the left
+		mBallVel.x < 0.0f)
+	{
+		mBallVel.x *= -1;
+	}
 }
 void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);

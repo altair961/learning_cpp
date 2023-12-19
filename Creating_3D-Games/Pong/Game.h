@@ -30,4 +30,6 @@ private:
 	Uint32 mTicksCount;
 	int mPaddleDir;
 	const int paddleH = thickness * 6.5;
+	Vector2 mBallVel{ -200.0f, 235.0f };
+	//Vector2 mBallVel{ 200.0f, 100};
 };
