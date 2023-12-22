@@ -16,6 +16,8 @@ private:
 	bool BallTopHitPaddleBottomAlready();
 	bool BallIsHigherThanPaddle();
 	bool BallIsAlignedWithPaddleXAxis();
+	bool BallMovedOffScreen();
+	void GameOver();
 
 	SDL_Window* mWindow;
 	bool mIsRunning;

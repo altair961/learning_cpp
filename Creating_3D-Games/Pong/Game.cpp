@@ -133,6 +133,22 @@ void Game::UpdateGame() {
 	{
 		mBallVel.y *= -1;
 	}
+
+	if (BallMovedOffScreen()) 
+	{
+		GameOver();
+	}
+}
+
+bool Game::BallMovedOffScreen()
+{
+	auto result = mBallPos.x <= 0;
+	return result;
+}
+
+void Game::GameOver()
+{
+	mIsRunning = false;
 }
 
 bool Game::BallIsAlignedWithPaddleXAxis() 
