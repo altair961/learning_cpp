@@ -15,12 +15,16 @@ void Game::RunLoop()
 Game::Game() {
 	mWindow = nullptr;
 	mIsRunning = true;
-	mBallPos = { 1024 / 2, 768 / 2 };
+	// mBallPos = { 1024 / 2, 768 / 2 };
+	//mBallPos = { static_cast<float>(thickness) / 2 + thickness - 10.0f, 715.0f };
+	 mBallPos = { static_cast<float>(thickness) / 2 + thickness - 5, 715.0f };
 	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
 	mTicksCount = 0;
 	mPaddleDir = 0;
 }
-void Game::ProcessInput() {
+
+void Game::ProcessInput() 
+{
 	SDL_Event event;
 	// While there are still events in the queue
 	while (SDL_PollEvent(&event)) 
@@ -104,14 +108,7 @@ void Game::UpdateGame() {
 	}
 
 	// Did we intersect with the paddle?
-//	float diff = mPaddlePos.y - mBallPos.y;
-
 	if (
-		// Our y-difference is small enough
-//		diff <= paddleH / 2.0f &&
-		//(mBallPos.y < mPaddlePos.y 
-		//	|| mBallPos.y > (mPaddlePos.y + paddleH))
-		//&&
 		mBallPos.y > (mPaddlePos.y - (paddleH / 2))
 		&& mBallPos.y < (mPaddlePos.y + (paddleH / 2))
 		&&
@@ -122,7 +119,113 @@ void Game::UpdateGame() {
 	{
 		mBallVel.x *= -1;
 	}
+
+	if (BallComesFromTop() &&
+		BallIsHigherThanPaddle() &&
+		BallBottomHitPaddleTopAlready() &&
+		BallIsAlignedWithPaddleXAxis())
+	{
+		mBallVel.y *= -1;
+	}
+
+	if (!BallComesFromTop() &&
+		!BallIsHigherThanPaddle() &&
+		BallTopHitPaddleBottomAlready() &&
+		BallIsAlignedWithPaddleXAxis())
+	{
+		mBallVel.y *= -1;
+	}
+/*
+	if (
+		mBallPos.y + thickness / 2 > mPaddlePos.y - paddleH / 2 && // is ball higer than paddle
+		mBallPos.x - thickness / 2 <= mPaddlePos.x - thickness / 2 &&
+		//mBallPos.x - thickness / 2 <= mPaddlePos.x + thickness / 2 && // right
+		//mBallPos.x + thickness / 2 >= mPaddlePos.x - thickness / 2 && // left
+		mBallVel.y > 0.0f
+		)
+	{
+		mBallVel.y *= -1;
+	}
+
+	if (
+		mBallPos.y - thickness / 2 <= mPaddlePos.y + paddleH / 2 && 
+		mBallPos.x - thickness / 2 <= mPaddlePos.x && - paddleH / 2 &&//left
+		mBallVel.y < 0.0f
+		)
+	{
+		mBallVel.y *= -1;
+	}
+*/
 }
+
+bool Game::BallIsAlignedWithPaddleXAxis() 
+{
+	auto ballLeftSideX = mBallPos.x - thickness / 2;
+	auto ballRightSideX = mBallPos.x + thickness / 2;
+	auto paddleRightSideX = mPaddlePos.x + thickness / 2;
+	auto paddleLeftSideX = mPaddlePos.x - thickness / 2;
+
+	if (ballLeftSideX > paddleRightSideX)
+		return false;
+
+	if (ballRightSideX < ballLeftSideX)
+		return false;
+
+	if (ballLeftSideX <= paddleRightSideX && 
+		ballLeftSideX >= paddleLeftSideX)
+		return true;
+
+	if (ballRightSideX <= paddleRightSideX &&
+		ballRightSideX >= paddleLeftSideX)
+		return true;
+
+	return false;
+}
+
+bool Game::BallTopHitPaddleBottomAlready() 
+{
+	auto ballTopSideY = mBallPos.y - thickness / 2;
+	auto paddleBottomSideY = mPaddlePos.y + paddleH / 2;
+	auto result = ballTopSideY < paddleBottomSideY;
+
+	return result;
+}
+
+bool Game::BallBottomHitPaddleTopAlready()
+{
+	auto ballBottomSideY = mBallPos.y + thickness / 2;
+	auto paddleTopSideY = mPaddlePos.y - paddleH / 2;
+	auto result = ballBottomSideY >= paddleTopSideY;
+
+	return result;
+}
+
+bool Game::BallIsHigherThanPaddle() 
+{
+	//auto ballBottomSideY = mBallPos.y + thickness / 2;
+	//auto paddleTopSideY = mPaddlePos.y - paddleH / 2;
+	//auto result = ballBottomSideY < paddleTopSideY;
+	auto result = mBallPos.y < mPaddlePos.y;
+	
+	return result;
+}
+ 
+//bool Game::BallIsToTheLeftFromPaddle() 
+//{
+//	auto ballRightSideX = mBallPos.x + thickness / 2;
+//	auto paddleLeftSide = mPaddlePos.x - thickness / 2;
+//	auto result = ballRightSideX >= paddleLeftSide;
+//
+//	return result;
+//}
+
+bool Game::BallComesFromTop() 
+{
+	auto result = mBallVel.y > 0.0f;
+
+	return result;
+}
+
 void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
 	SDL_RenderClear(mRenderer);

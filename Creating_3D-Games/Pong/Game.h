@@ -11,6 +11,13 @@ private:
 	void ProcessInput();
 	void UpdateGame();
 	void GenerateOutput();
+	bool BallComesFromTop();
+	bool BallBottomHitPaddleTopAlready();
+	bool BallTopHitPaddleBottomAlready();
+	//bool BallIsToTheLeftFromPaddle();
+	bool BallIsHigherThanPaddle();
+	bool BallIsAlignedWithPaddleXAxis();
+	bool BallLeftSideXIsBetweenPaddleSidesX();
 
 	SDL_Window* mWindow;
 	bool mIsRunning;
@@ -30,6 +37,7 @@ private:
 	Uint32 mTicksCount;
 	int mPaddleDir;
 	const int paddleH = thickness * 6.5;
-	Vector2 mBallVel{ -200.0f, 235.0f };
+	//Vector2 mBallVel{ 0.0f, 20.0f };
+	 Vector2 mBallVel{ 0.0f, -20.0f };
 	//Vector2 mBallVel{ 200.0f, 100};
 };
