@@ -15,9 +15,7 @@ void Game::RunLoop()
 Game::Game() {
 	mWindow = nullptr;
 	mIsRunning = true;
-	// mBallPos = { 1024 / 2, 768 / 2 };
-	//mBallPos = { static_cast<float>(thickness) / 2 + thickness - 10.0f, 715.0f };
-	 mBallPos = { static_cast<float>(thickness) / 2 + thickness - 5, 715.0f };
+	mBallPos = { 1024 / 2, 768 / 2 };
 	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
 	mTicksCount = 0;
 	mPaddleDir = 0;
@@ -135,27 +133,6 @@ void Game::UpdateGame() {
 	{
 		mBallVel.y *= -1;
 	}
-/*
-	if (
-		mBallPos.y + thickness / 2 > mPaddlePos.y - paddleH / 2 && // is ball higer than paddle
-		mBallPos.x - thickness / 2 <= mPaddlePos.x - thickness / 2 &&
-		//mBallPos.x - thickness / 2 <= mPaddlePos.x + thickness / 2 && // right
-		//mBallPos.x + thickness / 2 >= mPaddlePos.x - thickness / 2 && // left
-		mBallVel.y > 0.0f
-		)
-	{
-		mBallVel.y *= -1;
-	}
-
-	if (
-		mBallPos.y - thickness / 2 <= mPaddlePos.y + paddleH / 2 && 
-		mBallPos.x - thickness / 2 <= mPaddlePos.x && - paddleH / 2 &&//left
-		mBallVel.y < 0.0f
-		)
-	{
-		mBallVel.y *= -1;
-	}
-*/
 }
 
 bool Game::BallIsAlignedWithPaddleXAxis() 
@@ -202,22 +179,10 @@ bool Game::BallBottomHitPaddleTopAlready()
 
 bool Game::BallIsHigherThanPaddle() 
 {
-	//auto ballBottomSideY = mBallPos.y + thickness / 2;
-	//auto paddleTopSideY = mPaddlePos.y - paddleH / 2;
-	//auto result = ballBottomSideY < paddleTopSideY;
 	auto result = mBallPos.y < mPaddlePos.y;
 	
 	return result;
 }
- 
-//bool Game::BallIsToTheLeftFromPaddle() 
-//{
-//	auto ballRightSideX = mBallPos.x + thickness / 2;
-//	auto paddleLeftSide = mPaddlePos.x - thickness / 2;
-//	auto result = ballRightSideX >= paddleLeftSide;
-//
-//	return result;
-//}
 
 bool Game::BallComesFromTop() 
 {
