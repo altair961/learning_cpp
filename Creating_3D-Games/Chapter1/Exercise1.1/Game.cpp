@@ -99,13 +99,15 @@ void Game::UpdateGame() {
 		mBallVel.y *= -1;
 	}
 
-	// Did the ball collide with the right wall?
-	if (mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f)
-	{
-		mBallVel.x *= -1;
-	}
+	//// Did the ball intersect with the player 2 paddle (the right side)?
+	//if (
+	//	//mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f
+	//	)
+	//{
+	//	mBallVel.x *= -1;
+	//}
 
-	// Did we intersect with the paddle?
+	// Did the ball intersect with the player 1 paddle (the left side)?
 	if (
 		mBallPos.y > (mPaddlePos.y - (paddleH / 2))
 		&& mBallPos.y < (mPaddlePos.y + (paddleH / 2))
@@ -142,7 +144,13 @@ void Game::UpdateGame() {
 
 bool Game::BallMovedOffScreen()
 {
-	auto result = mBallPos.x <= 0;
+	auto ballLeftSideX = mBallPos.x - thickness / 2;
+	auto ballRightSideX = mBallPos.x + thickness / 2;
+	auto isBallOffScreenOnTheRightSide = ballLeftSideX > 1024;
+	auto isBallOffScreenOnTheLeftSide = ballRightSideX < 0;
+	auto result = isBallOffScreenOnTheRightSide ||
+		isBallOffScreenOnTheLeftSide;
+
 	return result;
 }
 
@@ -153,10 +161,10 @@ void Game::GameOver()
 
 bool Game::BallIsAlignedWithPaddleXAxis() 
 {
-	auto ballLeftSideX = mBallPos.x - thickness / 2;
-	auto ballRightSideX = mBallPos.x + thickness / 2;
 	auto paddleRightSideX = mPaddlePos.x + thickness / 2;
 	auto paddleLeftSideX = mPaddlePos.x - thickness / 2;
+	auto ballLeftSideX = mBallPos.x - thickness / 2;
+	auto ballRightSideX = mBallPos.x + thickness / 2;
 
 	if (ballLeftSideX > paddleRightSideX)
 		return false;
@@ -218,10 +226,6 @@ void Game::GenerateOutput() {
 	SDL_Rect bottomWall{ 0, 768 - thickness, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &bottomWall);
-
-	SDL_Rect rightWall{ 1024 - thickness, 0, thickness, 768 };
-	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mRenderer, &rightWall);
 
 	SDL_Rect ball{
 		static_cast<int>(mBallPos.x - thickness / 2),
