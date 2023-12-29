@@ -15,12 +15,20 @@ void Game::RunLoop()
 Game::Game() {
 	mWindow = nullptr;
 	mIsRunning = true;
-	mBallPos = { 1024 / 2, 768 / 2 };
-	mPaddlePos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
+	// mBallPos = { -14, 720 };
+	//mBallPos = { 150, 150 };
+	mBallPos = 
+	{ 
+		static_cast <float>(1024 / 2 - thickness / 2), 
+		static_cast <float>(768 / 2 - thickness / 2)
+	};
+//	mPaddle1Pos = { 0, 768 / 2 };
+	mPaddle1Pos = { static_cast<float>(thickness) / 2 + thickness, 768 / 2 };
+
+//	mPaddle2Pos = { 1024 - static_cast<float>(thickness), 768 / 2 };
 	mTicksCount = 0;
 	mPaddleDir = 0;
 }
-
 void Game::ProcessInput() 
 {
 	SDL_Event event;
@@ -63,8 +71,7 @@ void Game::UpdateGame() {
 	float deltaTime = (SDL_GetTicks() - mTicksCount) / 1000.0f; // deltTime is in seconds
 	
 	// Update tick counts (for next frame)
-	mTicksCount = SDL_GetTicks();
-	
+	mTicksCount = SDL_GetTicks();	
 
 	// Clamp maximum delta time value
 	if (deltaTime > 0.05f) 
@@ -74,13 +81,13 @@ void Game::UpdateGame() {
 
 	if (mPaddleDir != 0)
 	{
-		mPaddlePos.y += mPaddleDir * 300.0f * deltaTime;
+		mPaddle1Pos.y += mPaddleDir * 300.0f * deltaTime;
 		// make sure paddle doesn't go off screen
-		if (mPaddlePos.y < (paddleH / 2.0f + thickness))
-			mPaddlePos.y = paddleH / 2.0f + thickness;
-		else if (mPaddlePos.y > (768.0f - paddleH / 2.0f - thickness))
+		if (mPaddle1Pos.y < (paddleH / 2.0f + thickness))
+			mPaddle1Pos.y = paddleH / 2.0f + thickness;
+		else if (mPaddle1Pos.y > (768.0f - paddleH / 2.0f - thickness))
 		{
-			mPaddlePos.y = (768.0f - paddleH / 2.0f - thickness);
+			mPaddle1Pos.y = (768.0f - paddleH / 2.0f - thickness);
 		}
 	}
 
@@ -88,30 +95,38 @@ void Game::UpdateGame() {
 	mBallPos.y += mBallVel.y * deltaTime;
 
 	// Did the ball collide with the top wall?
-	if (mBallPos.y <= (thickness + thickness/2)&& mBallVel.y < 0.0f)
+	if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
 	{
 		mBallVel.y *= -1;
 	}
 
 	// Did the ball collide with the bottom wall?
-	if (mBallPos.y >= 768 - thickness - (thickness /2) && mBallVel.y > 0.0f)
+	if (mBallPos.y + 2 * thickness >= 768 && mBallVel.y > 0.0f)
 	{
 		mBallVel.y *= -1;
 	}
 
 	// Did the ball collide with the right wall?
-	if (mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f)
+	if (mBallPos.x >= (1024 - thickness * 2) && mBallVel.x > 0.0f)
 	{
 		mBallVel.x *= -1;
 	}
 
-	// Did we intersect with the paddle?
+	//// Did the ball intersect with the player 2 paddle (the right side)?
+	//if (
+	//	//mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f
+	//	)
+	//{
+	//	mBallVel.x *= -1;
+	//}
+
+	// Did the ball intersect with the player 1 paddle (the left side)?
 	if (
-		mBallPos.y > (mPaddlePos.y - (paddleH / 2))
-		&& mBallPos.y < (mPaddlePos.y + (paddleH / 2))
+		mBallPos.y + thickness > (mPaddle1Pos.y - (paddleH / 2))
+		&& mBallPos.y < (mPaddle1Pos.y + (paddleH / 2))
 		&&
 		// Ball is at the correct x-position
-		mBallPos.x <= (mPaddlePos.x + thickness) && mBallPos.x >= mPaddlePos.x &&
+		mBallPos.x <= (mPaddle1Pos.x + thickness) && mBallPos.x >= mPaddle1Pos.x &&
 		// the ball is moving to the left
 		mBallVel.x < 0.0f)
 	{
@@ -142,7 +157,12 @@ void Game::UpdateGame() {
 
 bool Game::BallMovedOffScreen()
 {
-	auto result = mBallPos.x <= 0;
+	auto ballLeftSideX = mBallPos.x;
+	auto ballRightSideX = ballLeftSideX + thickness;
+	auto isBallOffScreenOnTheRightSide = ballLeftSideX > 1024;
+	auto isBallOffScreenOnTheLeftSide = ballRightSideX < 0;
+	auto result = isBallOffScreenOnTheRightSide	|| isBallOffScreenOnTheLeftSide;
+
 	return result;
 }
 
@@ -153,10 +173,10 @@ void Game::GameOver()
 
 bool Game::BallIsAlignedWithPaddleXAxis() 
 {
+	auto paddleRightSideX = mPaddle1Pos.x + thickness / 2;
+	auto paddleLeftSideX = mPaddle1Pos.x - thickness / 2;
 	auto ballLeftSideX = mBallPos.x - thickness / 2;
 	auto ballRightSideX = mBallPos.x + thickness / 2;
-	auto paddleRightSideX = mPaddlePos.x + thickness / 2;
-	auto paddleLeftSideX = mPaddlePos.x - thickness / 2;
 
 	if (ballLeftSideX > paddleRightSideX)
 		return false;
@@ -177,17 +197,17 @@ bool Game::BallIsAlignedWithPaddleXAxis()
 
 bool Game::BallTopHitPaddleBottomAlready() 
 {
-	auto ballTopSideY = mBallPos.y - thickness / 2;
-	auto paddleBottomSideY = mPaddlePos.y + paddleH / 2;
-	auto result = ballTopSideY < paddleBottomSideY;
+	auto ballTopSideY = mBallPos.y;
+	auto paddleBottomSideY = mPaddle1Pos.y + paddleH / 2;
+	auto result = ballTopSideY <= paddleBottomSideY;
 
 	return result;
 }
 
 bool Game::BallBottomHitPaddleTopAlready()
 {
-	auto ballBottomSideY = mBallPos.y + thickness / 2;
-	auto paddleTopSideY = mPaddlePos.y - paddleH / 2;
+	auto ballBottomSideY = mBallPos.y + thickness;
+	auto paddleTopSideY = mPaddle1Pos.y - paddleH / 2;
 	auto result = ballBottomSideY >= paddleTopSideY;
 
 	return result;
@@ -195,7 +215,7 @@ bool Game::BallBottomHitPaddleTopAlready()
 
 bool Game::BallIsHigherThanPaddle() 
 {
-	auto result = mBallPos.y < mPaddlePos.y;
+	auto result = mBallPos.y < mPaddle1Pos.y;
 	
 	return result;
 }
@@ -219,25 +239,46 @@ void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &bottomWall);
 
-	SDL_Rect rightWall{ 1024 - thickness, 0, thickness, 768 };
+	//SDL_SetRenderDrawColor(mRenderer, 255, 100, 255, 255);
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mRenderer, &rightWall);
-
 	SDL_Rect ball{
-		static_cast<int>(mBallPos.x - thickness / 2),
-		static_cast<int>(mBallPos.y - thickness / 2),
+		mBallPos.x,
+		mBallPos.y,
 		thickness,
 		thickness
 	};
 	SDL_RenderFillRect(mRenderer, &ball);
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 
-	SDL_Rect paddle{
-		static_cast<int>(mPaddlePos.x - thickness / 2),
-		mPaddlePos.y - paddleH / 2,
+	SDL_Rect rightWall{ 1024 - thickness, 0, thickness, 768 };
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(mRenderer, &rightWall);
+
+	//SDL_SetRenderDrawColor(mRenderer, 255, 10, 2, 255);
+	//SDL_Rect ball2{
+	//	mBall2Pos.x,
+	//	mBall2Pos.y,
+	//	thickness,
+	//	thickness
+	//};
+	//SDL_RenderFillRect(mRenderer, &ball2);
+	//SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+
+	SDL_Rect paddle1{
+		static_cast<int>(mPaddle1Pos.x),
+		mPaddle1Pos.y - paddleH / 2,
 		thickness,
 		paddleH
 	};
-	SDL_RenderFillRect(mRenderer, &paddle);
+	SDL_RenderFillRect(mRenderer, &paddle1);
+
+	//SDL_Rect paddle2{
+	//static_cast<int>(mPaddle2Pos.x - thickness / 2),
+	//mPaddle2Pos.y - paddleH / 2,
+	//thickness,
+	//paddleH
+	//};
+	//SDL_RenderFillRect(mRenderer, &paddle2);
 
 	SDL_RenderPresent(mRenderer);
 }

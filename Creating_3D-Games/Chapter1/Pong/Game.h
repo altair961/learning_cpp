@@ -28,7 +28,10 @@ private:
 		float x;
 		float y;
 	};
-	Vector2 mPaddlePos
+	Vector2 mPaddle1Pos
+	{
+	};
+	Vector2 mPaddle2Pos
 	{
 	};
 	Vector2 mBallPos
@@ -37,5 +40,7 @@ private:
 	Uint32 mTicksCount;
 	int mPaddleDir;
 	const int paddleH = thickness * 6.5;
-	Vector2 mBallVel{ 200, 100};
+	//Vector2 mBallVel{ 100, 0 };
+	//Vector2 mBallVel{ 0, 0};
+	Vector2 mBallVel{ 200, 100 };
 };
