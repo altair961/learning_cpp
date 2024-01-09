@@ -106,12 +106,6 @@ void Game::UpdateGame() {
 		mBallVel.y *= -1;
 	}
 
-	// Did the ball collide with the right wall?
-	if (mBallPos.x >= (1024 - thickness * 2) && mBallVel.x > 0.0f)
-	{
-		mBallVel.x *= -1;
-	}
-
 	//// Did the ball intersect with the player 2 paddle (the right side)?
 	//if (
 	//	//mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f
@@ -249,10 +243,6 @@ void Game::GenerateOutput() {
 	};
 	SDL_RenderFillRect(mRenderer, &ball);
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-
-	SDL_Rect rightWall{ 1024 - thickness, 0, thickness, 768 };
-	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mRenderer, &rightWall);
 
 	//SDL_SetRenderDrawColor(mRenderer, 255, 10, 2, 255);
 	//SDL_Rect ball2{
