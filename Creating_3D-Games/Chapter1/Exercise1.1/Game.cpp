@@ -19,8 +19,9 @@ Game::Game() {
 	//mBallPos = { 150, 150 };
 	mBallPos = 
 	{ 
-		static_cast <float>(1024 / 2 - thickness / 2), 
-		static_cast <float>(768 / 2 - thickness / 2)
+		//static_cast <float>(1024 / 2 - thickness / 2), 
+		//static_cast <float>(768 / 2 - thickness / 2)
+		12,700
 	};
 //	mPaddle1Pos = { 0, 768 / 2 };
 	mPaddle1Pos = { 
@@ -123,12 +124,12 @@ void Game::UpdateGame() {
 	//}
 
 	// Did the ball intersect with the player 1 paddle (the left side)?
-	if (mBallPos.y + thickness > (mPaddle1Pos.y - (paddleH / 2))
-		&& mBallPos.y < (mPaddle1Pos.y + (paddleH / 2))
+	if (BallBottomIsLowerThanPaddleTop()// && BallIsHigherThanPaddle()
+		&& BallTopIsHigherThanPaddleBottom() //mBallPos.y < (mPaddle1Pos.y + (paddleH / 2))
 		&&
-		// Ball is at the correct x-position
+		// Ball at the correct x-position
 		mBallPos.x <= (mPaddle1Pos.x + thickness) && mBallPos.x >= mPaddle1Pos.x &&
-		// the ball is moving to the left
+		// the ball is moving from the right
 		mBallVel.x < 0.0f)
 	{
 		mBallVel.x *= -1;
@@ -199,7 +200,7 @@ bool Game::BallIsAlignedWithPaddleXAxis()
 bool Game::BallTopHitPaddleBottomAlready() 
 {
 	auto ballTopSideY = mBallPos.y;
-	auto paddleBottomSideY = mPaddle1Pos.y + paddleH / 2;
+	auto paddleBottomSideY = mPaddle1Pos.y + paddleH;
 	auto result = ballTopSideY <= paddleBottomSideY;
 
 	return result;
@@ -208,7 +209,7 @@ bool Game::BallTopHitPaddleBottomAlready()
 bool Game::BallBottomHitPaddleTopAlready()
 {
 	auto ballBottomSideY = mBallPos.y + thickness;
-	auto paddleTopSideY = mPaddle1Pos.y - paddleH / 2;
+	auto paddleTopSideY = mPaddle1Pos.y;
 	auto result = ballBottomSideY >= paddleTopSideY;
 
 	return result;
@@ -217,14 +218,24 @@ bool Game::BallBottomHitPaddleTopAlready()
 bool Game::BallIsHigherThanPaddle() 
 {
 	auto result = mBallPos.y < mPaddle1Pos.y;
-	
 	return result;
 }
 
 bool Game::BallComesFromTop() 
 {
 	auto result = mBallVel.y > 0.0f;
+	return result;
+}
 
+bool Game::BallBottomIsLowerThanPaddleTop() 
+{
+	auto result = mBallPos.y + thickness > mPaddle1Pos.y;
+	return result;
+}
+
+bool Game::BallTopIsHigherThanPaddleBottom() 
+{
+	auto result = mBallPos.y < mPaddle1Pos.y + paddleH;
 	return result;
 }
 

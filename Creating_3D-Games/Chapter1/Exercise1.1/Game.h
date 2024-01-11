@@ -17,6 +17,8 @@ private:
 	bool BallIsHigherThanPaddle();
 	bool BallIsAlignedWithPaddleXAxis();
 	bool BallMovedOffScreen();
+	bool BallBottomIsLowerThanPaddleTop();
+	bool BallTopIsHigherThanPaddleBottom();
 	void GameOver();
 
 	SDL_Window* mWindow;
@@ -42,6 +44,8 @@ private:
 	const int paddleH = thickness * 6.5;
 	//Vector2 mBallVel{ 100, 0 };
 	//Vector2 mBallVel{ 0, 0};
-	//Vector2 mBallVel{ 200, 100 };
-	Vector2 mBallVel{ 2, 1 };
+	Vector2 mBallVel{ 200, 100 };
+	//Vector2 mBallVel{ 2, 1 };
+	//Vector2 mBallVel{ -100, 0 };
+	//Vector2 mBallVel{ 0, -40 };
 };
