@@ -264,7 +264,7 @@ void Game::GenerateOutput() {
 
 	SDL_Rect topWall{ 0, 0, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	//SDL_RenderFillRect(mRenderer, &topWall);
+	SDL_RenderFillRect(mRenderer, &topWall);
 
 	SDL_Rect bottomWall{ 0, 768 - thickness, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
