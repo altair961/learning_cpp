@@ -43,10 +43,5 @@ private:
 	int mPaddle1Dir;
 	int mPaddle2Dir;
 	const int mPaddleH = thickness * 6.5;
-	//Vector2 mBallVel{ 100, 0 };
 	Vector2 mBallVel{ 0, 0};
-	//Vector2 mBallVel{ -200, -100 };
-	//Vector2 mBallVel{ 2, 1 };
-	//Vector2 mBallVel{ -100, 0 };
-	//Vector2 mBallVel{ 0, -40 };
 };

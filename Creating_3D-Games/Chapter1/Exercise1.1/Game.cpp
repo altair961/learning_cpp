@@ -15,23 +15,17 @@ void Game::RunLoop()
 Game::Game() {
 	mWindow = nullptr;
 	mIsRunning = true;
-	// mBallPos = { -14, 720 };
-	//mBallPos = { 150, 150 };
 	mBallPos = 
 	{ 
 		static_cast <float>(1024 / 2 - thickness / 2), 
 		static_cast <float>(768 / 2 - thickness / 2)
-		//12,700
 	};
-//	mPaddle1Pos = { 0, 768 / 2 };
 	mPaddle1Pos = { 
-		static_cast<float>(thickness) / 2 + thickness, 
+		0 + static_cast<float>(thickness) / 2 + thickness, 
 		static_cast <float>(768 / 2) - mPaddleH / 2
 	};
-
-	//mPaddle2Pos = { 1024 - static_cast<float>(thickness), 768 / 2 };
 	mPaddle2Pos = { 
-		1024 - static_cast<float>(thickness), 
+		1024 - static_cast<float>(thickness) / 2 - thickness - thickness, 
 		(static_cast<float>(768 / 2)) - (mPaddleH / 2)
 	};
 	mTicksCount = 0;
@@ -285,7 +279,7 @@ void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 
 	SDL_Rect paddle1{
-		static_cast<int>(mPaddle1Pos.x),
+		mPaddle1Pos.x,
 		mPaddle1Pos.y,
 		thickness,
 		mPaddleH
