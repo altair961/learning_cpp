@@ -127,11 +127,8 @@ void Game::UpdateGame() {
 
 	// Did the ball collide with the bottom wall?
 	if (mBallPos.y + 2 * thickness >= 768 && mBallVel.y > 0.0f)
-	{
 		mBallVel.y *= -1;
-	}
 
-	// Did the ball intersect with the player 2 paddle (the right side)?
 	
 	//if (
 	//	//mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f
@@ -141,16 +138,22 @@ void Game::UpdateGame() {
 	//}
 
 	// Did the ball intersect with the player 1 paddle (the left side)?
-	if (BallBottomIsLowerThanPaddleTop()// && BallIsHigherThanPaddle()
-		&& BallTopIsHigherThanPaddleBottom() //mBallPos.y < (mPaddle1Pos.y + (paddleH / 2))
-		&&
+	if (BallBottomIsLowerThanPaddleTop(mPaddle1Pos.y)
+		&& BallTopIsHigherThanPaddleBottom(mPaddle1Pos.y)
 		// Ball at the correct x-position
-		mBallPos.x <= (mPaddle1Pos.x + thickness) && mBallPos.x >= mPaddle1Pos.x &&
+		&& mBallPos.x <= (mPaddle1Pos.x + thickness) && mBallPos.x >= mPaddle1Pos.x
 		// the ball is moving from the right
-		mBallVel.x < 0.0f)
-	{
-		mBallVel.x *= -1;
-	}
+		&& mBallVel.x < 0.0f)
+			mBallVel.x *= -1;
+
+	// Did the ball intersect with the player 2 paddle (the right side)?
+	if (BallBottomIsLowerThanPaddleTop(mPaddle2Pos.y)
+		&& BallTopIsHigherThanPaddleBottom(mPaddle2Pos.y)
+		// Ball at the correct x-position
+		&& (mBallPos.x + thickness) >= (mPaddle2Pos.x) && (mBallPos.x + thickness) <= mPaddle2Pos.x + thickness
+		// the ball is moving from the left
+		&& mBallVel.x > 0.0f)
+			mBallVel.x *= -1;
 
 	if (BallComesFromTop() &&
 		BallIsHigherThanPaddle() &&
@@ -244,15 +247,15 @@ bool Game::BallComesFromTop()
 	return result;
 }
 
-bool Game::BallBottomIsLowerThanPaddleTop() 
+bool Game::BallBottomIsLowerThanPaddleTop(int paddlePositionY)
 {
-	auto result = mBallPos.y + thickness > mPaddle1Pos.y;
+	auto result = mBallPos.y + thickness > paddlePositionY;
 	return result;
 }
 
-bool Game::BallTopIsHigherThanPaddleBottom() 
+bool Game::BallTopIsHigherThanPaddleBottom(int paddlePositionY)
 {
-	auto result = mBallPos.y < mPaddle1Pos.y + mPaddleH;
+	auto result = mBallPos.y < paddlePositionY + mPaddleH;
 	return result;
 }
 
