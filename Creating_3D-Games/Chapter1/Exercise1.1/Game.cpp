@@ -114,8 +114,12 @@ void Game::UpdateGame() {
 	{
 		mPaddle2Pos.y += mPaddle2Dir * 300.0f * deltaTime;
 		// make sure player 2 paddle doesn't go off screen
-		//if (mPaddle2Pos.y < thickness)
-
+		if (mPaddle2Pos.y < thickness)
+			mPaddle2Pos.y = thickness;
+		else if (mPaddle2Pos.y > (768.0f - mPaddleH - thickness))
+		{
+			mPaddle2Pos.y = (768.0f - mPaddleH - thickness);
+		}
 	}
 
 	mBallPos.x += mBallVel.x * deltaTime;
@@ -270,7 +274,6 @@ void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &bottomWall);
 
-	//SDL_SetRenderDrawColor(mRenderer, 255, 100, 255, 255);
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_Rect ball{
 		mBallPos.x,
@@ -281,16 +284,6 @@ void Game::GenerateOutput() {
 	SDL_RenderFillRect(mRenderer, &ball);
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 
-	//SDL_SetRenderDrawColor(mRenderer, 255, 10, 2, 255);
-	//SDL_Rect ball2{
-	//	mBall2Pos.x,
-	//	mBall2Pos.y,
-	//	thickness,
-	//	thickness
-	//};
-	//SDL_RenderFillRect(mRenderer, &ball2);
-	//SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-
 	SDL_Rect paddle1{
 		static_cast<int>(mPaddle1Pos.x),
 		mPaddle1Pos.y,
@@ -298,8 +291,6 @@ void Game::GenerateOutput() {
 		mPaddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle1);
-
-	SDL_SetRenderDrawColor(mRenderer, 150, 4, 130, 255);
 
 	SDL_Rect paddle2{
 		mPaddle2Pos.x,
