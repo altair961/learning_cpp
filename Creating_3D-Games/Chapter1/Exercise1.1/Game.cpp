@@ -19,23 +19,24 @@ Game::Game() {
 	//mBallPos = { 150, 150 };
 	mBallPos = 
 	{ 
-		//static_cast <float>(1024 / 2 - thickness / 2), 
-		//static_cast <float>(768 / 2 - thickness / 2)
-		12,700
+		static_cast <float>(1024 / 2 - thickness / 2), 
+		static_cast <float>(768 / 2 - thickness / 2)
+		//12,700
 	};
 //	mPaddle1Pos = { 0, 768 / 2 };
 	mPaddle1Pos = { 
 		static_cast<float>(thickness) / 2 + thickness, 
-		static_cast <float>(768 / 2) - paddleH / 2
+		static_cast <float>(768 / 2) - mPaddleH / 2
 	};
 
 	//mPaddle2Pos = { 1024 - static_cast<float>(thickness), 768 / 2 };
 	mPaddle2Pos = { 
 		1024 - static_cast<float>(thickness), 
-		(static_cast<float>(768 / 2)) - (paddleH / 2)
+		(static_cast<float>(768 / 2)) - (mPaddleH / 2)
 	};
 	mTicksCount = 0;
-	mPaddleDir = 0;
+	mPaddle1Dir = 0;
+	mPaddle2Dir = 0;
 }
 void Game::ProcessInput() 
 {
@@ -59,14 +60,24 @@ void Game::ProcessInput()
 		mIsRunning = false;
 	}
 
-	mPaddleDir = 0;
+	mPaddle1Dir = 0;
 	if (state[SDL_SCANCODE_W]) 
 	{
-		mPaddleDir -= 1;
+		mPaddle1Dir -= 1;
 	}
 	if (state[SDL_SCANCODE_S])
 	{
-		mPaddleDir += 1;
+		mPaddle1Dir += 1;
+	}
+	
+	mPaddle2Dir = 0;
+	if (state[SDL_SCANCODE_I])
+	{
+		mPaddle2Dir -= 1;
+	}
+	if (state[SDL_SCANCODE_K])
+	{
+		mPaddle2Dir += 1;
 	}
 }
 void Game::UpdateGame() {
@@ -87,16 +98,24 @@ void Game::UpdateGame() {
 		deltaTime = 0.5f;
 	}
 
-	if (mPaddleDir != 0)
+	if (mPaddle1Dir != 0)
 	{
-		mPaddle1Pos.y += mPaddleDir * 300.0f * deltaTime;
-		// make sure paddle doesn't go off screen
+		mPaddle1Pos.y += mPaddle1Dir * 300.0f * deltaTime;
+		// make sure player 1 paddle doesn't go off screen
 		if (mPaddle1Pos.y < thickness)
 			mPaddle1Pos.y = thickness;
-		else if (mPaddle1Pos.y > (768.0f - paddleH  - thickness))
+		else if (mPaddle1Pos.y > (768.0f - mPaddleH - thickness))
 		{
-			mPaddle1Pos.y = (768.0f - paddleH  - thickness);
+			mPaddle1Pos.y = (768.0f - mPaddleH - thickness);
 		}
+	}
+
+	if (mPaddle2Dir != 0)
+	{
+		mPaddle2Pos.y += mPaddle2Dir * 300.0f * deltaTime;
+		// make sure player 2 paddle doesn't go off screen
+		//if (mPaddle2Pos.y < thickness)
+
 	}
 
 	mBallPos.x += mBallVel.x * deltaTime;
@@ -200,7 +219,7 @@ bool Game::BallIsAlignedWithPaddleXAxis()
 bool Game::BallTopHitPaddleBottomAlready() 
 {
 	auto ballTopSideY = mBallPos.y;
-	auto paddleBottomSideY = mPaddle1Pos.y + paddleH;
+	auto paddleBottomSideY = mPaddle1Pos.y + mPaddleH;
 	auto result = ballTopSideY <= paddleBottomSideY;
 
 	return result;
@@ -235,7 +254,7 @@ bool Game::BallBottomIsLowerThanPaddleTop()
 
 bool Game::BallTopIsHigherThanPaddleBottom() 
 {
-	auto result = mBallPos.y < mPaddle1Pos.y + paddleH;
+	auto result = mBallPos.y < mPaddle1Pos.y + mPaddleH;
 	return result;
 }
 
@@ -245,7 +264,7 @@ void Game::GenerateOutput() {
 
 	SDL_Rect topWall{ 0, 0, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(mRenderer, &topWall);
+	//SDL_RenderFillRect(mRenderer, &topWall);
 
 	SDL_Rect bottomWall{ 0, 768 - thickness, 1024, thickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
@@ -276,7 +295,7 @@ void Game::GenerateOutput() {
 		static_cast<int>(mPaddle1Pos.x),
 		mPaddle1Pos.y,
 		thickness,
-		paddleH
+		mPaddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle1);
 
@@ -286,7 +305,7 @@ void Game::GenerateOutput() {
 		mPaddle2Pos.x,
 		mPaddle2Pos.y,
 		thickness,
-		paddleH
+		mPaddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle2);
 
