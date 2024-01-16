@@ -78,11 +78,11 @@ void Game::UpdateGame() {
 	{
 		mPaddle1Pos.y += mPaddle1Dir * 300.0f * deltaTime;
 		// make sure player 1 paddle doesn't go off screen
-		if (mPaddle1Pos.y < thickness)
-			mPaddle1Pos.y = thickness;
-		else if (mPaddle1Pos.y > (768.0f - mPaddleH - thickness))
+		if (mPaddle1Pos.y < mThickness)
+			mPaddle1Pos.y = mThickness;
+		else if (mPaddle1Pos.y > (768.0f - mPaddleH - mThickness))
 		{
-			mPaddle1Pos.y = (768.0f - mPaddleH - thickness);
+			mPaddle1Pos.y = (768.0f - mPaddleH - mThickness);
 		}
 	}
 
@@ -90,11 +90,11 @@ void Game::UpdateGame() {
 	{
 		mPaddle2Pos.y += mPaddle2Dir * 300.0f * deltaTime;
 		// make sure player 2 paddle doesn't go off screen
-		if (mPaddle2Pos.y < thickness)
-			mPaddle2Pos.y = thickness;
-		else if (mPaddle2Pos.y > (768.0f - mPaddleH - thickness))
+		if (mPaddle2Pos.y < mThickness)
+			mPaddle2Pos.y = mThickness;
+		else if (mPaddle2Pos.y > (768.0f - mPaddleH - mThickness))
 		{
-			mPaddle2Pos.y = (768.0f - mPaddleH - thickness);
+			mPaddle2Pos.y = (768.0f - mPaddleH - mThickness);
 		}
 	}
 
@@ -102,18 +102,18 @@ void Game::UpdateGame() {
 	mBallPos.y += mBallVel.y * deltaTime;
 
 	// Did the ball collide with the top wall?
-	if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
+	if (mBallPos.y <= mThickness && mBallVel.y < 0.0f)
 		mBallVel.y *= -1;	
 
 	// Did the ball collide with the bottom wall?
-	if (mBallPos.y + 2 * thickness >= 768 && mBallVel.y > 0.0f)
+	if (mBallPos.y + 2 * mThickness >= 768 && mBallVel.y > 0.0f)
 		mBallVel.y *= -1;
 
 	// Did the ball intersect with the player 1 paddle (the left side)?
 	if (BallBottomIsLowerThanPaddleTop(mPaddle1Pos.y)
 		&& BallTopIsHigherThanPaddleBottom(mPaddle1Pos.y)
 		// Ball at the correct x-position
-		&& mBallPos.x <= (mPaddle1Pos.x + thickness) && mBallPos.x >= mPaddle1Pos.x
+		&& mBallPos.x <= (mPaddle1Pos.x + mThickness) && mBallPos.x >= mPaddle1Pos.x
 		// the ball is moving from the right
 		&& mBallVel.x < 0.0f)
 			mBallVel.x *= -1;
@@ -122,7 +122,7 @@ void Game::UpdateGame() {
 	if (BallBottomIsLowerThanPaddleTop(mPaddle2Pos.y)
 		&& BallTopIsHigherThanPaddleBottom(mPaddle2Pos.y)
 		// Ball at the correct x-position
-		&& (mBallPos.x + thickness) >= (mPaddle2Pos.x) && (mBallPos.x + thickness) <= mPaddle2Pos.x + thickness
+		&& (mBallPos.x + mThickness) >= (mPaddle2Pos.x) && (mBallPos.x + mThickness) <= mPaddle2Pos.x + mThickness
 		// the ball is moving from the left
 		&& mBallVel.x > 0.0f)
 			mBallVel.x *= -1;
@@ -139,7 +139,7 @@ void Game::UpdateGame() {
 bool Game::BallMovedOffScreen()
 {
 	auto ballLeftSideX = mBallPos.x;
-	auto ballRightSideX = ballLeftSideX + thickness;
+	auto ballRightSideX = ballLeftSideX + mThickness;
 	auto isBallOffScreenOnTheRightSide = ballLeftSideX > 1024;
 	auto isBallOffScreenOnTheLeftSide = ballRightSideX < 0;
 	auto result = isBallOffScreenOnTheRightSide	|| isBallOffScreenOnTheLeftSide;
@@ -154,10 +154,10 @@ void Game::GameOver()
 
 bool Game::BallIsAlignedWithPaddleXAxis(int mPaddlePosX)
 {
-	auto paddleRightSideX = mPaddlePosX + thickness / 2;
-	auto paddleLeftSideX = mPaddlePosX - thickness / 2;
-	auto ballLeftSideX = mBallPos.x - thickness / 2;
-	auto ballRightSideX = mBallPos.x + thickness / 2;
+	auto paddleRightSideX = mPaddlePosX + mThickness / 2;
+	auto paddleLeftSideX = mPaddlePosX - mThickness / 2;
+	auto ballLeftSideX = mBallPos.x - mThickness / 2;
+	auto ballRightSideX = mBallPos.x + mThickness / 2;
 
 	if (ballLeftSideX > paddleRightSideX)
 		return false;
@@ -187,7 +187,7 @@ bool Game::BallTopHitPaddleBottomAlready(int paddlePositionY)
 
 bool Game::BallBottomHitPaddleTopAlready(int paddlePositionY)
 {
-	auto ballBottomSideY = mBallPos.y + thickness;
+	auto ballBottomSideY = mBallPos.y + mThickness;
 	auto paddleTopSideY = paddlePositionY;
 	auto result = ballBottomSideY >= paddleTopSideY;
 
@@ -208,7 +208,7 @@ bool Game::BallComesFromTop()
 
 bool Game::BallBottomIsLowerThanPaddleTop(int paddlePositionY)
 {
-	auto result = mBallPos.y + thickness > paddlePositionY;
+	auto result = mBallPos.y + mThickness > paddlePositionY;
 	return result;
 }
 
@@ -241,11 +241,11 @@ void Game::GenerateOutput() {
 	SDL_SetRenderDrawColor(mRenderer, 57, 83, 164, 255);
 	SDL_RenderClear(mRenderer);
 
-	SDL_Rect topWall{ 0, 0, 1024, thickness };
+	SDL_Rect topWall{ 0, 0, 1024, mThickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &topWall);
 
-	SDL_Rect bottomWall{ 0, 768 - thickness, 1024, thickness };
+	SDL_Rect bottomWall{ 0, 768 - mThickness, 1024, mThickness };
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(mRenderer, &bottomWall);
 
@@ -253,8 +253,8 @@ void Game::GenerateOutput() {
 	SDL_Rect ball{
 		mBallPos.x,
 		mBallPos.y,
-		thickness,
-		thickness
+		mThickness,
+		mThickness
 	};
 	SDL_RenderFillRect(mRenderer, &ball);
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
@@ -262,7 +262,7 @@ void Game::GenerateOutput() {
 	SDL_Rect paddle1{
 		mPaddle1Pos.x,
 		mPaddle1Pos.y,
-		thickness,
+		mThickness,
 		mPaddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle1);
@@ -270,7 +270,7 @@ void Game::GenerateOutput() {
 	SDL_Rect paddle2{
 		mPaddle2Pos.x,
 		mPaddle2Pos.y,
-		thickness,
+		mThickness,
 		mPaddleH
 	};
 	SDL_RenderFillRect(mRenderer, &paddle2);
@@ -313,20 +313,22 @@ bool Game::Initialize() {
 	mIsRunning = true;
 	mBallPos =
 	{
-		static_cast <float>(1024 / 2 - thickness / 2),
-		static_cast <float>(768 / 2 - thickness / 2)
+		static_cast <float>(1024 / 2 - mThickness / 2),
+		static_cast <float>(768 / 2 - mThickness / 2)
 	};
 	mPaddle1Pos = {
-		0 + static_cast<float>(thickness) / 2 + thickness,
+		0 + static_cast<float>(mThickness) / 2 + mThickness,
 		static_cast <float>(768 / 2) - mPaddleH / 2
 	};
 	mPaddle2Pos = {
-		1024 - static_cast<float>(thickness) / 2 - thickness - thickness,
+		1024 - static_cast<float>(mThickness) / 2 - mThickness - mThickness,
 		(static_cast<float>(768 / 2)) - (mPaddleH / 2)
 	};
 	mTicksCount = 0;
 	mPaddle1Dir = 0;
 	mPaddle2Dir = 0;
+	;
+
 }
 void Game::Shutdown() {
 	SDL_DestroyRenderer(mRenderer);

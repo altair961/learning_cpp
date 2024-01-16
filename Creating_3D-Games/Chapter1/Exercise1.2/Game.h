@@ -42,7 +42,7 @@ private:
 	Uint32 mTicksCount;
 	int mPaddle1Dir;
 	int mPaddle2Dir;
-	const int mPaddleH = thickness * 6.5;
+	const int mPaddleH = mThickness * 6.5;
 	Vector2 mBallVel{200, 100};
 	void HandleTopBottomCollisions(Game::Vector2 paddlePos);
 };
