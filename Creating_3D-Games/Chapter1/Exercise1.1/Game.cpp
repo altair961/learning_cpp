@@ -17,12 +17,8 @@ Game::Game() {
 	mIsRunning = true;
 	mBallPos = 
 	{ 
-		//static_cast <float>(1024 / 2 - thickness / 2), 
-		//static_cast <float>(768 / 2 - thickness / 2)
-		//1000, 50
-		973, 750
-		//8, 750
-		//20,50
+		static_cast <float>(1024 / 2 - thickness / 2), 
+		static_cast <float>(768 / 2 - thickness / 2)
 	};
 	mPaddle1Pos = { 
 		0 + static_cast<float>(thickness) / 2 + thickness, 
