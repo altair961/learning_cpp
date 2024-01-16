@@ -12,10 +12,10 @@ private:
 	void UpdateGame();
 	void GenerateOutput();
 	bool BallComesFromTop();
-	bool BallBottomHitPaddleTopAlready();
-	bool BallTopHitPaddleBottomAlready();
-	bool BallIsHigherThanPaddle();
-	bool BallIsAlignedWithPaddleXAxis();
+	bool BallBottomHitPaddleTopAlready(int paddlePositionY);
+	bool BallTopHitPaddleBottomAlready(int paddlePositionY);
+	bool BallIsHigherThanPaddle(int paddlePositionY);
+	bool BallIsAlignedWithPaddleXAxis(int mPaddlePosX);
 	bool BallMovedOffScreen();
 	bool BallBottomIsLowerThanPaddleTop(int paddlePositionY);
 	bool BallTopIsHigherThanPaddleBottom(int paddlePositionY);
@@ -43,5 +43,7 @@ private:
 	int mPaddle1Dir;
 	int mPaddle2Dir;
 	const int mPaddleH = thickness * 6.5;
-	Vector2 mBallVel{ 200, 100};
+	//Vector2 mBallVel{ 200, 100};
+	Vector2 mBallVel{ 0, -20};
+	void HandleTopBottomCollisions(Game::Vector2 paddlePos);
 };

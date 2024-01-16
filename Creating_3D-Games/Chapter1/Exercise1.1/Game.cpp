@@ -17,8 +17,12 @@ Game::Game() {
 	mIsRunning = true;
 	mBallPos = 
 	{ 
-		static_cast <float>(1024 / 2 - thickness / 2), 
-		static_cast <float>(768 / 2 - thickness / 2)
+		//static_cast <float>(1024 / 2 - thickness / 2), 
+		//static_cast <float>(768 / 2 - thickness / 2)
+		//1000, 50
+		973, 750
+		//8, 750
+		//20,50
 	};
 	mPaddle1Pos = { 
 		0 + static_cast<float>(thickness) / 2 + thickness, 
@@ -41,6 +45,7 @@ void Game::ProcessInput()
 		switch (event.type)
 		{
 		case SDL_QUIT:
+			
 			mIsRunning = false;
 			break;
 		}
@@ -121,21 +126,11 @@ void Game::UpdateGame() {
 
 	// Did the ball collide with the top wall?
 	if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
-	{
-		mBallVel.y *= -1;
-	}
+		mBallVel.y *= -1;	
 
 	// Did the ball collide with the bottom wall?
 	if (mBallPos.y + 2 * thickness >= 768 && mBallVel.y > 0.0f)
 		mBallVel.y *= -1;
-
-	
-	//if (
-	//	//mBallPos.x >= (1024 - thickness - (thickness / 2)) && mBallVel.x > 0.0f
-	//	)
-	//{
-	//	mBallVel.x *= -1;
-	//}
 
 	// Did the ball intersect with the player 1 paddle (the left side)?
 	if (BallBottomIsLowerThanPaddleTop(mPaddle1Pos.y)
@@ -155,21 +150,8 @@ void Game::UpdateGame() {
 		&& mBallVel.x > 0.0f)
 			mBallVel.x *= -1;
 
-	if (BallComesFromTop() &&
-		BallIsHigherThanPaddle() &&
-		BallBottomHitPaddleTopAlready() &&
-		BallIsAlignedWithPaddleXAxis())
-	{
-		mBallVel.y *= -1;
-	}
-
-	if (!BallComesFromTop() &&
-		!BallIsHigherThanPaddle() &&
-		BallTopHitPaddleBottomAlready() &&
-		BallIsAlignedWithPaddleXAxis())
-	{
-		mBallVel.y *= -1;
-	}
+	HandleTopBottomCollisions(mPaddle1Pos);
+	HandleTopBottomCollisions(mPaddle2Pos);
 
 	if (BallMovedOffScreen()) 
 	{
@@ -193,10 +175,10 @@ void Game::GameOver()
 	mIsRunning = false;
 }
 
-bool Game::BallIsAlignedWithPaddleXAxis() 
+bool Game::BallIsAlignedWithPaddleXAxis(int mPaddlePosX)
 {
-	auto paddleRightSideX = mPaddle1Pos.x + thickness / 2;
-	auto paddleLeftSideX = mPaddle1Pos.x - thickness / 2;
+	auto paddleRightSideX = mPaddlePosX + thickness / 2;
+	auto paddleLeftSideX = mPaddlePosX - thickness / 2;
 	auto ballLeftSideX = mBallPos.x - thickness / 2;
 	auto ballRightSideX = mBallPos.x + thickness / 2;
 
@@ -217,27 +199,27 @@ bool Game::BallIsAlignedWithPaddleXAxis()
 	return false;
 }
 
-bool Game::BallTopHitPaddleBottomAlready() 
+bool Game::BallTopHitPaddleBottomAlready(int paddlePositionY)
 {
 	auto ballTopSideY = mBallPos.y;
-	auto paddleBottomSideY = mPaddle1Pos.y + mPaddleH;
+	auto paddleBottomSideY = paddlePositionY + mPaddleH;
 	auto result = ballTopSideY <= paddleBottomSideY;
 
 	return result;
 }
 
-bool Game::BallBottomHitPaddleTopAlready()
+bool Game::BallBottomHitPaddleTopAlready(int paddlePositionY)
 {
 	auto ballBottomSideY = mBallPos.y + thickness;
-	auto paddleTopSideY = mPaddle1Pos.y;
+	auto paddleTopSideY = paddlePositionY;
 	auto result = ballBottomSideY >= paddleTopSideY;
 
 	return result;
 }
 
-bool Game::BallIsHigherThanPaddle() 
+bool Game::BallIsHigherThanPaddle(int paddlePositionY)
 {
-	auto result = mBallPos.y < mPaddle1Pos.y;
+	auto result = mBallPos.y < paddlePositionY;
 	return result;
 }
 
@@ -257,6 +239,25 @@ bool Game::BallTopIsHigherThanPaddleBottom(int paddlePositionY)
 {
 	auto result = mBallPos.y < paddlePositionY + mPaddleH;
 	return result;
+}
+
+void Game::HandleTopBottomCollisions(Game::Vector2 paddlePos)
+{
+	if (BallComesFromTop() &&
+		BallIsHigherThanPaddle(paddlePos.y) &&
+		BallBottomHitPaddleTopAlready(paddlePos.y) &&
+		BallIsAlignedWithPaddleXAxis(paddlePos.x))
+	{
+		mBallVel.y *= -1;
+	}
+
+	if (!BallComesFromTop() &&
+		!BallIsHigherThanPaddle(paddlePos.y) &&
+		BallTopHitPaddleBottomAlready(paddlePos.y) &&
+		BallIsAlignedWithPaddleXAxis(paddlePos.x))
+	{
+		mBallVel.y *= -1;
+	}
 }
 
 void Game::GenerateOutput() {
