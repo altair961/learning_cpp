@@ -12,26 +12,7 @@ void Game::RunLoop()
 		GenerateOutput();
 	}
 }
-Game::Game() {
-	mWindow = nullptr;
-	mIsRunning = true;
-	mBallPos = 
-	{ 
-		static_cast <float>(1024 / 2 - thickness / 2), 
-		static_cast <float>(768 / 2 - thickness / 2)
-	};
-	mPaddle1Pos = { 
-		0 + static_cast<float>(thickness) / 2 + thickness, 
-		static_cast <float>(768 / 2) - mPaddleH / 2
-	};
-	mPaddle2Pos = { 
-		1024 - static_cast<float>(thickness) / 2 - thickness - thickness, 
-		(static_cast<float>(768 / 2)) - (mPaddleH / 2)
-	};
-	mTicksCount = 0;
-	mPaddle1Dir = 0;
-	mPaddle2Dir = 0;
-}
+Game::Game() {}
 void Game::ProcessInput() 
 {
 	SDL_Event event;
@@ -327,6 +308,25 @@ bool Game::Initialize() {
 		SDL_Log("Failed to create renderer: %s", SDL_GetError());
 		return false;
 	}
+
+	mWindow = nullptr;
+	mIsRunning = true;
+	mBallPos =
+	{
+		static_cast <float>(1024 / 2 - thickness / 2),
+		static_cast <float>(768 / 2 - thickness / 2)
+	};
+	mPaddle1Pos = {
+		0 + static_cast<float>(thickness) / 2 + thickness,
+		static_cast <float>(768 / 2) - mPaddleH / 2
+	};
+	mPaddle2Pos = {
+		1024 - static_cast<float>(thickness) / 2 - thickness - thickness,
+		(static_cast<float>(768 / 2)) - (mPaddleH / 2)
+	};
+	mTicksCount = 0;
+	mPaddle1Dir = 0;
+	mPaddle2Dir = 0;
 }
 void Game::Shutdown() {
 	SDL_DestroyRenderer(mRenderer);
