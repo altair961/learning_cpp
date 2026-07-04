@@ -21,5 +21,5 @@ int main(){
     cout << "Sum: " << val1 + val2 << '\n';
     cout << "Difference: " << val1 - val2 << '\n';
     cout << "Product: " << val1 * val2 << '\n';
-    cout << "Ratio: " << (double)val1 / val2 << '\n';
+    cout << "Ratio: " << val1 / val2 << '\n';
 }
