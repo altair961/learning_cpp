@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(ch2_ex3_legal_and_illegal_names LANGUAGES CXX)
+project(ch2_ex4_ints_operations LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(ch2_ex3_legal_and_illegal_names main.cpp)
+add_executable(ch2_ex4_ints_operations main.cpp)
 
 include(GNUInstallDirs)
-install(TARGETS ch2_ex3_legal_and_illegal_names
+install(TARGETS ch2_ex4_ints_operations
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
