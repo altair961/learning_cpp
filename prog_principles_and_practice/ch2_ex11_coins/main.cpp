@@ -28,36 +28,41 @@ int main()
 
     if(pennies == 1)
         cout << "\nYou have " << pennies << " penny.\n";
-    else if(pennies > 1)
+    else
         cout << "\nYou have " << pennies << " pennies.\n";
 
     if(nickels == 1)
         cout << "You have " << nickels << " nickel.\n";
-    else if(nickels > 1)
+    else
         cout << "You have " << nickels << " nickels.\n";
 
     if(dimes == 1)
         cout << "You have " << dimes << " dime.\n";
-    else if(dimes > 1)
+    else
         cout << "You have " << dimes << " dimes.\n";
 
     if(quarters == 1)
         cout << "You have " << quarters << " quarter.\n";
-    else if(quarters > 1)
+    else
         cout << "You have " << quarters << " quarters.\n";
 
     if(half_dollars == 1)
-        cout << "You have " << half_dollars << " half-dollar.\n";
-    else if(half_dollars > 1)
-        cout << "You have " << half_dollars << " half-dollars.\n";
+        cout << "You have " << half_dollars << " half-dollar coin.\n";
+    else
+        cout << "You have " << half_dollars << " half-dollar coins.\n";
 
     if(one_dollars == 1)
-        cout << "You have " << one_dollars << " one-dollar.\n";
-    else if(one_dollars > 0)
-        cout << "You have " << one_dollars << " one-dollars.\n";
+        cout << "You have " << one_dollars << " one-dollar coin.\n";
+    else
+        cout << "You have " << one_dollars << " one-dollar coins.\n";
 
-    cout << "The value of all your coins is " << total_cents / 100
-         << " dollars and " << total_cents % 100 << " cents.";
+    cout << "\nThe value of all your coins is $" << total_cents / 100
+         << ".";
+
+    if(total_cents % 100 < 10)
+        cout << '0';
+
+    cout << total_cents % 100;
 
     return 0;
 }
