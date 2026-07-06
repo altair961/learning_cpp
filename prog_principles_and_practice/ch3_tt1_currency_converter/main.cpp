@@ -3,7 +3,7 @@
 int main()
 {
     char unit = '_';
-    double sum;
+    double sum = 0;
     constexpr double yen_per_usd = 164.54;
     constexpr double kroner_per_usd = 9.64;
     constexpr double pounds_per_usd = 0.75;
