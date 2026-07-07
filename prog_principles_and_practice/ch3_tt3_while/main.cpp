@@ -6,7 +6,7 @@ int main()
     while(i <= 122)
     {
         cout << char(i) << '\t' << i << "\n";
-        i++;
+        ++i;
     }
 
     return 0;
