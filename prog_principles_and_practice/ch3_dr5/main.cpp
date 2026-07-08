@@ -1,5 +1,9 @@
 #include "../PPPheaders.h"
 
+double absolute(double input) {
+    return (input < 0) ? -input : input;
+}
+
 int main()
 {
     double a, b = 0.0;
@@ -16,7 +20,7 @@ int main()
             cout << "The smaller number is: " << smaller << '\n'
                 << "and the larger number is: " << larger;
 
-            if((a - b) < 1.0/100)
+            if(absolute(a - b) < 1.0/100)
                 cout << "\nthe numbers are almost equal\n";
 
         } else {
