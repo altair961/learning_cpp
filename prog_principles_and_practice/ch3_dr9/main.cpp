@@ -34,7 +34,11 @@ int main()
     if(!cin)
         return 0;
 
+    double sum = 0.0;
+    int count = 0;
     input = to_meters(input, unit);
+    sum += input;
+    count++;
     cout << input << "m the smallest and the largest so far\n";
     double larger = input;
     double smaller = input;
@@ -44,15 +48,24 @@ int main()
             cout << "Illegal unit. Try again.\n";
             continue;
         }
-
         input = to_meters(input, unit);
+        cout << input << "m";
+        sum += input;
+        count++;
         if(input > larger) {
             larger = input;
-            cout << input << "m the largest so far: " << larger << '\n';
+            cout << " the largest so far" << '\n';
         } else if(input < smaller) {
             smaller = input;
-            cout << input << "m the smallest so far: " << smaller << '\n';
+            cout << " the smallest so far" << '\n';
+        } else {
+            cout << '\n';
         }
     }
+    cout << "Sum: " << sum << " m\n"
+         << "largest: " << larger << " m\n"
+         << "smallest: " << smaller << " m\n"
+         << "number of entered values: " << count;
+
     return 0;
 }
